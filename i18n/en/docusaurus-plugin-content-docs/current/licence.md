@@ -29,9 +29,9 @@ https://bsky.app/profile/bidri.bsky.social
 - Added the English version of the rules
 
 #### 2025/5/28
-- Added the **\[Arts Overdrive\]** rule for Arts.
-- **\[Originium Erosion Check\]**: Changed the Erosion Level increase for 2 successes from "1" to "2".
-- **\[Arts Backlash Check\]**: Changed the Danger Level for a Fumble on an **\<Arts\>** skill check from "Absolute value of successes" to "Twice the absolute value of successes".
+- Added the **[Arts Overdrive]** rule for Arts.
+- **[Originium Erosion Check]**: Changed the Erosion Level increase for 2 successes from "1" to "2".
+- **[Arts Backlash Check]**: Changed the Danger Level for a Fumble on an **\<Arts\>** skill check from "Absolute value of successes" to "Twice the absolute value of successes".
 - Added further details regarding the Arknights world-setting.
 - Minor phrasing adjustments.
 
