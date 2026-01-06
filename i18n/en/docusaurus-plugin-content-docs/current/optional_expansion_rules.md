@@ -4,45 +4,43 @@ sidebar_position: 12
 
 import Memo from '@site/src/components/memo';
 
-# 追加の追加ルール
+# Optional Rule Extensions
 
-　追加ルールにさらにルールを追加することもできます。何を言っているんだと思うかもしれませんが、アークナイツの世界観をより詳細に表現するために、ここまでの追加ルールを拡張する方法の一例です。よければ参考にしてみてください。
+You can further expand these rules to reflect the world of Arknights in even greater detail. Below are examples of how to extend the mechanics for specific races. Feel free to use these as a reference.
 
-## 選択ルール【サルカズ傭兵】
+## Optional Rule: [Sarkaz Mercenary]
 
-　種族が「サルカズ」の共鳴者を作成するとき、以下のすべての効果を反映することができます（一部のみ反映することはできません）。
+When creating a Resonator of the **Sarkaz** race, you may apply all of the following effects (they must be applied as a set).
 
-- 侵食度の初期値は21以上の任意の数値になる。
-- 能力値に関わらず、生理的耐性が1になる。
-- 一度の源石侵食判定・アーツ反動判定による侵食度の上昇値に上限を設ける。
-  - 上限値は判定時の侵食段階になる。
-  - 例えば、侵食段階が3（重度）の状態で急激な侵食が発生したとしても、侵食度の上昇は3以下になる。
-- 侵食段階による運動系技能のペナルティを無効化する。
-- 交渉系技能が自動失敗になる。
-  - 暴力による脅迫などは可能。
+- **Initial Erosion Level:** Starts at any value of **21 or higher**.
+- **Physiological Resistance:** Becomes **1**, regardless of attribute values.
+- **Erosion Cap:** A limit is placed on how much the Erosion Level can increase from a single **[Originium Erosion Check]** or **[Arts Backlash Check]**.
+  - The maximum increase is equal to the character's current **[Erosion Stage]**.
+  - For example, if you are at **Stage 3 (Severe)**, any rapid erosion will be capped at an increase of 3.
+- **Physical Resilience:** All penalties to physical skills caused by the **Erosion Stage** are negated.
+- **Social Isolation:** You always fail all Negotiation-based skill checks.
+  - Interpretation: Due to deep-seated prejudice, regular dialogue is impossible. However, coercion through violence (Intimidation) is still possible.
 
 <Memo>
-　サルカズは源石と相性が「良すぎる」種族であり、そのほとんどが鉱石病を患っています。テラにおける被差別種族であり、サルカズの多くは傭兵になること以外に生きる方法を知りません。
+Sarkaz have an "excessive" affinity for Originium, and almost all of them suffer from Oripathy. As a persecuted race in Terra, many Sarkaz find that being a mercenary is the only way to survive.
 </Memo>
 
-## 選択ルール【シーボーン】
+## Optional Rule: [Seaborn & Abyssal]
 
-　侵食度のステータスやシステムはそのままに、〈∞共鳴〉のステータスを持たせることができます。
+While retaining the Erosion Level system, you can introduce a status for **\<∞Resonance\>** to represent the Seaborn's influence.
 
-　エモクロアTRPGの共鳴システムによって、「シーボーン」への同化を表現します。  
-　〈∞共鳴〉が10になったとき、共鳴者はシーボーンへと成り果て、ロストします。
+By utilizing the standard resonance system of Emoklore TRPG, you can depict the assimilation into the **Seaborn**. When **\<∞Resonance\>** reaches **10**, the Resonator fully transforms into a Seaborn. At this point, the character is **removed from play** and becomes an NPC under the Dealer's control, as they have been assimilated into the sea monsters.
 
-　また、種族が「アビサル」の共鳴者を作成するとき、以下のすべての効果を反映します。
-
-- 能力値に関わらず、生理的耐性が13になる。
-- 〈アーツ〉技能を取得できない。
-- 〈∞共鳴〉の初期レベルは3以上の任意の数値になる。
-- シーボーンへの共鳴判定が常に完全一致になる。
-  - 〈∞共鳴〉が10未満であっても、極限共鳴（ハウリング）などによってシーボーンの味方になる可能性がある。
-- 侵食段階によるすべての影響を無効化する。
-  - 発症していないわけではなく、判定に影響を及ぼすほどではないという解釈。
-- 運動系技能による判定時、常にダイスボーナスが1つ付与される。
+When creating a Resonator of the **Abyssal Hunters** (or Abyssal) race, apply all of the following effects:
+- **Physiological Resistance:** Becomes **13**, regardless of attribute values.
+- **Arts Restriction:** Cannot acquire any **\<Arts\>** skills.
+- **Initial \<∞Resonance\>:** Starts at any level of **3 or higher**.
+- **Perfect Resonance:** You **always result in a Perfect Match** (完全一致) during **Resonance Checks** with the Seaborn.
+  - Even if **\<∞Resonance\>** is below 10, a **Howling** (極限共鳴) may cause the character to side with the Seaborn.
+- **Erosion Immunity:** Ignore all effects caused by the **[Erosion Stage]**.
+  - Interpretation: The disease exists within them, but it is not significant enough to affect their performance.
+- **Physical Superiority:** Gain **+1 Bonus Die** to all Physical skill checks.
 
 <Memo>
-　テラの海には源石がありませんが、代わりにシーボーンと呼ばれる怪物が存在します。陸上の国家とは一線を画す超科学文明を礎とする海洋国家エーギルは、海の怪物の脅威が鉱石病のそれを遥かに上回ると考えています。
+There is no Originium in the ocean of Terra; instead, there are monsters known as the Seaborn. The maritime nation of Aegir, built upon a hyper-technological civilization far beyond any land-based nation, believes the threat of these sea monsters far outweighs that of Oripathy.
 </Memo>
