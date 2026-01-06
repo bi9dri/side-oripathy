@@ -28,7 +28,12 @@ const config: Config = {
 	// may want to replace "en" with "zh-Hans".
 	i18n: {
 		defaultLocale: "ja",
-		locales: ["ja"],
+		locales: ["ja", "en"],
+		localeConfigs: {
+			en: {
+				htmlLang: "en-US",
+			},
+		},
 	},
 
 	presets: [
@@ -71,6 +76,10 @@ const config: Config = {
 					label: "コンバーター",
 				},
 				{
+					type: "localeDropdown",
+					position: "right",
+				},
+				{
 					href: "https://github.com/bi9dri/emoklore-arknights-side-oripathy",
 					label: "GitHub",
 					position: "right",
@@ -99,7 +108,7 @@ const config: Config = {
 			//     ],
 			//   },
 			// ],
-			copyright: `Copyright © ${new Date().getFullYear()} びどり. Built with Docusaurus.`,
+			copyright: `Copyright © ${new Date().getFullYear()} bidri. Built with Docusaurus.`,
 		},
 		prism: {
 			theme: prismThemes.github,

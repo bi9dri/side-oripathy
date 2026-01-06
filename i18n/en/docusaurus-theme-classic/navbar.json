@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Arknights × Emoklore TRPG: Side Oripathy",
+    "description": "The title in the navbar"
+  },
+  "item.label.ルール": {
+    "message": "Rules",
+    "description": "Navbar item with label ルール"
+  },
+  "item.label.コンバーター": {
+    "message": "Converter",
+    "description": "Navbar item with label コンバーター"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

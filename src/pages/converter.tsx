@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { type ReactNode, useState } from "react";
 
 import style from "./converter.module.css";
+import Translate, { translate } from "@docusaurus/Translate";
 
 type TextType = "ccfolia" | "commandPalette" | "unknown";
 type ConvertType = "normal" | "sarkaz-mercenary" | "seaborn-abyssal";
@@ -55,21 +56,21 @@ const convertCommands = (text: string): string => {
 			cmd.skill.startsWith("★射撃")
 		) {
 			commands.push(
-				`${cmd.level}DM<=(${cmd.judge}-({侵食段階}*4/5R)) 〈${cmd.skill}〉`,
+				`${cmd.level}DM<=(${cmd.judge}-({${translate({ message: "侵食段階" })}*4/5R)) 〈${cmd.skill}〉`,
 			);
 			continue;
 		}
 		if (cmd.skill.startsWith("アーツ")) {
 			commands.push(
-				`${cmd.level}DM<=(${cmd.judge}+(({侵食段階}-1)*2/3C)) 〈${cmd.skill}〉`,
+				`${cmd.level}DM<=(${cmd.judge}+(({${translate({ message: "侵食段階" })}}-1)*2/3C)) 〈${cmd.skill}〉`,
 			);
 			continue;
 		}
 		commands.push(
-			`${cmd.level}DM<=(${cmd.judge}-(({侵食段階}-1)*2/3R)) 〈${cmd.skill}〉`,
+			`${cmd.level}DM<=(${cmd.judge}-(({${translate({ message: "侵食段階" })}}-1)*2/3R)) 〈${cmd.skill}〉`,
 		);
 	}
-	commands.unshift("({侵食度}/{生理的耐性}F+1)DM<= 〈源石侵食判定〉");
+	commands.unshift(`({${translate({ message: "侵食度" })}}/{${translate({ message: "生理的耐性" })}}F+1)DM<= 〈${translate({ message: "源石侵食判定" })}〉`);
 
 	return commands.join("\n");
 };
@@ -82,7 +83,7 @@ const convertCcfolia = (text: string): string => {
 		srcParams[param.label] = Number.parseInt(param.value);
 	}
 	// biome-ignore lint/complexity/useLiteralKeys: unicode keys
-	srcParams["生理的耐性"] = srcParams["身体"] + srcParams["運勢"];
+	srcParams[translate({ message: "生理的耐性" })] = srcParams["身体"] + srcParams["運勢"];
 
 	const params = [];
 	for (const param in srcParams) {
@@ -99,12 +100,12 @@ const convertCcfolia = (text: string): string => {
 	}
 	status.push(
 		{
-			label: "侵食度",
+			label: translate({ message: "侵食度" }),
 			value: "0",
 			max: "100",
 		},
 		{
-			label: "侵食段階",
+			label: translate({ message: "侵食段階" }),
 			value: "0",
 			max: "4",
 		},
@@ -126,7 +127,7 @@ export default function Converter(): ReactNode {
 	const [convertType, setConvertType] = useState<ConvertType>("normal");
 	const [inputText, setInputText] = useState<string>("");
 	const [outputText, setOutputText] = useState<string>("");
-	const [copyButtonText, setCopyButtonText] = useState<string>("コピー");
+	const [copyButtonText, setCopyButtonText] = useState<string>(translate({ message: "コピー" }));
 
 	const onChangeInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setInputText(event.target.value);
@@ -139,7 +140,7 @@ export default function Converter(): ReactNode {
 		} else if (textType === "commandPalette") {
 			setOutputText(convertCommands(inputText));
 		} else {
-			setOutputText("不明な形式です");
+			setOutputText(translate({ message: "不明な形式です" }));
 		}
 	};
 
@@ -147,25 +148,25 @@ export default function Converter(): ReactNode {
 		navigator.clipboard
 			.writeText(outputText)
 			.then(() => {
-				setCopyButtonText("クリップボードにコピーしました");
+				setCopyButtonText(translate({ message: "クリップボードにコピーしました" }));
 				setTimeout(() => {
-					setCopyButtonText("コピー");
+					setCopyButtonText(translate({ message: "コピー" }));
 				}, 5000);
 			})
 			.catch((err) => {
-				console.error("クリップボードへのコピーに失敗しました:", err);
+				console.error(translate({ message: "クリップボードへのコピーに失敗しました:" }), err);
 			});
 	};
 
 	return (
 		<Layout
-			title={`コンバーター | ${siteConfig.title}`}
-			description="アークナイツ×エモクロアTRPG サイド・オリパシー コンバーター"
+			title={`${translate({ message: "コンバーター" })} | ${translate({ message: siteConfig.title })}`}
+			description={translate({ message: "アークナイツ×エモクロアTRPG サイド・オリパシー コンバーター" })}
 		>
 			<main>
 				<div className={clsx("container", style.converter)}>
 					<p>
-						エモクロアTRPGのキャラクターシートから、チャットパレットまたはCCFOLIA形式でコピーしたものを上に貼り付けて「コンバート」を押してください。
+						<Translate>エモクロアTRPGのキャラクターシートから、チャットパレットまたはCCFOLIA形式でコピーしたものを上に貼り付けて「コンバート」を押してください。</Translate>
 					</p>
 					<textarea
 						id="input"
@@ -179,9 +180,9 @@ export default function Converter(): ReactNode {
 						value={convertType}
 						onChange={(e) => setConvertType(e.target.value as ConvertType)}
 					>
-						<option value="normal">通常</option>
-						<option value="sarkaz-mercenary">サルカズ傭兵（未対応）</option>
-						<option value="seaborn-abyssal">アビサル（未対応）</option>
+						<option value="normal"><Translate>通常</Translate></option>
+						<option value="sarkaz-mercenary"><Translate>サルカズ傭兵（未対応）</Translate></option>
+						<option value="seaborn-abyssal"><Translate>アビサル（未対応）</Translate></option>
 					</select>
 					<button
 						type="button"
@@ -189,7 +190,7 @@ export default function Converter(): ReactNode {
 						className="button button--primary button--lg"
 						onClick={() => handleConvert()}
 					>
-						コンバート
+						<Translate>コンバート</Translate>
 					</button>
 					<textarea
 						id="output"

@@ -9,7 +9,7 @@ sidebar_position: 2
 ![ダイスタス・コモンズ](/img/dicetous_commons.png)
 
 - 表示：必要
-  - `追加ルール「アークナイツ×エモクロアTRPG サイド・オリパシー」 https://bi9dri.github.io/emoklore-arknights-side-oripathy/` を表示してください。
+  - `追加ルール「アークナイツ×エモクロアTRPG サイド・オリパシー」 https://side-oripathy.bidri.dev/` を表示してください。
 - 改変：許可
 - 公演：許可（収益化OK）
 - <u>**営利：不可**</u>
@@ -18,11 +18,15 @@ sidebar_position: 2
 　また、実用的なシステムを考え表現するにあたって、[BCDice](https://bcdice.org/)の存在にも大いに助けられました。オフラインセッションには難しい部分もあるかもしれませんが、良いアイデアがあればご教示いただければ幸いです。  
 　改変や公演は自由ですが、事後でも事前でもこっそりとでも堂々とでも、作者にお知らせいただけると嬉しいです。
 
-作者：びどり  
+作者：bidri  
 https://bsky.app/profile/bidri.bsky.social  
 [https://x.com/bidri__](https://x.com/bidri__)
 
 ## 更新履歴
+
+#### 2026/1/6
+- ドメインを `https://side-oripathy.bidri.dev/` に変更
+- 英語版を追加
 
 #### 2025/5/28
 - アーツの【ハイパードライブ】ルールを追加
@@ -34,4 +38,4 @@ https://bsky.app/profile/bidri.bsky.social
 #### 2025/5/11
 - 作成
 
-© 2025 びどり
+© 2025 bidri

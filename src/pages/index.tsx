@@ -6,32 +6,33 @@ import clsx from "clsx";
 import type { ReactNode } from "react";
 
 import styles from "./index.module.css";
+import Translate, { translate } from "@docusaurus/Translate";
 
 export default function Home(): ReactNode {
 	const { siteConfig } = useDocusaurusContext();
 	return (
 		<Layout
 			title={`${siteConfig.title}`}
-			description="アークナイツ×エモクロアTRPG サイド・オリパシー"
+			description={translate({ message: "アークナイツ×エモクロアTRPG サイド・オリパシー" })}
 		>
 			<main className={clsx("hero hero--primary", styles.heroBanner)}>
 				<div className="container">
 					<Heading as="h1" className="hero__title">
-						{siteConfig.title}
+						{translate({ message: siteConfig.title })}
 					</Heading>
-					<p className="hero__subtitle">{siteConfig.tagline}</p>
+					<p className="hero__subtitle">{translate({ message: siteConfig.tagline })}</p>
 					<div className={styles.buttons}>
 						<Link
 							className="button button--secondary button--lg"
 							to="/docs/intro"
 						>
-							ルールを読む
+							<Translate>ルールを読む</Translate>
 						</Link>
 						<Link
 							className="button button--secondary button--lg"
 							to="/converter"
 						>
-							キャラクターをコンバートする
+							<Translate>キャラクターをコンバートする</Translate>
 						</Link>
 					</div>
 				</div>
