@@ -6,122 +6,137 @@ toc_max_heading_level: 2
 import Expression from '@site/src/components/expression';
 import Memo from '@site/src/components/memo';
 
-# 【源石侵食判定】
+# [Originium Erosion Check]
 
-　**源石侵食判定**は、キャラクターの鉱石病が進行するか（感染するか）という判定です。  
-　鉱石病が進行しているほど、活性源石との接触が濃厚になるほど、より鉱石病が進行しやすくなります。  
-　エモクロアTRPGの共鳴判定を参考に、似たシステムにしているため、[元のルール](https://emoklore.dicetous.com/rulebook/rulebook-dealer/#Dealer-anc5)を参照すると分かりやすいかもしれません。
+The **Originium Erosion Check** determines whether a character's Oripathy progresses (or whether they become infected). The more advanced the Oripathy and the more intense the contact with active Originium, the more likely the disease is to progress.
 
-　判定は以下のように定義されます。
+This system is inspired by the **Resonance Check** in Emoklore TRPG. If you are familiar with the [original rules](https://emoklore.dicetous.com/rulebook/rulebook-dealer/#Dealer-anc5), you will find it quite similar.
 
-<Expression>
-`源石侵食判定（危険度3／上昇値1D8）`
-</Expression>
-
-### 危険度
-
-　判定ごとにディーラーが指定する値で、共鳴判定の強度と同じようなものです。  
-　「防じんマスクをしている」「 〈医術〉技能判定による感染予防を試みる」などの条件によって、ディーラーの裁量で危険度を下げることができます。  
-　詳細は[「危険の指針」](#危険度の指針)を参照してください。
-
-### 上昇値
-
-　判定ごとにディーラーが指定する値で、共鳴判定の上昇値と同じようなものです。  
-　上昇値を使うのは、源石侵食判定の成功数が3以上の場合だけです。
-
-## 判定方法
-
-　[「侵食度」](/docs/erosion_level)を[「生理的耐性」](/docs/erosion_level#生理的耐性)で割ったもの（切り捨て）に1を足した数の10面ダイスを振り、ダイスの出目と「危険度」を比較して成功数を出し、その総和が源石侵食判定の成功数になります。  
-　エモクロアTRPGの技能判定と同様、ダイスの出目が1なら成功数2、ダイスの出目が危険度以下なら成功数1、ダイスの出目が10なら成功数-1です。
-
-　BCDiceのコマンドで表現すると以下のようになります。
+A check is defined as follows:
 
 <Expression>
-`({侵食度}/{生理的耐性}F+1)DM<={危険度}`
+`Originium Erosion Check (Danger Level: 3 / Increase: 1D8)`
 </Expression>
 
-　源石侵食判定の成功数によって、キャラクターの侵食度を上昇させます。
+### Danger Level
 
-|成功数|上昇量|
+A value specified by the Dealer for each check, similar to the **Strength** of a **Resonance Check**.
+
+The Dealer may lower the Danger Level based on circumstances, such as the character wearing a dust mask or attempting infection prevention via a **\<Medicine\>** skill check.
+
+For details, see the [Danger Level Guidelines](#danger-level-guidelines).
+
+### Increase
+
+A value specified by the Dealer for each check, similar to the **Increase** of a **Resonance Check**.
+
+This value is only used if the number of successes in the Originium Erosion Check is 3 or higher.
+
+## How to Perform the Check
+
+1. Take the **[Erosion Level]**, divide it by **[Physiological Resistance]**, and round down.
+2. Add 1 to this result. This is the number of 10-sided dice (D10) you will roll.
+3. Compare each die result with the **Danger Level** to determine the number of successes. The total is your final number of successes for the Originium Erosion Check.
+
+Just like skill checks in Emoklore TRPG:
+- A roll of **1** yields **2 successes** (Critical).
+- A roll **equal to or less than the Danger Level** yields **1 success**.
+- A roll of **10** yields **-1 success** (Fumble / Error).
+
+In BCDice command format:
+
+<Expression>
+`({Erosion Level}/{Physiological Resistance}F+1)DM<={Danger Level}`
+</Expression>
+
+### Outcomes
+
+The character's **Erosion Level** increases based on the number of successes:
+
+|Successes|Increase Amount|
 |:--|:--|
-|0|上昇なし|
-|1～2|成功数と同じ|
-|3以上|判定ごとに指定された上昇値|
+|0|No increase|
+|1–2|Same as the number of successes|
+|3+|The specified **Increase** value (e.g., 1D8)|
 
 
-　この判定の意図は以下のようになっています。
+### Design Intent
 
-- ダイス数がキャラクターの状態に起因する「源石からの影響の受けやすさ」、判定値が状況自体の「源石による影響の与えやすさ」を表現しています。
-- 鉱石病が進むほど鉱石病が進みやすくなります。
-- 身体が丈夫だったり、運が良ければ、鉱石病に罹りにくく、進みは遅くなります。
-- 活性源石との接触が濃厚であるほど、鉱石病への影響は深刻になります。
-- 共鳴判定のように、キャラクターのステータスによって振るダイスの数を増やしたい。どうせならたくさんダイスを振りたい！
-- （計算さえできれば）処理が複雑でなく、1回のダイスロールで結果がわかるようにしたい。
+- The number of dice represents the "vulnerability to Originium" caused by the character's condition, while the Danger Level represents the "intensity of Originium influence" in the situation.
+- The more Oripathy progresses, the easier it becomes to worsen.
+- Stronger physical health or better luck makes it harder to contract or advance the disease.
+- The more intense the contact with active Originium, the more severe the impact on Oripathy becomes.
+- Just like the Resonance Check in Emoklore TRPG, I wanted to increase the number of dice based on the character's status. After all, rolling a huge handful of dice is part of the fun!
+- As long as the initial calculation is done, the process isn't complex, allowing the result to be determined with a single dice roll.
 
 
-## 例
+## Examples
 
-### 身体3、運勢6、侵食度0のキャラクターが、危険度2の源石侵食判定をする場合
+### Character with [Physique: 3], [Luck: 6], [Erosion Level: 0] facing Danger Level 2:
 
-1. 生理的耐性は `3 + 6 = 9`
-2. 振るダイスの数は `0 / 9 + 1 = 1`
-3. 判定値＝危険度なので `2`
+1. Physiological Resistance: `3 + 6 = 9`
+2. Number of dice: `(0 / 9) + 1 = 1`
+3. Danger Level: `2`
 
-`1DM<=2` （10面ダイスを1個振り、2以下で判定）
+Result: `1DM<=2` (Roll 1D10; successes on 2 or less)
 
-### 身体1、運勢2、侵食度68のキャラクターが、危険度4の源石侵食判定をする場合
+### Character with [Physique: 1], [Luck: 2], [Erosion Level: 68] facing Danger Level 4:
 
-1. 生理的耐性は `1 + 2 = 3`
-2. 振るダイスの数は `68 / 3 + 1 = 23.x` を切り捨てて `23`
-3. 判定値＝危険度なので `4`
+1. Physiological Resistance: `1 + 2 = 3`
+2. Number of dice: `(68 / 3) + 1 = 23` (rounded down)
+3. Danger Level: `4`
 
-`23DM<=4` （10面ダイスを23個振り、4以下で判定）
+Result: `23DM<=4` (Roll 23D10; successes on 4 or less)
 
 <Memo>
-　源石侵食判定で振るダイスの数は最低1個から、最大では51個になります。たくさんダイスが振れますね！
+The number of dice ranges from 1 to 51. That's a lot of dice to roll!
 </Memo>
 
 :::note
-## 描写と処理の例
+## Example Scene
 
-　共鳴者のエーテルは、探索中に感染者の居住区にある廃屋を訪ねた。  
-　廃屋の中を調べていると、変わった袋を見つける。袋の中身を確認しようと手を伸ばしたが、手が滑って袋を落としてしまった。  
-　運の悪いことに、袋は完全に閉じられていないばかりか、どうやら中には感染者の遺体が入っていたようで、廃屋の中に活性源石の粉塵が舞い散ることになった。  
-　ディーラーは、エーテルが活性源石の粉塵に晒されたため【源石侵食判定】を指示する。  
-　極めて危険な状況だが、エーテルはロドス支給の防護服を装備しているため、危険度を低く設定した。  
+A Resonator (共鳴者; a player character of Emoklore TRPG) named Aether visits an abandoned house in an Infected residential district.
 
-**源石侵食判定（危険度2／上昇値1D5）**
+While searching, he finds a strange bag. As he reaches out to check the contents, his hand slips, and the bag drops. Unfortunately, the bag was not fully sealed and contained an Infected corpse; active Originium dust scatters throughout the room.
 
-　エーテルの【身体】は`3`、【運勢】は`4`、〈侵食度〉は`10`だったため、`3 + 4 = 7` が生理的耐性になる。`10 / 7 = 1.x` を切り捨てた `1` に 1 を足した `2`個の10面ダイスをプレイヤーが振り、出た目は 1, 8 だった。判定値は危険度である`2`だが、出目が1なのでクリティカルダイスとなり、判定の成功数は`2`となる。  
-　プレイヤーはエーテルの〈侵食度〉を`2`上昇させた。エーテルは喉の奥に軽い痛みを感じ、小さなうめき声を上げた。
+The Dealer calls for an **[Originium Erosion Check]** due to exposure. Since Aether is wearing Rhodes Island-issued protective gear, the Dealer sets a low Danger Level.
 
+**Originium Erosion Check (Danger Level: 2 / Increase: 1D5)**
+
+Aether's **[Physique]** is 3, **[Luck]** is 4, and **[Erosion Level]** is 10.
+
+Physiological Resistance: `3 + 4 = 7`. Number of dice: `(10 / 7) = 1.42...` (round down to 1) + 1 = **2 dice**.
+
+The player rolls 2D10 and gets **1** and **8**. Since the 1 is a critical (2 successes), the total successes is **2**.
+
+Aether's **[Erosion Level]** increases by 2. He feels a slight pain in the back of his throat and lets out a small groan.
 :::
 
-## 危険度の指針
+## Danger Level Guidelines
 
 <table>
     <thead>
         <tr>
-            <th>危険度</th>
-            <th>指針</th>
+            <th>Danger Level</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1～2</td>
-            <td>リスクの高い接触<br />活性源石が体内に取り込まれる可能性のある状況</td>
+            <td>1–2</td>
+            <td>**High-risk contact.** Situations where active Originium may be inhaled or absorbed.</td>
         </tr>
         <tr>
-            <td>3～5</td>
-            <td>極めて危険な接触<br />活性源石が容易に体内に入り込む状況</td>
+            <td>3–5</td>
+            <td>**Extremely dangerous contact.** Situations where active Originium easily enters the body.</td>
         </tr>
         <tr>
-            <td>6～</td>
-            <td>致命的な接触<br />活性源石が積極的に身体を侵食しようとしている状況</td>
+            <td>6+</td>
+            <td>**Fatal contact.** Situations where active Originium aggressively erodes the body.</td>
         </tr>
     </tbody>
 </table>
 
 <Memo>
-　大丈夫ですよ。感染者に触れただけで鉱石病になるようなことは稀です。
+Don't worry. It's rare to contract Oripathy just by touching an Infected person.
 </Memo>

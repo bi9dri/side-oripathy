@@ -31,7 +31,7 @@ The Erosion Level is categorized into stages as shown in the table below:
     </tr>
     <tr>
       <td>1<br /><b>Mild</b></td>
-      <td>1-20</td>
+      <td>1–20</td>
       <td>
         <ul style={{margin:0}}>
           <li>Physical skill check values -1</li>
@@ -45,7 +45,7 @@ The Erosion Level is categorized into stages as shown in the table below:
     </tr>
     <tr>
       <td>2<br /><b>Moderate</b></td>
-      <td>21-70</td>
+      <td>21–70</td>
       <td>
         <ul style={{margin:0}}>
             <li>Physical skill check values -1</li>
@@ -64,7 +64,7 @@ The Erosion Level is categorized into stages as shown in the table below:
     </tr>
     <tr>
       <td>3<br /><b>Severe</b></td>
-      <td>71-90</td>
+      <td>71–90</td>
       <td>
         <ul style={{margin:0}}>
           <li>\<Arts\> skill check values +2</li>
@@ -81,10 +81,10 @@ The Erosion Level is categorized into stages as shown in the table below:
     </tr>
     <tr>
       <td>4<br /><b>Terminal</b></td>
-      <td>91-100</td>
+      <td>91–100</td>
       <td>
         <ul style={{margin:0}}>
-          <li>Unable to take proactive actions.<ul style={{margin:0}}><li>\<＊生存 (Survival)\> skill and similar checks are still permitted.</li></ul></li>
+          <li>Unable to take proactive actions.<ul style={{margin:0}}><li>**\<＊生存 (Survival)\>** skill and similar checks are still permitted.</li></ul></li>
           <li>**[Originium Erosion Checks]** occur over time.</li>
           <li><u><b>The character is treated as deceased at the end of the session.</b></u></li>
         </ul>
@@ -167,7 +167,7 @@ As of the year 1102 in Terra, **Oripathy is an incurable disease. While its prog
 
 However, by administering **Oripathy Suppressants** within approximately one hour of an Erosion Level increase, you can reduce the level by 1D5 (up to the amount of the most recent increase).
 
-**Erosion Level cannot be reduced through \<\*手当て (First Aid)\> or \<医術 (Medicine)\>.**
+**Erosion Level cannot be reduced through \<＊手当て (First Aid)\> or \<医術 (Medicine)\>.**
 
 <Memo>
 The quality of Rhodes Island's suppressants is unrivaled. If you rely on other medications, you cannot expect the same level of efficacy.

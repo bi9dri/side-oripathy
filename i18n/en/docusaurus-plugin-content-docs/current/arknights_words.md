@@ -57,7 +57,7 @@ The organization employs many Infected individuals, consisting of not only medic
 
 "Rhodes Island" is also the name of the small Nomadic city owned by the organization, serving as its landship headquarters with offices established throughout Terra.
 
-Its predecessor was an organization called **Babel**, founded in the year 1031. It was reorganized into Rhodes Island in 1094, making it a relatively new and less-known entity in Terran history. (Main Theme: Act 1 in the original game takes place 1096-1097)
+Its predecessor was an organization called **Babel**, founded in the year 1031. It was reorganized into Rhodes Island in 1094, making it a relatively new and less-known entity in Terran history. (Main Theme: Act 1 in the original game takes place 1096–1097)
 
 :::note
 ## Firearms in Terra
