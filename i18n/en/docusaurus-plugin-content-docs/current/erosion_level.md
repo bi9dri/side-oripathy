@@ -7,7 +7,7 @@ import Memo from '@site/src/components/memo';
 
 # [Erosion Level]
 
-The **Erosion Level** is a numerical value representing the progression of Oripathy is a character. As it increases, various restrictions are placed on their actions.
+The **Erosion Level** is a numerical value representing the progression of Oripathy in a character. As it increases, various restrictions are placed on their actions.
 
 Please note that the Erosion Level is a mechanical abstraction created for this TRPG system to express the severity of the disease and is distinct from the "Cell-Originium Assimilation" seen in the original game.
 
@@ -19,7 +19,7 @@ The Erosion Level is categorized into stages as shown in the table below:
       <th style={{minWidth: '6em'}}>Stage</th>
       <th style={{minWidth: '5.5em'}}>Level</th>
       <th>Effect</th>
-      <th>Description example</th>
+      <th>Description Example</th>
     </tr>
   </thead>
   <tbody>
@@ -117,7 +117,7 @@ The Erosion Level is categorized into stages as shown in the table below:
 </table>
 
 <Memo>
-Although Oripathy cruelly erodes the infected's body, the Ancients still maintain their formidable physical prowess.
+Although Oripathy cruelly erodes the Infected's body, the Ancients still maintain their formidable physical prowess.
 </Memo>
 
 ----
@@ -142,22 +142,22 @@ If you wish to reflect the effects of the Erosion Level in CCFOLIA chat palettes
     <tbody>
         <tr>
             <td>Physical skills</td>
-            <td>`{Skill level}DM<=({Check value}-({Erosion Stage}*4/5R))`</td>
+            <td>`{Skill Level}DM<=({Check Value}-({Erosion Stage}*4/5R))`</td>
         </tr>
         <tr>
             <td>\<Arts\> skills</td>
-            <td>`{Skill level}DM<=({Check value}+(({Erosion Stage}-1)*2/3C))`</td>
+            <td>`{Skill Level}DM<=({Check Value}+(({Erosion Stage}-1)*2/3C))`</td>
         </tr>
         <tr>
             <td>Other skills</td>
-            <td>`{Skill level}DM<=({Check value}-(({Erosion Stage}-1)*2/3R))`</td>
+            <td>`{Skill Level}DM<=({Check Value}-(({Erosion Stage}-1)*2/3R))`</td>
         </tr>
     </tbody>
 </table>
 
 If you want to reflect these changes on an Emoklore TRPG character sheet, the [Converter](/converter) is a useful tool.
 
-Typically, the Erosion Level starts at 0 (Uninfected) when character created. However, if you are creating an Infected character, you may set an arbitrary starting value.
+Typically, the Erosion Level starts at 0 (Uninfected) during character creation. However, if you are creating an Infected character, you may set an arbitrary starting value.
 
 **The Erosion Level is not reset between sessions; it is carried over.**
 
