@@ -4,25 +4,28 @@ sidebar_position: 11
 
 import Memo from '@site/src/components/memo';
 
-# 侵食段階末期の処理
+# Handling the Terminal Stage
 
-　侵食段階末期では、感染者はほとんど源石と同化し、侵食も加速度的に進んでいきます。  
-　1時間ごとを目安に【源石侵食判定】が発生し、鉱石病の終わりに至ります。  
+At the **Terminal Stage** of erosion, the Infected is almost entirely assimilated with Originium, and the disease progresses at an accelerated pace.
 
-　時間経過での【源石侵食判定】の危険度は<b>8</b>、上昇値は<b>1D10</b>となります。ほとんどの場合、短時間で源石粉塵となってしまうでしょう。
+An **[Originium Erosion Check]** occurs approximately every hour as the character approaches the end of their struggle with Oripathy.
+
+For these time-based checks, the **Danger Level is 8** and the **Increase is 1D10**. In most cases, the individual will transform into Originium dust within a very short period.
 
 :::note
-## 鉱石病による死の描写
+## Depicting Death by Oripathy
 
-　感染者はどのような最期を迎えるのか？　ネタバレになるため見えなくしておきますが、『<span style={{color:'transparent'}}>エピソード「オペレーション オリジニウムダスト」OD-6戦闘後ストーリー</span>』（←文字選択で原作ゲームのエピソード名が見えるかも）で描写されているため引用します。シナリオやセッションでの描写の参考にしてみてください。
+How does an Infected person meet their end? To avoid direct spoilers, the specific source is hidden, but the following is a quote from the original game's story (Episode: <span style={{color:'transparent'}}>Operation Originium Dust, OD-6 After Operation story</span>—select the text to reveal). Use this as a reference for descriptions in your scenarios or sessions.
 
->　暗い部屋の中、死者の傷口からきらめく粉塵が噴き出し、狭い空間に飛散していく。それに続いて光が暗闇を突き破った。  
->　幻想的な輝きが作り出す鮮やかな光景。光の中、源石の粉塵はまず空中に漂い、その後ゆっくりと落ちていく。  
->　一人の感染者が、生まれ育った大地に還っていった。
+> In the dark of the house, glittering dust crumbles from the departed's wounds and spreads throughout the enclosed space. Before long, rays of light pierce the darkness.
+>
+> Brilliant, dazzling, prismatic light. Originium dust floats in the air among the lights, then slowly settles.
+>
+> An Infected returns to the earth that birthed him.
 
-　このシーンの直前では、鉱石病の蔓延を防ぐために、遺体を密閉できる部屋に運び、窓や扉、通気口、あらゆる隙間を塞いでいる様子が描写されています。感染者の遺体は、危険な感染源なのです。
+Immediately preceding this scene, the story describes how the body was moved to a sealed room—windows, doors, vents, and every gap were plugged—to prevent the spread of Oripathy. The corpse of an Infected is a lethal source of infection.
 :::
 
 <Memo>
-　感染者はほとんどの地域・時代で迫害され続けてきました。鉱石病の絶望的なまでの危険性が誰にでもわかる形で現れてしまうことは、間違いなくその一因になっています。
+The Infected have been persecuted throughout most regions and eras. The fact that the desperate danger of Oripathy manifests in a way that is obvious to anyone is undoubtedly one of the reasons for this.
 </Memo>
