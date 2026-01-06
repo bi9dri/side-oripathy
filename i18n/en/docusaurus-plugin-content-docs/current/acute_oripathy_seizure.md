@@ -4,25 +4,25 @@ sidebar_position: 10
 
 import Memo from '@site/src/components/memo';
 
-# 【急性感染発作】
+# [Acute Infection Seizure]
 
-　鉱石病が急激に進行した場合、鉱石病の症状が強く現れます。  
-　一度に侵食度が<b>5以上</b>上昇した場合、<b>急性感染発作</b>を起こし、<b>1D3</b>のHPダメージを受けます。このダメージによってHPが0以下になった場合、または3ポイントのHPダメージを受けた場合、追加で侵食度が<b>1D4</b>上昇します。このダメージによる気絶判定は発生しません。
+When Oripathy progresses rapidly, its symptoms manifest intensely.
 
-　急性感染発作を起こしたときには、〈鉱石病〉の項目の表にあるような「感染部位が痛む、幻覚を見る」などの描写（特に現在の侵食段階より高いもの）を一時的に発症させるロールプレイをしてみるといいでしょう。  
-　引き起こす症状のテーブルを作ってダイスロールで症状の内容を決めてみるのも、セッションを盛り上げるいい方法になるかもしれません。技能判定へのペナルティを伴う症状を作ってみるのもいいかもしれませんが、侵食段階によるペナルティもあるため、技能判定が複雑になるでしょう。
+If a character's Erosion Level increases by **5 or more** at once, they suffer an **Acute Infection Seizure** and take **1D3 HP damage**. If this damage reduces their HP to 0 or less, or if they take the full 3 points of HP damage, their Erosion Level increases by an additional **1D4**. A **Stun Check** (気絶判定) is not required for damage taken from this seizure.
+
+When a seizure occurs, try roleplaying temporary symptoms such as "pain at the infection site" or "hallucinations" as listed in the **[Erosion Level]** table—especially those from a stage higher than your current one. Creating a symptom table and rolling dice to determine the effect is another great way to enhance the session. While you could create symptoms that impose skill penalties, be mindful that the existing penalties from the Erosion Stage might make calculations overly complex.
 
 <Memo>
-　鉱石病は誰に対しても平等に悲劇を演出します。そしてそれは想像を遥かに超えて、深刻に身体を蝕むのです。
+Oripathy stages its tragedies equally for everyone. It erodes the body with a severity that far exceeds one’s imagination.
 </Memo>
 
-## 発作表の例
+## Example Seizure Table
 
-|出目|症状|描写例|
+|D6|Symptom|Description Example|
 |:--|:--|:--|
-|1|軽い痛み、倦怠感|体の節々が重く、ダルさを感じる。結晶の生えた箇所がズキズキと鈍く痛む。|
-|2|発熱、悪寒|全身が震えるような寒気に襲われる。顔が赤くなり、息が熱くなるのを感じる。|
-|3|呼吸困難、咳|息が詰まるような感覚に襲われ、激しく咳込む。胸がヒューヒューと鳴る。|
-|4|局所的な激痛|結晶の生えた箇所に激しい痛みが走る。見ると結晶が光っているように見え、熱を持っているようだ。|
-|5|震え、めまい|手足が震え、立っているのが難しいほどのめまいに襲われる。視界がぼやけ、周囲がかすんで見える。|
-|6|全身の痛み、脱力感|体中が焼けるように激しく痛む。体が鉛のように重く感じ、倒れ込んでしまいそうだ。|
+|1|Mild Pain & Fatigue|Your joints feel heavy and sluggish. A dull, throbbing pain pulses from where the crystals have grown.|
+|2|Fever & Chills|You are struck by chills that make your entire body shiver. Your face flushes, and your breath feels scorching hot.|
+|3|Dyspnea & Coughing|You feel as if you are choking and begin to cough violently. Your chest makes a wheezing sound.|
+|4|Localized Intense Pain|A sharp, piercing pain shoots through the infection site. The crystals appear to glow and radiate intense heat.|
+|5|Tremors & Dizziness|Your limbs shake, and you are hit by dizziness so severe you can barely stand. Your vision blurs and the world fades.|
+|6|Full-body Pain & Weakness|Your entire body burns with agonizing pain. Your limbs feel heavy as lead, and you feel as though you might collapse.|
