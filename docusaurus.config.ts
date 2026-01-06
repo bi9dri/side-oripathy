@@ -4,9 +4,29 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const locale = process.env.DOCUSAURUS_CURRENT_LOCALE ?? "ja";
+
+const title = ((): string => {
+	switch (locale) {
+		case "en":
+			return "Arknights × Emoklore TRPG: Side Oripathy";
+		default:
+			return "アークナイツ×エモクロアTRPG サイド・オリパシー";
+	}
+})();
+
+const tagline = ((): string => {
+	switch (locale) {
+		case "en":
+			return "Emoklore TRPG Additional Rules";
+		default:
+			return "エモクロアTRPG追加ルール";
+	}
+})();
+
 const config: Config = {
-	title: "アークナイツ×エモクロアTRPG サイド・オリパシー",
-	tagline: "エモクロアTRPG追加ルール",
+	title: title,
+	tagline: tagline,
 	favicon: "img/favicon.ico",
 
 	// Set the production url of your site here
@@ -21,7 +41,12 @@ const config: Config = {
 	projectName: "emoklore-arknights-side-oripathy", // Usually your repo name.
 
 	onBrokenLinks: "throw",
-	onBrokenMarkdownLinks: "warn",
+	markdown: {
+		hooks: {
+			onBrokenMarkdownLinks: "warn",
+		},
+	},
+
 
 	// Even if you don't use internationalization, you can use this field to set
 	// useful metadata like html lang. For example, if your site is Chinese, you
