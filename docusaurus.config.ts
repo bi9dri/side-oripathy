@@ -18,7 +18,7 @@ const title = ((): string => {
 const tagline = ((): string => {
 	switch (locale) {
 		case "en":
-			return "Emoklore TRPG Additional Rules";
+			return "Emoklore TRPG Expansion Rules";
 		default:
 			return "エモクロアTRPG追加ルール";
 	}
