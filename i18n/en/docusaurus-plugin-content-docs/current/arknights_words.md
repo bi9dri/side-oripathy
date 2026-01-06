@@ -2,74 +2,81 @@
 sidebar_position: 4
 ---
 
-# アークナイツの世界観・用語
+# The World and Lore of Arknights
 
-　アークナイツは、世界中の様々な歴史上の出来事、神話、伝承などをモチーフに、それらやオリジナルの要素を組み合わせた、独特で深い世界観を描いています。  
-　また、多くの種族・陣営が登場します。この追加ルール内ですべてを説明することはできませんが、興味があれば公式の世界観説明動画などを見てみるのもオススメです。
+Arknights features a unique and profound worldview, blending motifs from various historical events, myths, and legends from around the world with its own original elements.
+
+The world is home to many different races and factions. While this supplement cannot cover them all in detail, I highly recommend watching official worldview trailers or lore videos if you find yourself intrigued.
 
 <details>
-<summary>公式の動画</summary>
+<summary>Official Videos</summary>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yP91VOoBoJU?si=hzGVriK5hIDGef3A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dTt6sU00jxI?si=kjqTEluGwzHk2HdO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Dw339JSTVxU?si=O7zi_z4_DFq46o4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IV2zU4aDJww?si=I33F3F8_q28M-QyJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/G7IwNO9Lce8?si=epH1VNFueCN-ZVxl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/QB21mah-K8s?si=46uq33rEGnnPpmLe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/DWU98QTH25A?si=SQL2BgiFKG9uZqBN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/x33yj7sp7eM?si=EECpXb4-viOijAkC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/Vx8kqJKETic?si=-ziBNOiirpS8mnwV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="720" height="405" src="https://www.youtube-nocookie.com/embed/bqiSiJtqpi4?si=bcmXNcTvMClhlCEa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 </details>
 
-## テラ Terra
+## Terra
 
-　アークナイツの舞台になっている、星、大陸の名前です。
+The name of the planet and the continent where Arknights takes place.
 
-## 先民 Ancients
+## Ancients
 
-　エーシェンツ。テラの大地に暮らす人類です。地球人類と同等の知性・文化を持っていますが、犬や猫、鰐や鳥など、様々な動物の特徴を持ったそれぞれの種族が存在します。  
-　地球人類と比較し、非常に高い身体能力を持ちます。  
-　先民の他にも、ペガサスや九尾などの特徴を持った神民や、悪魔や天使の特徴を持つ種族など、様々な人類が存在しています。
+The inhabitants of Terra. While they possess intelligence and culture equivalent to Earth's humanity, they belong to various races with traits of animals such as dogs, cats, crocodiles, and birds.
 
-## 源石 Originium
+Compared to Earth's humans, they possess significantly higher physical capabilities.
 
-　オリジニウム。テラに普遍的に存在する鉱物で、黒く半透明な結晶体です。  
-　テラにおけるエネルギー源であり、天災や鉱石病を引き起こす原因でもあります。テラには石炭や石油、爆薬（無煙火薬）がありません。それらの役割はすべて源石が担っています。
+In addition to the Ancients, there are other peoples such as the **Elders** (with traits like Pegasus or Nine-tails) and races with demonic or angelic characteristics.
 
-## 天災 Catastrophe
+## Originium
 
-　源石が引き起こす天災には、活性源石の粉塵を撒き散らす天災嵐や、地震、地割れ、果てには隕石といったものまであります。  
-　容易に都市を破壊しうる天災に対応するため、テラの人々は移動都市というシステムを生み出しました。巨大な都市を移動させるために用いている動力は、もちろん源石です。
+A mineral universally found across Terra, appearing as black, translucent crystals.
 
-## 鉱石病 Oripathy
+It is the primary energy source in Terra but also the cause of "Catastrophes" and "Oripathy." Terra lacks coal, oil, and traditional smokeless gunpowder; Originium fulfills all these roles.
 
-　オリパシー。活性源石が人体に入ることで罹る病気です。身体が徐々に源石に置き換わっていき、最終的にすべての体組織が源石となる恐ろしい病です。  
-　鉱石病は人から人へ感染るだけでなく、致死率100%の不治の病です。鉱石病に罹患した人は感染者と呼ばれ、多くの国で隔離や駆逐の対象となっています。
+## Catastrophe
 
-## ロドス Rhodes
+Natural disasters caused by Originium range from "Catastrophe Storms" that scatter active Originium dust to earthquakes, fissures, and even meteor strikes.
 
-　ロドス・アイランド製薬。通称ロドスと呼ばれる、アークナイツの主人公たちが所属する、鉱石病の研究において最先端の製薬会社です。――というのは表向きの話であり、実態は感染者に関わる様々な問題の解決を目指す専門組織です。  
-　多くの感染者が所属しており、医療はもちろん、紛争解決のための戦闘員も数多く存在します。各国に駐在員という形で派遣されているメンバーもおり、その中には国家の要人なども含まれます。  
-　ロドス・アイランドはロドスが所有する小さな移動都市の名前でもあり、この本艦を中心に、テラの各地に事務所を展開しています。  
-　テラ歴1031年に発足したバベルという組織を前身としていますが、ロドスとなったのは1094年であり、テラの歴史の中では新参者で知名度はそれほど高くありません（ゲーム原作の第1部は1096～1097年の出来事を描いています）。
+To survive these disasters, which can easily level entire cities, the people of Terra developed "Nomadic cities." Naturally, the power required to move these massive cities is also derived from Originium.
+
+## Oripathy
+
+A disease contracted when active Originium enters the body. It is a terrifying affliction where the body is gradually replaced by Originium until all tissues crystallize.
+
+Oripathy is not only infectious between individuals but is also an incurable disease with a 100% mortality rate. Those afflicted are called the "Infected" and are subject to isolation or persecution in many countries.
+
+## Rhodes Island
+
+Rhodes Island Pharmaceutical Inc., commonly known as Rhodes Island. It is the cutting-edge pharmaceutical company to which the protagonists belong. While officially a pharmaceutical firm, it is actually a specialized organization dedicated to resolving various issues surrounding the Infected.
+
+The organization employs many Infected individuals, consisting of not only medical staff but also combatants for conflict resolution. Some members are dispatched as representatives to various countries, including high-ranking officials.
+
+"Rhodes Island" is also the name of the small Nomadic city owned by the organization, serving as its landship headquarters with offices established throughout Terra.
+
+Its predecessor was an organization called **Babel**, founded in the year 1031. It was reorganized into Rhodes Island in 1094, making it a relatively new and less-known entity in Terran history. (Main Theme: Act 1 in the original game takes place 1096-1097)
 
 :::note
-## テラにおける銃器
+## Firearms in Terra
 
-　テラにおいて、銃器の普及は非常に限定的です。キャラクター作成においては、以下のような制約を設けるといいでしょう。
+The use of firearms in Terra is extremely limited. When creating characters, it is recommended to apply the following restrictions:
+- **Characters of the "Sankta" race or affiliated with "Laterano":**
+  - Can handle pistols, rifles, machine guns, bazookas, and other firearms.
+- **Characters affiliated with "Rhodes Island" or "Blacksteel Worldwide (BSW)":**
+  - Can handle small firearms like pistols after rigorous training.
+- **Characters affiliated with "Iberia" with the "Inquisitor" profession:**
+  - Can handle hand cannons after rigorous training.
+- **All other characters:**
+  - Generally cannot handle firearms.
 
-- 種族が「サンクタ」または所属が「ラテラーノ」のキャラクター
-  - 拳銃はもちろん、ライフルやマシンガン、バズーカなどの銃火器を扱える
-- 所属が「ロドス」または「BSW」のキャラクター
-  - 厳しい訓練を経て、拳銃などの小型火器を扱える
-- 所属が「イベリア」かつ職業が「審問官」のキャラクター
-  - 厳しい訓練を経て、ハンドキャノンを扱える
-- 上記以外のキャラクター
-  - 基本的に火器を扱うことができない
+This limitation is thought to be due to several complex factors (mostly based on fan theories and lore analysis):
+- The physical capabilities of Ancients are far superior to Earth's humans, allowing bows and crossbows to deliver sufficient lethality.
+- The existence of "Arts" (technology akin to magic) reduces the necessity for other long-range weaponry.
+- Due to the unique nature of Originium-based culture, research into traditional chemical explosives has not progressed.
+- Constraints potentially related to supernatural entities within the religious state of Laterano may prevent the research or refinement of explosives.
 
-　これは以下のような複合的要因によるものだと考えられます（多くは非公式の考察です）。
-
-- エーシェンツの身体能力が地球人類と比較して非常に高く、弓やクロスボウといった非火器でも十分な威力を発揮できる
-- 魔法に近い技術「アーツ」の存在により、他の遠距離攻撃手段の必要性が薄い
-- 源石文化の特異性により、爆薬の研究が進んでいない
-- サンクタの宗教国家「ラテラーノ」にいる超常的存在が関係するなんらかの制約によって、爆薬の研究や精製ができない
-
-　なお、銃器は普及していませんが、大砲や爆薬などは源石を利用した技術として一般的に知られています。
+Note: While individual firearms are rare, cannons and explosives are commonly known as technologies utilizing Originium.
 :::
