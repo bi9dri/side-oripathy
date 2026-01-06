@@ -6,58 +6,64 @@ toc_max_heading_level: 2
 import Expression from '@site/src/components/expression';
 import Memo from '@site/src/components/memo';
 
-# 【アーツ反動判定】
+# [Arts Backlash Check]
 
-　<b>【アーツ反動判定】</b>は、アーツの行使によって行使者の鉱石病が進行するかという判定です。  
-　鉱石病が進行しているほど、強いアーツを行使するほど、より鉱石病が進行しやすくなります。  
-　ただし、<b>アーツユニットを適切に使用している限り、この判定は発生しません</b>。壊れたアーツユニットを使ったり、アーツユニットの限界を超えたアーツを使ったり、アーツユニットなしでアーツを使ったときに発生する判定です。〈アーツ〉技能判定を行った際、ディーラーの裁量によって判定を行うか判断します。  
-　体内の源石が活性化するために起こる処理なので、鉱石病未感染のキャラクターには判定が発生しません。
+The **Arts Backlash Check** determines whether a character’s Oripathy progresses as a result of casting Arts. The more advanced the Oripathy and the more powerful the Arts cast, the more likely the disease is to progress.
 
-## 判定方法
+**This check does not occur as long as an Arts Unit is used properly.** It is triggered when using a broken Arts Unit, pushing Arts beyond the unit’s limits, or casting Arts without a unit at all. The Dealer decides whether to call for this check based on the results of an **\<Arts\>** skill check.
 
-　判定方法は<b>【源石侵食判定】</b>をそのまま使います。  
-　危険度と上昇値は、〈アーツ〉技能判定の成功数によって決まります。
+Since this process is caused by the activation of internal Originium, this check does not apply to characters who are not infected with Oripathy.
 
-### 危険度
 
-　〈アーツ〉技能判定の成功数になります。ただし、ファンブルの場合は<b>成功数の絶対値を2倍したもの</b>になります。  
-　「アーツユニットによって反動の一部を受け止める」などの条件によって、ディーラーの裁量で危険度を下げることができます。
+## How to Perform the Check
 
-### 上昇値
+The basic procedure is the same as the **[Originium Erosion Check]**. The Danger Level and Increase value are determined by the number of successes in the preceding **\<Arts\>** skill check.
 
-　アーツ反動判定の成功数分の面のダイスを1つ振り、その出目+1になります。
+### Danger Level
+
+The Danger Level is equal to the number of successes in the **\<Arts\>** skill check. However, in the case of a Fumble (Error Dice), it becomes **twice the absolute value of the successes**.
+
+The Dealer may lower the Danger Level at their discretion, such as when "the Arts Unit absorbs part of the backlash."
+
+### Increase
+
+Roll a single die with a number of faces equal to the number of successes from the Arts Backlash Check. The increase amount is **[Result of the die] + 1**.
 
 <Memo>
-　上昇値は時に驚くほど大きくなるでしょう。制御を超えたアーツ行使は致命的な結果をもたらすのです。
+The increase can sometimes be surprisingly large. Casting Arts beyond one's control can lead to fatal consequences.
 </Memo>
 
-## 例
+## Example
 
-### 身体2、運勢3、侵食度33のキャラクターが、〈アーツ〉技能判定の成功数-2（ファンブル）でアーツ反動判定が発生した場合
+### A character with [Physique: 2], [Luck: 3], [Erosion Level: 33] triggers an Arts Backlash Check after an \<Arts\> skill check results in -2 successes (Fumble).
 
-1. 生理的耐性は `2 + 3 = 5`
-2. 振るダイスの数は `33 / 5 + 1 = 7.x` を切り捨てて `7`
-3. 判定値＝〈アーツ〉技能判定の成功数になるが、ファンブルなので成功数の絶対値の2倍 `|-2| * 2 = 4`
+1. Physiological Resistance: `2 + 3 = 5`
+2. Number of dice: `33 / 5 + 1 = 7` (rounded down)
+3. Danger Level: Since it was a Fumble, it is `|-2| * 2 = 4`
 
-`7DM<=4` （10面ダイスを7個振り、4以下で判定）
+Result: `7DM<=4` (Roll 7D10; successes on 4 or less)
 
-- アーツ反動判定の成功数が`1`の場合、侵食度を`1`上昇させる
-- アーツ反動判定の成功数が`10`の場合、侵食度を`1D10+1`上昇させる
+- If the Arts Backlash Check yields **1 success**, the Erosion Level increases by **1**.
+- If the Arts Backlash Check yields **10 successes**, the Erosion Level increases by **1D10+1**.
 
 :::note
-## 描写と処理の例
+## Example Scene
 
-　共鳴者のブレイズは龍門市内を歩いている最中、突然路地から出てきたレユニオンの戦闘員に襲われた。  
-　とっさに手に持っていたチェーンソーで防いだが、アーツユニットにひびが入ってしまった。  
-　レユニオンの戦闘員は奇襲が失敗したことに動揺しているのか、ブレイズの反撃から戦闘が始まる。  
-　プレイヤーは、アーツによってチェーンソーを回転させ、そのまま斬りかかる宣言をした。  
-　ディーラーは〈アーツ〉と〈武術：チェーンソー〉による組み合わせロールを指示し、まずプレイヤーはチェーンソーを回転させられるか〈アーツ〉技能判定を行う。  
-　ブレイズの【精神】は`5`で、〈アーツ：血炎〉技能レベルは`2`だ。プレイヤーは `2`個の10面ダイスを振り、出た目は 1, 1 だった。判定値は `5 + 2 = 7` だが、クリティカルダイスが2個なので、成功数は`4`、ミラクル成功だ。  
-　予想外に強力なアーツを行使してしまい、さらにアーツユニットが破損していたため、ディーラーは【アーツ反動判定】を指示した。ただし、破損しているとはいえアーツユニットを使っているため、本来`4`になる危険度を少し低く設定した。
+While walking through Lungmen City, a Resonator named Blaze is suddenly ambushed by Reunion soldiers. She instinctively blocks an attack with her chainsaw, but her Arts Unit sustains a crack. The ambush failed, and the battle begins with Blaze’s counterattack.
 
-**アーツ反動判定（危険度3）**
+The player declares that Blaze will use her Arts to rev up the chainsaw and strike. The Dealer calls for a combined roll using **\<Arts\>** and **\<Martial Arts: Chainsaw\>**. First, the player makes an **\<Arts\>** check to see if she can ignite the chainsaw.
 
-　ブレイズの【身体】は`6`、【幸運】は`3`、〈侵食度〉は`41`だ。`6 + 3 = 9` が生理的耐性になる。`41 / 9 = 4.x` を切り捨てた `4` に 1 を足した `5`個の10面ダイスをプレイヤーが振り、判定値 `3`で、クリティカルダイスが2個、成功が1個、失敗が1個、エラーダイスが1個だった。判定の成功数は`4`となり、ある意味なかなかの豪運だ。  
-　上昇値は `1D4+1` となり、プレイヤーは`4`面ダイスを1個振った。出た目は`3`。プレイヤーは泣く泣くブレイズの〈侵食度〉を `3 + 1 = 4` 上げた。ブレイズは慣れたように痛みに歯を食いしばり、文字通り火を吹きながら回転するチェーンソーを持ってそのまま敵に斬りかかる。  
-　プレイヤーは〈武術：チェーンソー〉の技能判定を行い、これにも成功したため、ディーラーは通常ダメージに追加して `2D6` のダメージボーナスを提案した。
+Blaze’s **[Mind]** is 5, and her **\<Arts: Bloodboil\>** skill level is 2. The player rolls 2D10 and gets two **1s**. Since her check value is `5 + 2 = 7` and she rolled two Criticals, she gains **4 successes**—a Miracle success!
+
+Because she cast an unexpectedly powerful Art and her unit was damaged, the Dealer calls for an **[Arts Backlash Check]**. However, since she is still using a unit (albeit a cracked one), the Dealer sets the Danger Level slightly lower than the original 4.
+
+**Arts Backlash Check (Danger Level: 3)**
+
+Blaze has **[Physique: 6]**, **[Luck: 3]**, and **[Erosion Level: 41]**. Her Physiological Resistance is `6 + 3 = 9`. Number of dice: `(41 / 9) = 4.5...` (round down to 4) + 1 = **5 dice**.
+
+The player rolls 5D10 with a Danger Level of 3. The results are: 2 Criticals, 1 Success, 1 Failure, and 1 Error (Fumble). The total successes equal **4**—a stroke of "tough luck."
+
+The Increase is calculated as **1D4+1**. The player rolls a 4-sided die and gets a **3**. Bitterly, the player increases Blaze’s **[Erosion Level]** by `3 + 1 = 4`. Blaze grits her teeth against the familiar pain and swings her literal fire-breathing, revving chainsaw at the enemy.
+
+The player then succeeds on the **\<Martial Arts: Chainsaw\>** check. The Dealer proposes a bonus damage of **2D6** in addition to the normal damage.
 :::
