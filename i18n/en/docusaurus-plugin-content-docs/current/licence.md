@@ -24,9 +24,12 @@ https://bsky.app/profile/bidri.bsky.social
 
 ## Update history
 
+#### 2026/1/7
+- Added i18n support
+- Added the English version of the rules
+
 #### 2026/1/6
 - Changed the domain to `https://side-oripathy.bidri.dev/`
-- Added the English version of the rules
 
 #### 2025/5/28
 - Added the **[Arts Overdrive]** rule for Arts.

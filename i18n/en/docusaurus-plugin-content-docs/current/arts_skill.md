@@ -1,26 +1,31 @@
 ---
+title: <Arts> Skills
 sidebar_position: 7
 ---
 
-# 〈アーツ〉技能
+# \<Arts\> Skills
 
-　<b>オリジニウムアーツ（アーツ）</b>は、源石の力を利用し様々な現象を引き起こす技術です。その種類は無数で、例えば以下のようなものがあります。
+**Originium Arts (Arts)** are techniques used to harness the power of Originium to trigger various phenomena. There are countless forms of Arts, including:
+- Creating massive fire tornadoes.
+- Manipulating gravity to levitate objects.
+- Condensing atmospheric moisture to fill a glass with drinking water.
+- Controlling calcium within the body to form an armor-like layer on the skin.
+- Manipulating an enemy’s blood to drain their life and create thralls.
+- Playing melodies that can influence or misdirect the minds of others.
 
-- 巨大な火の竜巻を作り出す
-- 重力を操り物を浮かせる
-- 空気中の水分を凝縮して飲み水を生み出しグラスを満たす
-- 体内のカルシウムを操作し身体の表面に鎧のように纏う
-- 敵の血を操り吸血し眷属を生み出す
-- 音律を奏でて他人の心を誘導する
+Due to this extreme diversity, characters acquire these as **\<Arts: [Type]\>** skills, where **[Type]** represents the specific nature of the Arts.
 
-　このように、あまりに多様であるため、<u>**〈アーツ：◯◯〉**</u>として、アーツの内容にふさわしいものを技能として取得できます。
+For example, a character with the **\<Arts: Fire\>** skill could:
 
-　例えば、〈アーツ：火〉という技能を持ったキャラクターは以下のような行動ができるでしょう。
+- Ignite firewood to keep warm during exploration.
+- Hurl fireballs at enemies during combat.
 
-- 探索中に焚き木に火をつけて暖を取る
-- 戦闘中に火の玉を敵にぶつけて攻撃する
+## Character Checks and Proficiency
 
-　〈アーツ〉技能判定に使える能力値は<b>「器用」「精神」「知力」</b>のいずれかを選択でき、それに技能レベルを足したものが判定値になります。〈アーツ〉はEX技能ではなく、通常の技能と同じ技能ポイントで取得できます。  
-　〈アーツ〉技能には代替となるベース技能が存在しません。<b>〈アーツ〉技能を持たないキャラクターは、アーツユニットがあったとしてもアーツを行使できません</b>。
+When performing an \<Arts\> skill check, you may choose one of the following attributes to use as the base: **[器用 (Dexterity)]**, **[精神 (Mind)]**, or **[知力 (Intelligence)]**. Your skill level is added to this attribute to determine the check value.
 
-　〈アーツ〉技能があったとしても、原則としてアーツユニットなしにアーツを行使することはできません。ただし、鉱石病感染者は体内の源石を使ってアーツを行使することができます。その場合、体内の源石が活性化するため<b>【アーツ反動判定】</b>が発生します。源石が体内にある前提のため、感染者でないキャラクターには【アーツ反動判定】は発生しません。
+Unlike EX skills, \<Arts\> are acquired using standard skill points. There is no "Base Skill" (ベース技能) that can substitute for an Arts skill; **a character without an \<Arts\> skill cannot cast Arts, even if they have an Arts Unit.**
+
+## Arts Units and the Infected
+
+As a general rule, Arts cannot be cast without an **Arts Unit**. However, those infected with Oripathy can harness the Originium within their own bodies to cast Arts. Since this process activates the internal Originium, it triggers an **[Arts Backlash Check]**. Note that characters who are not Infected do not trigger this check, as they lack the internal Originium required to cast Arts in this manner.
