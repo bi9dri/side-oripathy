@@ -18,9 +18,7 @@ Furthermore, the existence of [BCDIce](https://bcdice.org/) was an immense help 
 
 Feel free to modify the rules or share your actual plays (sessions) as you like. Whether it's beforehand, afterward, discreetly, or openly—I would be thrilled if you let me know you're playing it.
 
-Author: bidri 
-https://bsky.app/profile/bidri.bsky.social  
-[https://x.com/bidri__](https://x.com/bidri__)
+Author: bidri https://bidri.dev
 
 ## Update history
 

@@ -18,9 +18,7 @@ sidebar_position: 2
 　また、実用的なシステムを考え表現するにあたって、[BCDice](https://bcdice.org/)の存在にも大いに助けられました。オフラインセッションには難しい部分もあるかもしれませんが、良いアイデアがあればご教示いただければ幸いです。  
 　改変や公演は自由ですが、事後でも事前でもこっそりとでも堂々とでも、作者にお知らせいただけると嬉しいです。
 
-作者：bidri  
-https://bsky.app/profile/bidri.bsky.social  
-[https://x.com/bidri__](https://x.com/bidri__)
+作者：bidri https://bidri.dev
 
 ## 更新履歴
 
