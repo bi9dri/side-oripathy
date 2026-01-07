@@ -4,23 +4,19 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-const locale = process.env.DOCUSAURUS_CURRENT_LOCALE ?? "ja";
-
-const title = ((): string => {
+const { title, tagline } = (() => {
+	const locale = process.env.DOCUSAURUS_CURRENT_LOCALE ?? "ja";
 	switch (locale) {
 		case "en":
-			return "Arknights × Emoklore TRPG: Side Oripathy";
+			return {
+				title: "Arknights × Emoklore TRPG: Side Oripathy",
+				tagline: "Emoklore TRPG Expansion Rules",
+			};
 		default:
-			return "アークナイツ×エモクロアTRPG サイド・オリパシー";
-	}
-})();
-
-const tagline = ((): string => {
-	switch (locale) {
-		case "en":
-			return "Emoklore TRPG Expansion Rules";
-		default:
-			return "エモクロアTRPG追加ルール";
+			return {
+				title: "アークナイツ×エモクロアTRPG サイド・オリパシー",
+				tagline: "エモクロアTRPG追加ルール",
+			};
 	}
 })();
 
