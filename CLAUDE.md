@@ -19,6 +19,7 @@ bun run serve        # ビルド済みサイトのプレビュー
 bun run --bun lint      # oxlintによるリント
 bun run --bun format    # oxfmtによるフォーマット
 bun run --bun typecheck # 型チェック
+bun run --bun ncu       # 依存パッケージのアップデートチェック
 ```
 
 ## アーキテクチャ
@@ -26,12 +27,6 @@ bun run --bun typecheck # 型チェック
 - **docs/**: Markdownによるルールドキュメント（サイドバーは`sidebars.ts`で自動生成）
 - **src/pages/converter.tsx**: CCFOLIAおよびチャットパレット形式のキャラクターシートを「サイド・オリパシー」用に変換するコンバーター
 - **src/components/**: ドキュメント内で使用するMDXコンポーネント（`Expression`、`Memo`）
-
-## コーディング規約
-
-- フォーマッタはoxfmt、リンターはoxlintを使用
-- インデントはタブ（`.oxfmtrc.json`で設定）
-- CSS、JSON、Markdown、YAMLファイルはフォーマット対象外
 
 ## デプロイ
 
