@@ -19,9 +19,7 @@ const judgeCcfoliaOrPalette = (text: string): TextType => {
 };
 
 const convertCommands = (text: string): string => {
-	const srcCommands = text
-		.split("\n")
-		.filter((cmd) => cmd.indexOf("∞共鳴") === -1);
+	const srcCommands = text.split("\n").filter((cmd) => cmd.indexOf("∞共鳴") === -1);
 	const commandsMap: {
 		skill: string;
 		level: string;
@@ -41,33 +39,21 @@ const convertCommands = (text: string): string => {
 	const commands = [];
 	for (const cmd of commandsMap) {
 		if (
-			[
-				"＊運動",
-				"スピード",
-				"ストレングス",
-				"アクロバット",
-				"ダイブ",
-				"＊格闘",
-				"＊投擲",
-			].includes(cmd.skill) ||
+			["＊運動", "スピード", "ストレングス", "アクロバット", "ダイブ", "＊格闘", "＊投擲"].includes(
+				cmd.skill,
+			) ||
 			cmd.skill.startsWith("武術") ||
 			cmd.skill.startsWith("★奥義") ||
 			cmd.skill.startsWith("★射撃")
 		) {
-			commands.push(
-				`${cmd.level}DM<=(${cmd.judge}-({侵食段階}*4/5R)) 〈${cmd.skill}〉`,
-			);
+			commands.push(`${cmd.level}DM<=(${cmd.judge}-({侵食段階}*4/5R)) 〈${cmd.skill}〉`);
 			continue;
 		}
 		if (cmd.skill.startsWith("アーツ")) {
-			commands.push(
-				`${cmd.level}DM<=(${cmd.judge}+(({侵食段階}-1)*2/3C)) 〈${cmd.skill}〉`,
-			);
+			commands.push(`${cmd.level}DM<=(${cmd.judge}+(({侵食段階}-1)*2/3C)) 〈${cmd.skill}〉`);
 			continue;
 		}
-		commands.push(
-			`${cmd.level}DM<=(${cmd.judge}-(({侵食段階}-1)*2/3R)) 〈${cmd.skill}〉`,
-		);
+		commands.push(`${cmd.level}DM<=(${cmd.judge}-(({侵食段階}-1)*2/3R)) 〈${cmd.skill}〉`);
 	}
 	commands.unshift("({侵食度}/{生理的耐性}F+1)DM<= 〈源石侵食判定〉");
 
@@ -191,12 +177,7 @@ export default function Converter(): ReactNode {
 					>
 						コンバート
 					</button>
-					<textarea
-						id="output"
-						className={style.textarea}
-						readOnly
-						value={outputText}
-					/>
+					<textarea id="output" className={style.textarea} readOnly value={outputText} />
 					<button
 						type="button"
 						id="copy"
