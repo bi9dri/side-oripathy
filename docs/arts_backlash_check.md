@@ -3,7 +3,6 @@ sidebar_position: 8
 toc_max_heading_level: 2
 ---
 
-import Expression from '@site/src/components/expression';
 import Memo from '@site/src/components/memo';
 
 # 【アーツ反動判定】

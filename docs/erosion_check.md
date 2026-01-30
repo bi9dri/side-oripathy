@@ -14,9 +14,7 @@ import Memo from '@site/src/components/memo';
 
 　判定は以下のように定義されます。
 
-<Expression>
-`源石侵食判定（危険度3／上昇値1D8）`
-</Expression>
+<Expression e="源石侵食判定（危険度3／上昇値1D8）" />
 
 ### 危険度
 
@@ -36,9 +34,7 @@ import Memo from '@site/src/components/memo';
 
 　BCDiceのコマンドで表現すると以下のようになります。
 
-<Expression>
-`({侵食度}/{生理的耐性}F+1)DM<={危険度}`
-</Expression>
+<Expression e="({侵食度}/{生理的耐性}F+1)DM<={危険度}" />
 
 　源石侵食判定の成功数によって、キャラクターの侵食度を上昇させます。
 

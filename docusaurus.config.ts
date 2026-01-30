@@ -9,16 +9,11 @@ const config: Config = {
 	tagline: "エモクロアTRPG追加ルール",
 	favicon: "img/favicon.ico",
 
-	// Set the production url of your site here
 	url: "https://side-oripathy.bidri.dev",
-	// Set the /<baseUrl>/ pathname under which your site is served
-	// For GitHub pages deployment, it is often '/<projectName>/'
 	baseUrl: "/",
 
-	// GitHub pages deployment config.
-	// If you aren't using GitHub pages, you don't need these.
-	organizationName: "bidri", // Usually your GitHub org/user name.
-	projectName: "emoklore-arknights-side-oripathy", // Usually your repo name.
+	organizationName: "bidri",
+	projectName: "side-oripathy",
 
 	onBrokenLinks: "throw",
 	onBrokenMarkdownLinks: "warn",
@@ -50,7 +45,6 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		// Replace with your project's social card
 		image: "img/docusaurus-social-card.jpg",
 		navbar: {
 			title: "アークナイツ×エモクロアTRPG サイド・オリパシー",
@@ -71,7 +65,7 @@ const config: Config = {
 					label: "コンバーター",
 				},
 				{
-					href: "https://github.com/bi9dri/emoklore-arknights-side-oripathy",
+					href: "https://github.com/bi9dri/side-oripathy",
 					label: "GitHub",
 					position: "right",
 				},
@@ -79,27 +73,7 @@ const config: Config = {
 		},
 		footer: {
 			style: "dark",
-			// links: [
-			//   {
-			//     // title: 'Docs',
-			//     items: [
-			//       {
-			//         label: 'ルール',
-			//         to: '/docs/intro',
-			//       },
-			//     ],
-			//   },
-			//   {
-			//     // title: 'More',
-			//     items: [
-			//       {
-			//         label: 'GitHub',
-			//         href: 'https://github.com/bi9dri/emoklore-arknights-side-oripathy',
-			//       },
-			//     ],
-			//   },
-			// ],
-			copyright: `Copyright © ${new Date().getFullYear()} びどり. Built with Docusaurus.`,
+			copyright: `Copyright © ${new Date().getFullYear()} bidri. Built with Docusaurus.`,
 		},
 		prism: {
 			theme: prismThemes.github,
