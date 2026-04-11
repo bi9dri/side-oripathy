@@ -14,7 +14,7 @@ const judgeCcfoliaOrPalette = (text: string): TextType => {
 		if (jsonObj && jsonObj.kind === "character") {
 			return "ccfolia";
 		}
-	} catch {}
+	} catch { }
 	return "commandPalette";
 };
 
@@ -55,7 +55,7 @@ const convertCommands = (text: string): string => {
 		}
 		commands.push(`${cmd.level}DM<=(${cmd.judge}-(({侵食段階}-1)*2/3R)) 〈${cmd.skill}〉`);
 	}
-	commands.unshift("({侵食度}/{生理的耐性}F+1)DM<= 〈源石侵食判定〉");
+	commands.unshift("({侵食度}/5F+1)R10[>={生理的耐性}]<={危険度} 〈源石侵食判定〉");
 
 	return commands.join("\n");
 };
