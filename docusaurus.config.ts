@@ -50,6 +50,10 @@ const config: Config = {
 
 	themeConfig: {
 		image: "img/docusaurus-social-card.jpg",
+		colorMode: {
+			defaultMode: "dark",
+			respectPrefersColorScheme: true,
+		},
 		navbar: {
 			title: "アークナイツ×エモクロアTRPG サイド・オリパシー",
 			// logo: {
@@ -77,10 +81,10 @@ const config: Config = {
 		},
 		footer: {
 			style: "dark",
-			copyright: `Copyright © ${new Date().getFullYear()} bidri. Built with Docusaurus.`,
+			copyright: `© ${new Date().getFullYear()} bidri // SIDE:ORIPATHY TERMINAL`,
 		},
 		prism: {
-			theme: prismThemes.github,
+			theme: prismThemes.dracula,
 			darkTheme: prismThemes.dracula,
 		},
 	} satisfies Preset.ThemeConfig,
