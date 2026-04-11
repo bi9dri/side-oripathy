@@ -73,6 +73,11 @@ const config: Config = {
 					label: "コンバーター",
 				},
 				{
+					to: "/erosion-calculator",
+					position: "left",
+					label: "侵食判定計算機",
+				},
+				{
 					href: "https://github.com/bi9dri/side-oripathy",
 					label: "GitHub",
 					position: "right",

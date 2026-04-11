@@ -1,0 +1,234 @@
+/* ============================================================
+   Erosion Calculator Page — PRTS Terminal Form
+   ============================================================ */
+
+.calculator {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--prts-space-xl);
+	padding: var(--prts-space-2xl) var(--prts-space-xl);
+	max-width: 720px;
+	margin: 0 auto;
+}
+
+.heading {
+	font-size: 1.25rem;
+	text-align: center;
+	color: var(--prts-accent);
+	margin-bottom: 0;
+}
+
+.instruction {
+	font-size: 0.9rem;
+	color: var(--prts-text-secondary);
+	text-align: center;
+	line-height: 1.8;
+	margin: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Input grid
+   ──────────────────────────────────────────────────────────── */
+
+.inputGrid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--prts-space-md);
+}
+
+.fieldGroup {
+	display: flex;
+	flex-direction: column;
+	gap: var(--prts-space-xs);
+}
+
+.label {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--prts-text-secondary);
+}
+
+.input {
+	width: 100%;
+	background-color: var(--prts-bg-surface);
+	border: 1px solid var(--prts-border);
+	color: var(--prts-text-primary);
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.85rem;
+	padding: var(--prts-space-sm) var(--prts-space-md);
+	border-radius: 0;
+	transition: border-color var(--ifm-transition-fast);
+	-moz-appearance: textfield;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+	opacity: 1;
+}
+
+.input:focus {
+	outline: none;
+	border-color: var(--prts-accent);
+	box-shadow: 0 0 0 1px var(--prts-accent);
+}
+
+.hint {
+	font-size: 0.7rem;
+	color: var(--prts-text-tertiary);
+	font-family: "JetBrains Mono", monospace;
+	line-height: 1.4;
+}
+
+/* ────────────────────────────────────────────────────────────
+   BCDice command display
+   ──────────────────────────────────────────────────────────── */
+
+.commandBlock {
+	width: 100%;
+	background-color: var(--prts-bg-surface);
+	border: 1px solid var(--prts-border);
+	padding: var(--prts-space-md);
+	display: flex;
+	flex-direction: column;
+	gap: var(--prts-space-xs);
+}
+
+.commandLabel {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--prts-text-secondary);
+}
+
+.command {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 1rem;
+	color: var(--prts-accent);
+	background: none;
+	border: none;
+	padding: 0;
+	word-break: break-all;
+}
+
+.commandMeta {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.8rem;
+	color: var(--prts-text-tertiary);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Results
+   ──────────────────────────────────────────────────────────── */
+
+.resultSection {
+	width: 100%;
+}
+
+.subheading {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--prts-accent);
+	margin: 0;
+}
+
+.expectedValue {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.85rem;
+	color: var(--prts-text-secondary);
+	margin-bottom: var(--prts-space-sm);
+}
+
+.expectedValue strong {
+	color: var(--prts-text-primary);
+}
+
+.tableWrapper {
+	overflow-x: auto;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.875rem;
+}
+
+.table thead tr {
+	border-bottom: 2px solid var(--prts-accent);
+}
+
+.table th {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--prts-text-secondary);
+	padding: var(--prts-space-sm) var(--prts-space-md);
+	text-align: left;
+	background-color: var(--prts-bg-surface);
+	white-space: nowrap;
+}
+
+.table tbody tr {
+	border-bottom: 1px solid var(--prts-border);
+	transition: background-color var(--ifm-transition-fast);
+}
+
+.table tbody tr:last-child {
+	border-bottom: none;
+}
+
+.table tbody tr:hover {
+	background-color: var(--prts-bg-surface);
+}
+
+.tdCount {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.9rem;
+	padding: var(--prts-space-xs) var(--prts-space-md);
+	color: var(--prts-text-primary);
+	width: 9rem;
+	text-align: center;
+}
+
+.tdProb {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.9rem;
+	padding: var(--prts-space-xs) var(--prts-space-md);
+	color: var(--prts-accent);
+	width: 6rem;
+	text-align: right;
+}
+
+.tdBar {
+	padding: var(--prts-space-xs) var(--prts-space-md) var(--prts-space-xs) 0;
+	min-width: 80px;
+}
+
+.bar {
+	height: 10px;
+	background-color: var(--prts-accent);
+	min-width: 2px;
+	opacity: 0.8;
+	transition: width 0.15s ease;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Responsive
+   ──────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 576px) {
+	.calculator {
+		padding: var(--prts-space-xl) var(--prts-space-md);
+	}
+
+	.inputGrid {
+		grid-template-columns: 1fr;
+	}
+}
