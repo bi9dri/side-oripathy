@@ -1,25 +1,149 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+/* ============================================================
+   Homepage — PRTS Terminal Interface
+   ============================================================ */
 
-.heroBanner {
-	padding: 4rem 0;
-	text-align: center;
+.terminal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - var(--ifm-navbar-height) - 80px);
+	padding: var(--prts-space-xl);
+	background-color: var(--prts-bg-base);
 	position: relative;
-	overflow: hidden;
 }
 
-@media screen and (max-width: 996px) {
-	.heroBanner {
-		padding: 2rem;
-	}
+/* Scanline overlay — decorative, MCP Cyberpunk UI style */
+.terminal::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: repeating-linear-gradient(
+		0deg,
+		transparent,
+		transparent 2px,
+		rgba(0, 0, 0, 0.08) 2px,
+		rgba(0, 0, 0, 0.08) 4px
+	);
+	pointer-events: none;
+	z-index: 0;
+}
+
+.terminalFrame {
+	border: 1px solid var(--prts-border);
+	max-width: 720px;
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	animation: borderDraw 0.8s ease both;
+}
+
+.terminalHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--prts-space-sm) var(--prts-space-md);
+	background-color: var(--prts-bg-elevated);
+	border-bottom: 1px solid var(--prts-border);
+}
+
+.systemLabel {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.65rem;
+	letter-spacing: 0.15em;
+	color: var(--prts-text-tertiary);
+	text-transform: uppercase;
+}
+
+.statusIndicator {
+	display: flex;
+	align-items: center;
+	gap: var(--prts-space-xs);
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.65rem;
+	letter-spacing: 0.1em;
+	color: var(--prts-success);
+	text-transform: uppercase;
+}
+
+/* Blinking cursor dot — MCP Dark Data Terminal style */
+.statusDot {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	background-color: var(--prts-success);
+	animation: blink 1.5s step-end infinite;
+}
+
+.terminalBody {
+	padding: var(--prts-space-2xl) var(--prts-space-xl);
+	text-align: center;
+	background-color: var(--prts-bg-surface);
+}
+
+.title {
+	font-size: 1.4rem;
+	color: var(--prts-accent) !important;
+	margin-bottom: var(--prts-space-sm);
+	animation-delay: 0.1s;
+}
+
+.subtitle {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.85rem;
+	color: var(--prts-text-secondary);
+	letter-spacing: 0.05em;
+	margin-bottom: var(--prts-space-lg);
+	animation-delay: 0.3s;
+}
+
+.description {
+	font-size: 1rem;
+	color: var(--prts-text-primary);
+	margin-bottom: var(--prts-space-xl);
+	line-height: 1.8;
+	animation-delay: 0.5s;
 }
 
 .buttons {
 	display: flex;
-	align-items: center;
-	justify-content: center;
 	flex-direction: column;
-	gap: 1rem;
+	gap: var(--prts-space-md);
+	align-items: center;
+	animation-delay: 0.7s;
+}
+
+.ctaButton {
+	width: 100%;
+	max-width: 360px;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Responsive
+   ──────────────────────────────────────────────────────────── */
+@media screen and (max-width: 576px) {
+	.terminal {
+		padding: var(--prts-space-md);
+		min-height: auto;
+		padding-top: var(--prts-space-2xl);
+		padding-bottom: var(--prts-space-2xl);
+	}
+
+	/* Remove scanlines on mobile for performance */
+	.terminal::before {
+		display: none;
+	}
+
+	.terminalBody {
+		padding: var(--prts-space-xl) var(--prts-space-md);
+	}
+
+	.title {
+		font-size: 1.1rem;
+	}
+}
+
+@media screen and (max-width: 996px) {
+	.terminalBody {
+		padding: var(--prts-space-xl) var(--prts-space-lg);
+	}
 }
