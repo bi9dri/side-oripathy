@@ -6,7 +6,7 @@
   ],
   "shell": {
     "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null"
+      "[ -f ~/.env.mcp ] && source ~/.env.mcp"
     ],
     "scripts": {
       "pinact": [

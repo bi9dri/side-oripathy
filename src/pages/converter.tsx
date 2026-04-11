@@ -14,7 +14,7 @@ const judgeCcfoliaOrPalette = (text: string): TextType => {
 		if (jsonObj && jsonObj.kind === "character") {
 			return "ccfolia";
 		}
-	} catch (e) {}
+	} catch {}
 	return "commandPalette";
 };
 
@@ -149,44 +149,70 @@ export default function Converter(): ReactNode {
 			description="アークナイツ×エモクロアTRPG サイド・オリパシー コンバーター"
 		>
 			<main>
-				<div className={clsx("container", style.converter)}>
-					<p>
-						エモクロアTRPGのキャラクターシートから、チャットパレットまたはCCFOLIA形式でコピーしたものを上に貼り付けて「コンバート」を押してください。
+				<section className={clsx("container", style.converter)} aria-labelledby="converter-heading">
+					<h1 id="converter-heading" className={style.heading}>
+						コンバーター
+					</h1>
+					<p className={style.instruction}>
+						エモクロアTRPGのキャラクターシートから、チャットパレットまたはCCFOLIA形式でコピーしたものを貼り付けて「コンバート」を押してください。
 					</p>
-					<textarea
-						id="input"
-						className={style.textarea}
-						value={inputText}
-						onChange={onChangeInput}
-					/>
-					<select
-						id="convertType"
-						className={style.select}
-						value={convertType}
-						onChange={(e) => setConvertType(e.target.value as ConvertType)}
-					>
-						<option value="normal">通常</option>
-						<option value="sarkaz-mercenary">サルカズ傭兵（未対応）</option>
-						<option value="seaborn-abyssal">アビサル（未対応）</option>
-					</select>
-					<button
-						type="button"
-						id="convert"
-						className="button button--primary button--lg"
-						onClick={() => handleConvert()}
-					>
+
+					<div className={style.fieldGroup}>
+						<label htmlFor="input" className={style.label}>
+							入力
+						</label>
+						<textarea
+							id="input"
+							className={style.textarea}
+							value={inputText}
+							onChange={onChangeInput}
+							placeholder="CCFOLIAデータまたはチャットパレットを貼り付け"
+						/>
+					</div>
+
+					<div className={style.fieldGroup}>
+						<label htmlFor="convertType" className={style.label}>
+							変換タイプ
+						</label>
+						<select
+							id="convertType"
+							className={style.select}
+							value={convertType}
+							onChange={(e) => setConvertType(e.target.value as ConvertType)}
+						>
+							<option value="normal">通常</option>
+							<option value="sarkaz-mercenary">サルカズ傭兵（未対応）</option>
+							<option value="seaborn-abyssal">アビサル（未対応）</option>
+						</select>
+					</div>
+
+					<button type="button" className={style.convertButton} onClick={() => handleConvert()}>
 						コンバート
 					</button>
-					<textarea id="output" className={style.textarea} readOnly value={outputText} />
+
+					<div className={style.fieldGroup}>
+						<label htmlFor="output" className={style.label}>
+							出力
+						</label>
+						<textarea
+							id="output"
+							className={style.textarea}
+							readOnly
+							value={outputText}
+							aria-live="polite"
+							aria-label="変換結果"
+						/>
+					</div>
+
 					<button
 						type="button"
-						id="copy"
-						className="button button--secondary button--lg"
+						className={style.copyButton}
 						onClick={() => handleCopy()}
+						aria-live="polite"
 					>
 						{copyButtonText}
 					</button>
-				</div>
+				</section>
 			</main>
 		</Layout>
 	);

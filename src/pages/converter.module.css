@@ -1,12 +1,143 @@
+/* ============================================================
+   Converter Page — PRTS Terminal Form
+   ============================================================ */
+
 .converter {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 2rem;
-	padding: 2rem;
+	gap: var(--prts-space-lg);
+	padding: var(--prts-space-2xl) var(--prts-space-xl);
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+.heading {
+	font-size: 1.25rem;
+	text-align: center;
+	color: var(--prts-accent);
+	margin-bottom: 0;
+}
+
+.instruction {
+	font-size: 0.9rem;
+	color: var(--prts-text-secondary);
+	text-align: center;
+	line-height: 1.8;
+	margin: 0;
+}
+
+.fieldGroup {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--prts-space-xs);
+}
+
+.label {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--prts-text-secondary);
 }
 
 .textarea {
-	width: 25rem;
-	height: 5rem;
+	width: 100%;
+	min-height: 120px;
+	background-color: var(--prts-bg-surface);
+	border: 1px solid var(--prts-border);
+	color: var(--prts-text-primary);
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.85rem;
+	padding: var(--prts-space-md);
+	resize: vertical;
+	transition: border-color var(--ifm-transition-fast);
+	border-radius: 0;
+}
+
+.textarea:focus {
+	outline: none;
+	border-color: var(--prts-accent);
+	box-shadow: 0 0 0 1px var(--prts-accent);
+}
+
+.textarea::placeholder {
+	color: var(--prts-text-tertiary);
+}
+
+.select {
+	width: 100%;
+	background-color: var(--prts-bg-surface);
+	border: 1px solid var(--prts-border);
+	color: var(--prts-text-primary);
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.85rem;
+	padding: var(--prts-space-sm) var(--prts-space-md);
+	appearance: none;
+	cursor: pointer;
+	border-radius: 0;
+	transition: border-color var(--ifm-transition-fast);
+}
+
+.select:focus {
+	outline: none;
+	border-color: var(--prts-accent);
+	box-shadow: 0 0 0 1px var(--prts-accent);
+}
+
+.convertButton,
+.copyButton {
+	width: 100%;
+	font-family: "JetBrains Mono", monospace;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.9rem;
+	padding: var(--prts-space-sm) var(--prts-space-lg);
+	cursor: pointer;
+	transition: all var(--ifm-transition-fast);
+	border-radius: 0;
+}
+
+.convertButton {
+	background-color: var(--prts-accent);
+	color: var(--prts-bg-base);
+	border: 1px solid var(--prts-accent);
+	font-weight: 700;
+}
+
+.convertButton:hover {
+	background-color: var(--prts-accent-hover);
+	border-color: var(--prts-accent-hover);
+}
+
+.convertButton:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--prts-accent);
+}
+
+.copyButton {
+	background-color: transparent;
+	color: var(--prts-accent);
+	border: 1px solid var(--prts-accent);
+}
+
+.copyButton:hover {
+	background-color: var(--prts-accent-dim);
+	color: var(--prts-accent-hover);
+	border-color: var(--prts-accent-hover);
+}
+
+.copyButton:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Responsive
+   ──────────────────────────────────────────────────────────── */
+@media screen and (max-width: 576px) {
+	.converter {
+		padding: var(--prts-space-xl) var(--prts-space-md);
+	}
 }
