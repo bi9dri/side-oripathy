@@ -63,7 +63,7 @@ const convertCommands = (text: string): string => {
 const convertCcfolia = (text: string): string => {
 	const jsonObj = JSON.parse(text);
 
-	const srcParams = {};
+	const srcParams: { [key: string]: number } = {};
 	for (const param of jsonObj.data.params) {
 		srcParams[param.label] = Number.parseInt(param.value);
 	}

@@ -8,11 +8,11 @@ sidebar_position: 2
 
 ![ダイスタス・コモンズ](/img/dicetous_commons.png)
 
-- 表示：必要
-  - `追加ルール『アークナイツ×エモクロアTRPG サイド・オリパシー』 https://side-oripathy.bidri.dev` を表示してください
-- 改変：許可
-- 公演：許可（収益化OK）
-- <u>**営利：不可**</u>
+* 表示：必要
+  * `追加ルール『アークナイツ×エモクロアTRPG サイド・オリパシー』 https://side-oripathy.bidri.dev` を表示してください
+* 改変：許可
+* 公演：許可（収益化OK）
+* <u>**営利：不可**</u>
 
 この追加ルールは、[『エモクロアTRPG』二次創作ガイドライン](https://emoklore.dicetous.com/guideline/)および[「アークナイツ」二次創作・ゲーム実況配信及び動画投稿に関するガイドライン](https://www.arknights.jp/fankit/guidelines)に沿って作成されました。二次創作を歓迎してくれている姿勢には頭が下がる思いです。利用する際には、必ずそれぞれのガイドラインを確認し沿うようにお願いします。
 
