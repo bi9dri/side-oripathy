@@ -14,7 +14,7 @@ const judgeCcfoliaOrPalette = (text: string): TextType => {
 		if (jsonObj && jsonObj.kind === "character") {
 			return "ccfolia";
 		}
-	} catch (e) {}
+	} catch {}
 	return "commandPalette";
 };
 
@@ -149,10 +149,7 @@ export default function Converter(): ReactNode {
 			description="アークナイツ×エモクロアTRPG サイド・オリパシー コンバーター"
 		>
 			<main>
-				<section
-					className={clsx("container", style.converter)}
-					aria-labelledby="converter-heading"
-				>
+				<section className={clsx("container", style.converter)} aria-labelledby="converter-heading">
 					<h1 id="converter-heading" className={style.heading}>
 						コンバーター
 					</h1>
@@ -189,11 +186,7 @@ export default function Converter(): ReactNode {
 						</select>
 					</div>
 
-					<button
-						type="button"
-						className={style.convertButton}
-						onClick={() => handleConvert()}
-					>
+					<button type="button" className={style.convertButton} onClick={() => handleConvert()}>
 						コンバート
 					</button>
 

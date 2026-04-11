@@ -33,10 +33,7 @@ export default function Home(): ReactNode {
 						<p className={clsx(styles.description, "prts-fade-in")}>
 							エモクロアTRPGでアークナイツの世界を冒険するための追加ルール
 						</p>
-						<nav
-							className={clsx(styles.buttons, "prts-fade-in")}
-							aria-label="メインナビゲーション"
-						>
+						<nav className={clsx(styles.buttons, "prts-fade-in")} aria-label="メインナビゲーション">
 							<Link
 								className={clsx("button button--primary button--lg", styles.ctaButton)}
 								to="/docs/intro"
