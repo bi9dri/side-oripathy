@@ -1,70 +1,519 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+/* ============================================================
+   SIDE:ORIPATHY — PRTS Terminal Design System
+   Arknights × Emocloa TRPG rulebook, dark-only theme
+   MCP: Cyberpunk UI + Dark Data Terminal + HUD/Sci-Fi FUI
+   ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap");
 
-/* You can override the default Infima variables here. */
+/* ────────────────────────────────────────────────────────────
+   Design Tokens
+   ──────────────────────────────────────────────────────────── */
 :root {
-	--ifm-color-primary: #2e8555;
-	--ifm-color-primary-dark: #29784c;
-	--ifm-color-primary-darker: #277148;
-	--ifm-color-primary-darkest: #205d3b;
-	--ifm-color-primary-light: #33925d;
-	--ifm-color-primary-lighter: #359962;
-	--ifm-color-primary-lightest: #3cad6e;
-	--ifm-code-font-size: 95%;
-	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+	/* PRTS color tokens */
+	--prts-bg-base:       #0D0D0D;
+	--prts-bg-surface:    #141414;
+	--prts-bg-elevated:   #1A1A1A;
+	--prts-border:        #2A2A2A;
+	--prts-border-accent: #D4A843;
+	--prts-text-primary:  #E8E4D9;
+	--prts-text-secondary:#9B9B8E;
+	--prts-text-tertiary: #5C5C52;
+	--prts-accent:        #D4A843;
+	--prts-accent-hover:  #E0BC5E;
+	--prts-accent-dim:    rgba(212, 168, 67, 0.15);
+	--prts-danger:        #C75050;
+	--prts-success:       #5CAA5C;
+	--prts-glow:          rgba(212, 168, 67, 0.4);
 
-	--ifm-line-height-base: 1.8;
+	/* Infima primary overrides → amber */
+	--ifm-color-primary:          #D4A843;
+	--ifm-color-primary-dark:     #C99B35;
+	--ifm-color-primary-darker:   #B8892E;
+	--ifm-color-primary-darkest:  #967024;
+	--ifm-color-primary-light:    #E0BC5E;
+	--ifm-color-primary-lighter:  #E8CB7A;
+	--ifm-color-primary-lightest: #F0DA96;
+
+	/* Background overrides */
+	--ifm-background-color:         var(--prts-bg-base);
+	--ifm-background-surface-color: var(--prts-bg-surface);
+	--ifm-hover-overlay:            rgba(212, 168, 67, 0.08);
+
+	/* Text overrides */
+	--ifm-font-color-base:          var(--prts-text-primary);
+	--ifm-color-content:            var(--prts-text-primary);
+	--ifm-color-content-secondary:  var(--prts-text-secondary);
+
+	/* Emphasis scale */
+	--ifm-color-emphasis-100: var(--prts-bg-surface);
+	--ifm-color-emphasis-200: var(--prts-bg-elevated);
+	--ifm-color-emphasis-300: var(--prts-border);
+	--ifm-color-emphasis-600: var(--prts-text-tertiary);
+	--ifm-color-emphasis-700: var(--prts-text-secondary);
+	--ifm-color-emphasis-900: var(--prts-text-primary);
+
+	/* Typography */
+	--ifm-font-family-base:        "Noto Sans JP", sans-serif;
+	--ifm-heading-font-family:     "JetBrains Mono", monospace;
+	--ifm-font-family-monospace:   "JetBrains Mono", "Noto Sans JP", monospace;
+	--ifm-font-size-base:          100%;
+	--ifm-line-height-base:        1.8;
+	--ifm-heading-line-height:     1.4;
+	--ifm-heading-font-weight:     700;
+	--ifm-code-font-size:          95%;
+
+	/* Shape — sharp corners, no shadow */
+	--ifm-global-radius:          0;
+	--ifm-card-border-radius:     0;
+	--ifm-button-border-radius:   0;
+	--ifm-alert-border-radius:    0;
+	--ifm-code-border-radius:     0;
+	--ifm-breadcrumb-border-radius: 0;
+	--ifm-global-shadow-lw:       none;
+	--ifm-global-shadow-md:       none;
+	--ifm-global-shadow-tl:       none;
+	--ifm-navbar-shadow:          none;
+	--ifm-alert-shadow:           none;
+
+	/* Transitions */
+	--ifm-transition-fast:        150ms;
+	--ifm-transition-slow:        300ms;
+
+	/* Spacing tokens */
+	--prts-space-xs:  0.25rem;
+	--prts-space-sm:  0.5rem;
+	--prts-space-md:  1rem;
+	--prts-space-lg:  1.5rem;
+	--prts-space-xl:  2rem;
+	--prts-space-2xl: 3rem;
+	--prts-space-3xl: 4rem;
+
+	/* Code highlight */
+	--docusaurus-highlighted-code-line-bg: rgba(212, 168, 67, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme="dark"] {
-	--ifm-color-primary: #25c2a0;
-	--ifm-color-primary-dark: #21af90;
-	--ifm-color-primary-darker: #1fa588;
-	--ifm-color-primary-darkest: #1a8870;
-	--ifm-color-primary-light: #29d5b0;
-	--ifm-color-primary-lighter: #32d8b4;
-	--ifm-color-primary-lightest: #4fddbf;
-	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* ────────────────────────────────────────────────────────────
+   Light mode overrides
+   ──────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+	--prts-bg-base:        #F5F5F0;
+	--prts-bg-surface:     #FFFFFF;
+	--prts-bg-elevated:    #EBEBEB;
+	--prts-border:         #D0D0D0;
+	--prts-text-primary:   #1A1A1A;
+	--prts-text-secondary: #555555;
+	--prts-text-tertiary:  #999999;
+	--prts-accent:         #B8860B;
+	--prts-accent-hover:   #9A700A;
+	--prts-accent-dim:     rgba(184, 134, 11, 0.12);
+	--prts-danger:         #CC0000;
+	--prts-success:        #2E7D32;
+	--prts-glow:           rgba(184, 134, 11, 0.3);
+
+	--ifm-color-primary:          #B8860B;
+	--ifm-color-primary-dark:     #A07809;
+	--ifm-color-primary-darker:   #8F6B08;
+	--ifm-color-primary-darkest:  #6D5206;
+	--ifm-color-primary-light:    #CA930D;
+	--ifm-color-primary-lighter:  #D9A00F;
+	--ifm-color-primary-lightest: #E8AD11;
 }
 
-html,
+/* ────────────────────────────────────────────────────────────
+   Base
+   ──────────────────────────────────────────────────────────── */
+html {
+	background-color: var(--prts-bg-base);
+	color-scheme: dark light;
+}
+
+body {
+	background-color: var(--prts-bg-base);
+	color: var(--prts-text-primary);
+	font-family: "Noto Sans JP", sans-serif;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Typography — Headings use JetBrains Mono
+   ──────────────────────────────────────────────────────────── */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	font-family: "Noto Sans JP", sans-serif;
+	font-family: "JetBrains Mono", monospace;
 	font-optical-sizing: auto;
+	color: var(--prts-accent);
+	letter-spacing: 0.04em;
 }
 
-.theme-admonition-note div:first-child {
-	display: none;
+h2 {
+	border-top: 1px solid var(--prts-border);
+	padding-top: var(--prts-space-md);
+	margin-top: var(--prts-space-2xl);
 }
 
-.c-expression {
-	padding: 0.5em 1em;
-	background-color: var(--ifm-color-info-contrast-background);
-	border: 1px solid var(--ifm-color-info-contrast-foreground);
-	font-size: 1.5em;
-	font-weight: bold;
-	margin: 1em;
+/* ────────────────────────────────────────────────────────────
+   Links
+   ──────────────────────────────────────────────────────────── */
+a {
+	color: var(--prts-accent);
+	text-decoration: none;
+	transition: color var(--ifm-transition-fast);
 }
 
-.c-memo {
-	opacity: .7;
-	font-size: 0.85em;
-	font-style: italic;
-	margin-bottom: 2em;
+a:hover {
+	color: var(--prts-accent-hover);
+	text-decoration: none;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Navbar
+   ──────────────────────────────────────────────────────────── */
+.navbar {
+	background-color: var(--prts-bg-surface);
+	border-bottom: 1px solid var(--prts-border);
+}
+
+.navbar__title {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.8rem;
+	letter-spacing: 0.08em;
+	color: var(--prts-accent);
+}
+
+.navbar__link {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.8rem;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+	color: var(--prts-accent);
+}
+
+.navbar__link--active {
+	border-bottom: 2px solid var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Sidebar / Menu
+   ──────────────────────────────────────────────────────────── */
+.menu {
+	background-color: var(--prts-bg-surface);
+	border-right: 1px solid var(--prts-border);
+}
+
+.menu__link {
+	border-radius: 0;
+	font-size: 0.9rem;
+}
+
+.menu__link:hover {
+	background-color: var(--prts-accent-dim);
+	color: var(--prts-accent);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+	background-color: var(--prts-accent-dim);
+	color: var(--prts-accent);
+	border-left: 2px solid var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Footer
+   ──────────────────────────────────────────────────────────── */
+.footer--dark {
+	background-color: var(--prts-bg-surface);
+	border-top: 1px solid var(--prts-border);
+	--ifm-footer-background-color: var(--prts-bg-surface);
+}
+
+.footer__copyright {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.75rem;
+	letter-spacing: 0.05em;
+	color: var(--prts-text-secondary);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Buttons
+   ──────────────────────────────────────────────────────────── */
+.button {
+	border-radius: 0;
+	font-family: "JetBrains Mono", monospace;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	transition: all var(--ifm-transition-fast);
+}
+
+.button--primary {
+	background-color: var(--prts-accent);
+	border-color: var(--prts-accent);
+	color: var(--prts-bg-base);
+}
+
+.button--primary:hover {
+	background-color: var(--prts-accent-hover);
+	border-color: var(--prts-accent-hover);
+	color: var(--prts-bg-base);
+}
+
+.button--secondary,
+[data-theme="dark"] .button--secondary {
+	background-color: transparent;
+	border: 1px solid var(--prts-accent);
+	color: var(--prts-accent);
+}
+
+.button--secondary:hover,
+[data-theme="dark"] .button--secondary:hover {
+	background-color: var(--prts-accent-dim);
+	border-color: var(--prts-accent-hover);
+	color: var(--prts-accent-hover);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Tables (critical for TRPG rulebook)
+   ──────────────────────────────────────────────────────────── */
+table {
+	border-collapse: collapse;
+	border: none;
+}
+
+table th {
+	background-color: var(--prts-bg-elevated);
+	border-bottom: 2px solid var(--prts-accent);
+	font-family: "JetBrains Mono", monospace;
+	font-size: 0.85rem;
+	letter-spacing: 0.04em;
+	color: var(--prts-accent);
+}
+
+table td,
+table th {
+	border: 1px solid var(--prts-border);
+	padding: 0.6rem 0.75rem;
+}
+
+table tr:nth-child(even) {
+	background-color: rgba(212, 168, 67, 0.03);
 }
 
 .md-table ul {
 	margin: 0;
 	padding-left: 1.4rem;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Code blocks
+   ──────────────────────────────────────────────────────────── */
+.prism-code {
+	border-radius: 0 !important;
+	border: 1px solid var(--prts-border);
+	background-color: var(--prts-bg-surface) !important;
+}
+
+code {
+	border-radius: 0;
+	background-color: var(--prts-bg-elevated);
+	border: 1px solid var(--prts-border);
+	color: var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Admonitions / Alerts
+   ──────────────────────────────────────────────────────────── */
+.alert {
+	border-radius: 0;
+	border-left-width: 3px;
+	background-color: var(--prts-bg-elevated);
+}
+
+/* Admonition heading — (0,2,0) beats CSS module (0,1,0) */
+.theme-admonition [class*="admonitionHeading"] {
+	font-size: var(--ifm-h3-font-size);
+	color: var(--prts-accent);
+	letter-spacing: 0.04em;
+}
+
+.theme-admonition [class*="admonitionIcon"] {
+	display: none;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Blockquote — visually distinct from body text
+   ──────────────────────────────────────────────────────────── */
+blockquote {
+	border-left: 3px solid var(--prts-accent);
+	background-color: var(--prts-bg-elevated);
+	padding: var(--prts-space-md) var(--prts-space-lg);
+	margin: var(--prts-space-lg) 0;
+	color: var(--prts-text-secondary);
+	font-style: italic;
+}
+
+blockquote p {
+	margin-bottom: var(--prts-space-sm);
+}
+
+blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Table of Contents
+   ──────────────────────────────────────────────────────────── */
+.table-of-contents__link {
+	font-size: 0.85rem;
+	color: var(--prts-text-secondary);
+	transition: color var(--ifm-transition-fast);
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+	color: var(--prts-accent);
+}
+
+.table-of-contents__link--active {
+	font-weight: 700;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Doc content breadcrumb
+   ──────────────────────────────────────────────────────────── */
+.breadcrumbs__item--active .breadcrumbs__link {
+	color: var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Pagination
+   ──────────────────────────────────────────────────────────── */
+.pagination-nav__link {
+	border: 1px solid var(--prts-border);
+	border-radius: 0;
+	transition: border-color var(--ifm-transition-fast);
+}
+
+.pagination-nav__link:hover {
+	border-color: var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Custom Game Components
+   ──────────────────────────────────────────────────────────── */
+.c-expression {
+	padding: 0.75rem 1.25rem;
+	background-color: var(--prts-bg-elevated);
+	border: 1px solid var(--prts-accent);
+	border-left: 3px solid var(--prts-accent);
+	font-family: "JetBrains Mono", monospace;
+	font-size: 1.25em;
+	font-weight: bold;
+	margin: 1.5rem 0;
+	color: var(--prts-accent);
+}
+
+.c-memo {
+	font-size: 0.85em;
+	font-style: italic;
+	margin-bottom: 2em;
+	color: var(--prts-text-secondary);
+	border-left: 2px solid var(--prts-border);
+	padding-left: var(--prts-space-md);
+	opacity: 0.85;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Selection & Scrollbar
+   ──────────────────────────────────────────────────────────── */
+::selection {
+	background-color: var(--prts-accent-dim);
+	color: var(--prts-text-primary);
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--prts-bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--prts-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Focus styles — accessibility (visible focus ring)
+   ──────────────────────────────────────────────────────────── */
+:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--prts-accent);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Animations — Cyberpunk UI / Dark Data Terminal (controlled)
+   ──────────────────────────────────────────────────────────── */
+
+/* Blinking cursor — decorative only (aria-hidden) */
+@keyframes blink {
+	0%, 100% { opacity: 1; }
+	50%       { opacity: 0; }
+}
+
+/* Reveal text — homepage title entrance */
+@keyframes revealText {
+	from { clip-path: inset(0 100% 0 0); }
+	to   { clip-path: inset(0 0% 0 0); }
+}
+
+/* Border draw — terminal frame entrance */
+@keyframes borderDraw {
+	from { border-color: transparent; opacity: 0; }
+	to   { border-color: var(--prts-border); opacity: 1; }
+}
+
+/* Fade in up — content entrance */
+@keyframes fadeInUp {
+	from { opacity: 0; transform: translateY(12px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+
+.prts-reveal {
+	animation: revealText 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.prts-fade-in {
+	animation: fadeInUp 0.6s ease both;
+}
+
+.prts-cursor::after {
+	content: "█";
+	display: inline-block;
+	animation: blink 1s step-end infinite;
+	color: var(--prts-accent);
+	margin-left: 0.25em;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Reduced motion — MANDATORY accessibility
+   ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
 }
