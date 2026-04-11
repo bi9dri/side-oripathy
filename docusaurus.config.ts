@@ -68,7 +68,7 @@ const config: Config = {
 					label: "ルール",
 				},
 				{
-					href: "/converter",
+					to: "/converter",
 					position: "left",
 					label: "コンバーター",
 				},
