@@ -91,6 +91,15 @@
 
 	/* Code highlight */
 	--docusaurus-highlighted-code-line-bg: rgba(212, 168, 67, 0.1);
+
+	/* Transparent layout system */
+	--prts-layout-border:       rgba(255, 255, 255, 0.08);
+	--prts-layout-border-width: 1px;
+	--prts-glass-bg:            rgba(255, 255, 255, 0.02);
+	--prts-glass-blur:          12px;
+	--prts-stripe-color-a:      rgba(255, 255, 255, 0.03);
+	--prts-stripe-color-b:      transparent;
+	--prts-stripe-size:         1.5px;
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -111,6 +120,13 @@
 	--prts-success:        #2E7D32;
 	--prts-glow:           rgba(184, 134, 11, 0.3);
 
+	/* Transparent layout system — light mode */
+	--prts-layout-border:    rgba(0, 0, 0, 0.18);
+	--prts-glass-bg:         rgba(255, 255, 255, 0.18);
+	--prts-glass-blur:       12px;
+	--prts-stripe-color-a:   rgba(0, 0, 0, 0.04);
+	--prts-stripe-color-b:   transparent;
+
 	--ifm-color-primary:          #B8860B;
 	--ifm-color-primary-dark:     #A07809;
 	--ifm-color-primary-darker:   #8F6B08;
@@ -129,9 +145,13 @@ html {
 }
 
 body {
-	background-color: var(--prts-bg-base);
+	background-color: transparent;
 	color: var(--prts-text-primary);
 	font-family: "Noto Sans JP", sans-serif;
+}
+
+.main-wrapper {
+	background-color: transparent;
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -173,8 +193,21 @@ a:hover {
    Navbar
    ──────────────────────────────────────────────────────────── */
 .navbar {
-	background-color: var(--prts-bg-surface);
-	border-bottom: 1px solid var(--prts-border);
+	background-color: transparent;
+	border-bottom: var(--prts-layout-border-width) solid var(--prts-layout-border);
+	position: relative;
+}
+
+/* backdrop-filter を疑似要素に隔離して containing block 生成を回避
+   （navbar 内部の .navbar-sidebar が position:fixed を使うため） */
+.navbar::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-color: var(--prts-glass-bg);
+	backdrop-filter: blur(var(--prts-glass-blur));
+	-webkit-backdrop-filter: blur(var(--prts-glass-blur));
+	z-index: -1;
 }
 
 .navbar__title {
@@ -204,8 +237,35 @@ a:hover {
    Sidebar / Menu
    ──────────────────────────────────────────────────────────── */
 .menu {
-	background-color: var(--prts-bg-surface);
-	border-right: 1px solid var(--prts-border);
+	background-color: transparent;
+	background-image: repeating-linear-gradient(
+		-45deg,
+		var(--prts-stripe-color-a),
+		var(--prts-stripe-color-a) var(--prts-stripe-size),
+		var(--prts-stripe-color-b) var(--prts-stripe-size),
+		var(--prts-stripe-color-b) calc(var(--prts-stripe-size) * 2)
+	);
+	border-right: none;
+}
+
+.theme-doc-sidebar-container {
+	border-right: none !important;
+}
+
+/* モバイルのスライドアウトメニュー — 半透明ガラス背景にストライプを重ねる */
+.navbar-sidebar {
+	background-color: rgba(13, 13, 13, 0.75);
+	backdrop-filter: blur(var(--prts-glass-blur));
+	-webkit-backdrop-filter: blur(var(--prts-glass-blur));
+}
+
+[data-theme="light"] .navbar-sidebar {
+	background-color: rgba(245, 245, 240, 0.75);
+}
+
+/* バックドロップを少し薄くして圧迫感を軽減 */
+.navbar-sidebar__backdrop {
+	background-color: rgba(0, 0, 0, 0.35);
 }
 
 .menu__link {
@@ -228,9 +288,11 @@ a:hover {
    Footer
    ──────────────────────────────────────────────────────────── */
 .footer--dark {
-	background-color: var(--prts-bg-surface);
-	border-top: 1px solid var(--prts-border);
-	--ifm-footer-background-color: var(--prts-bg-surface);
+	background-color: var(--prts-glass-bg);
+	backdrop-filter: blur(var(--prts-glass-blur));
+	-webkit-backdrop-filter: blur(var(--prts-glass-blur));
+	border-top: var(--prts-layout-border-width) solid var(--prts-layout-border);
+	--ifm-footer-background-color: transparent;
 }
 
 .footer__copyright {
@@ -503,6 +565,42 @@ blockquote p:last-child {
 	animation: blink 1s step-end infinite;
 	color: var(--prts-accent);
 	margin-left: 0.25em;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Cross-border vertical line — doc pages only
+   sidebar縦線をnavbar/footer領域も貫通して描画
+   ──────────────────────────────────────────────────────────── */
+@media (min-width: 997px) {
+	html.docs-doc-page #__docusaurus::after {
+		content: "";
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: var(--doc-sidebar-width);
+		width: var(--prts-layout-border-width);
+		background-color: var(--prts-layout-border);
+		z-index: 201; /* navbar (var(--ifm-z-index-fixed) = 200) の上に */
+		pointer-events: none;
+	}
+}
+
+/* ────────────────────────────────────────────────────────────
+   backdrop-filter 非対応ブラウザのフォールバック
+   ──────────────────────────────────────────────────────────── */
+@supports not (backdrop-filter: blur(1px)) {
+	.navbar::before {
+		background-color: rgba(13, 13, 13, 0.85);
+	}
+	.footer--dark {
+		background-color: rgba(13, 13, 13, 0.85);
+	}
+	[data-theme="light"] .navbar::before {
+		background-color: rgba(245, 245, 240, 0.85);
+	}
+	[data-theme="light"] .footer--dark {
+		background-color: rgba(245, 245, 240, 0.85);
+	}
 }
 
 /* ────────────────────────────────────────────────────────────
