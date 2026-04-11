@@ -14,7 +14,7 @@ const judgeCcfoliaOrPalette = (text: string): TextType => {
 		if (jsonObj && jsonObj.kind === "character") {
 			return "ccfolia";
 		}
-	} catch { }
+	} catch {}
 	return "commandPalette";
 };
 

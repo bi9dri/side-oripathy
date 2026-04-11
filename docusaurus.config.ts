@@ -68,9 +68,14 @@ const config: Config = {
 					label: "ルール",
 				},
 				{
-					href: "/converter",
+					to: "/converter",
 					position: "left",
 					label: "コンバーター",
+				},
+				{
+					to: "/erosion-calculator",
+					position: "left",
+					label: "侵食判定計算機",
 				},
 				{
 					href: "https://github.com/bi9dri/side-oripathy",
