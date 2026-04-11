@@ -18,7 +18,7 @@ const judgeCcfoliaOrPalette = (text: string): TextType => {
 	return "commandPalette";
 };
 
-const convertCommands = (text: string): string => {
+const convertCommands = (text: string, convertType: ConvertType): string => {
 	const srcCommands = text.split("\n").filter((cmd) => cmd.indexOf("∞共鳴") === -1);
 	const commandsMap: {
 		skill: string;
@@ -38,6 +38,11 @@ const convertCommands = (text: string): string => {
 
 	const commands = [];
 	for (const cmd of commandsMap) {
+		if (cmd.skill === "∞共鳴") {
+			continue;
+		}
+
+		/* 運動系技能 */
 		if (
 			["＊運動", "スピード", "ストレングス", "アクロバット", "ダイブ", "＊格闘", "＊投擲"].includes(
 				cmd.skill,
@@ -46,29 +51,69 @@ const convertCommands = (text: string): string => {
 			cmd.skill.startsWith("★奥義") ||
 			cmd.skill.startsWith("★射撃")
 		) {
-			commands.push(`${cmd.level}DM<=(${cmd.judge}-({侵食段階}*4/5R)) 〈${cmd.skill}〉`);
+			switch (convertType) {
+				case "sarkaz-mercenary":
+					commands.push(`${cmd.level}DM<=${cmd.judge} 〈${cmd.skill}〉`);
+					break;
+				case "seaborn-abyssal":
+					commands.push(`(${cmd.level}+1)DM<=${cmd.judge} 〈${cmd.skill}〉`);
+					break;
+				default:
+					commands.push(`${cmd.level}DM<=(${cmd.judge}-({侵食段階}*4/5R)) 〈${cmd.skill}〉`);
+			}
 			continue;
 		}
+
+		/* アーツ */
 		if (cmd.skill.startsWith("アーツ")) {
-			commands.push(`${cmd.level}DM<=(${cmd.judge}+(({侵食段階}-1)*2/3C)) 〈${cmd.skill}〉`);
+			switch (convertType) {
+				case "seaborn-abyssal":
+					commands.push(`${cmd.level}DM<=${cmd.judge} 〈${cmd.skill}〉`);
+					break;
+				default:
+					commands.push(`${cmd.level}DM<=(${cmd.judge}+(({侵食段階}-1)*2/3C)) 〈${cmd.skill}〉`);
+			}
 			continue;
 		}
-		commands.push(`${cmd.level}DM<=(${cmd.judge}-(({侵食段階}-1)*2/3R)) 〈${cmd.skill}〉`);
+
+		/* その他の技能 */
+		switch (convertType) {
+			case "seaborn-abyssal":
+				commands.push(`${cmd.level}DM<=${cmd.judge} 〈${cmd.skill}〉`);
+				break;
+			default:
+				commands.push(`${cmd.level}DM<=(${cmd.judge}-(({侵食段階}-1)*2/3R)) 〈${cmd.skill}〉`);
+		}
 	}
+
+	if (convertType === "seaborn-abyssal") {
+		commands.unshift("({共鳴}*2)DM<={強度} 〈∞共鳴〉 完全一致");
+	}
+
 	commands.unshift("({侵食度}/5F+1)R10[>={生理的耐性}]<={危険度} 〈源石侵食判定〉");
 
 	return commands.join("\n");
 };
 
-const convertCcfolia = (text: string): string => {
+const convertCcfolia = (text: string, convertType: ConvertType): string => {
 	const jsonObj = JSON.parse(text);
 
 	const srcParams: { [key: string]: number } = {};
 	for (const param of jsonObj.data.params) {
 		srcParams[param.label] = Number.parseInt(param.value);
 	}
-	// biome-ignore lint/complexity/useLiteralKeys: unicode keys
-	srcParams["生理的耐性"] = srcParams["身体"] + srcParams["運勢"];
+
+	switch (convertType) {
+		case "normal":
+			srcParams["生理的耐性"] = srcParams["身体"] + srcParams["運勢"];
+			break;
+		case "sarkaz-mercenary":
+			srcParams["生理的耐性"] = 2;
+			break;
+		case "seaborn-abyssal":
+			srcParams["生理的耐性"] = 12;
+			break;
+	}
 
 	const params = [];
 	for (const param in srcParams) {
@@ -80,21 +125,48 @@ const convertCcfolia = (text: string): string => {
 
 	const status = [];
 	for (const st of jsonObj.data.status) {
-		if (st.label === "共鳴") continue;
+		if (st.label === "共鳴") {
+			if (convertType === "seaborn-abyssal") {
+				status.push({
+					label: "共鳴",
+					value: Number.parseInt(st.value) >= 3 ? st.value : "3",
+					max: "9",
+				});
+			}
+			continue;
+		}
 		status.push(st);
 	}
-	status.push(
-		{
-			label: "侵食度",
-			value: "0",
-			max: "100",
-		},
-		{
-			label: "侵食段階",
-			value: "0",
-			max: "4",
-		},
-	);
+
+	switch (convertType) {
+		case "sarkaz-mercenary":
+			status.push(
+				{
+					label: "侵食度",
+					value: "21",
+					max: "100",
+				},
+				{
+					label: "侵食段階",
+					value: "2",
+					max: "4",
+				},
+			);
+			break;
+		default:
+			status.push(
+				{
+					label: "侵食度",
+					value: "0",
+					max: "100",
+				},
+				{
+					label: "侵食段階",
+					value: "0",
+					max: "4",
+				},
+			);
+	}
 
 	return JSON.stringify({
 		kind: "character",
@@ -102,7 +174,7 @@ const convertCcfolia = (text: string): string => {
 			...jsonObj.data,
 			params,
 			status,
-			commands: convertCommands(jsonObj.data.commands),
+			commands: convertCommands(jsonObj.data.commands, convertType),
 		},
 	});
 };
@@ -120,12 +192,15 @@ export default function Converter(): ReactNode {
 
 	const handleConvert = () => {
 		const textType = judgeCcfoliaOrPalette(inputText);
-		if (textType === "ccfolia") {
-			setOutputText(convertCcfolia(inputText));
-		} else if (textType === "commandPalette") {
-			setOutputText(convertCommands(inputText));
-		} else {
-			setOutputText("不明な形式です");
+		switch (textType) {
+			case "ccfolia":
+				setOutputText(convertCcfolia(inputText, convertType));
+				break;
+			case "commandPalette":
+				setOutputText(convertCommands(inputText, convertType));
+				break;
+			default:
+				setOutputText("不明な形式です");
 		}
 	};
 
@@ -181,8 +256,8 @@ export default function Converter(): ReactNode {
 							onChange={(e) => setConvertType(e.target.value as ConvertType)}
 						>
 							<option value="normal">通常</option>
-							<option value="sarkaz-mercenary">サルカズ傭兵（未対応）</option>
-							<option value="seaborn-abyssal">アビサル（未対応）</option>
+							<option value="sarkaz-mercenary">サルカズ傭兵</option>
+							<option value="seaborn-abyssal">アビサル</option>
 						</select>
 					</div>
 
