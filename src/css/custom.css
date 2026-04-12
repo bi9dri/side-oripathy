@@ -11,39 +11,39 @@
    ──────────────────────────────────────────────────────────── */
 :root {
 	/* PRTS color tokens */
-	--prts-bg-base:       #0D0D0D;
-	--prts-bg-surface:    #141414;
-	--prts-bg-elevated:   #1A1A1A;
-	--prts-border:        #2A2A2A;
+	--prts-bg-base: #0D0D0D;
+	--prts-bg-surface: #141414;
+	--prts-bg-elevated: #1A1A1A;
+	--prts-border: #2A2A2A;
 	--prts-border-accent: #D4A843;
-	--prts-text-primary:  #E8E4D9;
-	--prts-text-secondary:#9B9B8E;
+	--prts-text-primary: #E8E4D9;
+	--prts-text-secondary: #9B9B8E;
 	--prts-text-tertiary: #5C5C52;
-	--prts-accent:        #D4A843;
-	--prts-accent-hover:  #E0BC5E;
-	--prts-accent-dim:    rgba(212, 168, 67, 0.15);
-	--prts-danger:        #C75050;
-	--prts-success:       #5CAA5C;
-	--prts-glow:          rgba(212, 168, 67, 0.4);
+	--prts-accent: #D4A843;
+	--prts-accent-hover: #E0BC5E;
+	--prts-accent-dim: rgba(212, 168, 67, 0.15);
+	--prts-danger: #C75050;
+	--prts-success: #5CAA5C;
+	--prts-glow: rgba(212, 168, 67, 0.4);
 
 	/* Infima primary overrides → amber */
-	--ifm-color-primary:          #D4A843;
-	--ifm-color-primary-dark:     #C99B35;
-	--ifm-color-primary-darker:   #B8892E;
-	--ifm-color-primary-darkest:  #967024;
-	--ifm-color-primary-light:    #E0BC5E;
-	--ifm-color-primary-lighter:  #E8CB7A;
+	--ifm-color-primary: #D4A843;
+	--ifm-color-primary-dark: #C99B35;
+	--ifm-color-primary-darker: #B8892E;
+	--ifm-color-primary-darkest: #967024;
+	--ifm-color-primary-light: #E0BC5E;
+	--ifm-color-primary-lighter: #E8CB7A;
 	--ifm-color-primary-lightest: #F0DA96;
 
 	/* Background overrides */
-	--ifm-background-color:         var(--prts-bg-base);
+	--ifm-background-color: var(--prts-bg-base);
 	--ifm-background-surface-color: var(--prts-bg-surface);
-	--ifm-hover-overlay:            rgba(212, 168, 67, 0.08);
+	--ifm-hover-overlay: rgba(212, 168, 67, 0.08);
 
 	/* Text overrides */
-	--ifm-font-color-base:          var(--prts-text-primary);
-	--ifm-color-content:            var(--prts-text-primary);
-	--ifm-color-content-secondary:  var(--prts-text-secondary);
+	--ifm-font-color-base: var(--prts-text-primary);
+	--ifm-color-content: var(--prts-text-primary);
+	--ifm-color-content-secondary: var(--prts-text-secondary);
 
 	/* Emphasis scale */
 	--ifm-color-emphasis-100: var(--prts-bg-surface);
@@ -54,38 +54,38 @@
 	--ifm-color-emphasis-900: var(--prts-text-primary);
 
 	/* Typography */
-	--ifm-font-family-base:        "Noto Sans JP", sans-serif;
-	--ifm-heading-font-family:     "JetBrains Mono", monospace;
-	--ifm-font-family-monospace:   "JetBrains Mono", "Noto Sans JP", monospace;
-	--ifm-font-size-base:          100%;
-	--ifm-line-height-base:        1.8;
-	--ifm-heading-line-height:     1.4;
-	--ifm-heading-font-weight:     700;
-	--ifm-code-font-size:          95%;
+	--ifm-font-family-base: "Noto Sans JP", sans-serif;
+	--ifm-heading-font-family: "JetBrains Mono", monospace;
+	--ifm-font-family-monospace: "JetBrains Mono", "Noto Sans JP", monospace;
+	--ifm-font-size-base: 100%;
+	--ifm-line-height-base: 1.8;
+	--ifm-heading-line-height: 1.4;
+	--ifm-heading-font-weight: 700;
+	--ifm-code-font-size: 95%;
 
 	/* Shape — sharp corners, no shadow */
-	--ifm-global-radius:          0;
-	--ifm-card-border-radius:     0;
-	--ifm-button-border-radius:   0;
-	--ifm-alert-border-radius:    0;
-	--ifm-code-border-radius:     0;
+	--ifm-global-radius: 0;
+	--ifm-card-border-radius: 0;
+	--ifm-button-border-radius: 0;
+	--ifm-alert-border-radius: 0;
+	--ifm-code-border-radius: 0;
 	--ifm-breadcrumb-border-radius: 0;
-	--ifm-global-shadow-lw:       none;
-	--ifm-global-shadow-md:       none;
-	--ifm-global-shadow-tl:       none;
-	--ifm-navbar-shadow:          none;
-	--ifm-alert-shadow:           none;
+	--ifm-global-shadow-lw: none;
+	--ifm-global-shadow-md: none;
+	--ifm-global-shadow-tl: none;
+	--ifm-navbar-shadow: none;
+	--ifm-alert-shadow: none;
 
 	/* Transitions */
-	--ifm-transition-fast:        150ms;
-	--ifm-transition-slow:        300ms;
+	--ifm-transition-fast: 150ms;
+	--ifm-transition-slow: 300ms;
 
 	/* Spacing tokens */
-	--prts-space-xs:  0.25rem;
-	--prts-space-sm:  0.5rem;
-	--prts-space-md:  1rem;
-	--prts-space-lg:  1.5rem;
-	--prts-space-xl:  2rem;
+	--prts-space-xs: 0.25rem;
+	--prts-space-sm: 0.5rem;
+	--prts-space-md: 1rem;
+	--prts-space-lg: 1.5rem;
+	--prts-space-xl: 2rem;
 	--prts-space-2xl: 3rem;
 	--prts-space-3xl: 4rem;
 
@@ -93,46 +93,46 @@
 	--docusaurus-highlighted-code-line-bg: rgba(212, 168, 67, 0.1);
 
 	/* Transparent layout system */
-	--prts-layout-border:       rgba(255, 255, 255, 0.08);
+	--prts-layout-border: rgba(255, 255, 255, 0.08);
 	--prts-layout-border-width: 1px;
-	--prts-glass-bg:            rgba(255, 255, 255, 0.02);
-	--prts-glass-blur:          12px;
-	--prts-stripe-color-a:      rgba(255, 255, 255, 0.03);
-	--prts-stripe-color-b:      transparent;
-	--prts-stripe-size:         1.5px;
+	--prts-glass-bg: rgba(255, 255, 255, 0.02);
+	--prts-glass-blur: 12px;
+	--prts-stripe-color-a: rgba(255, 255, 255, 0.03);
+	--prts-stripe-color-b: transparent;
+	--prts-stripe-size: 1.5px;
 }
 
 /* ────────────────────────────────────────────────────────────
    Light mode overrides
    ──────────────────────────────────────────────────────────── */
 [data-theme="light"] {
-	--prts-bg-base:        #F5F5F0;
-	--prts-bg-surface:     #FFFFFF;
-	--prts-bg-elevated:    #EBEBEB;
-	--prts-border:         #D0D0D0;
-	--prts-text-primary:   #1A1A1A;
+	--prts-bg-base: #F5F5F0;
+	--prts-bg-surface: #FFFFFF;
+	--prts-bg-elevated: #EBEBEB;
+	--prts-border: #D0D0D0;
+	--prts-text-primary: #1A1A1A;
 	--prts-text-secondary: #555555;
-	--prts-text-tertiary:  #999999;
-	--prts-accent:         #B8860B;
-	--prts-accent-hover:   #9A700A;
-	--prts-accent-dim:     rgba(184, 134, 11, 0.12);
-	--prts-danger:         #CC0000;
-	--prts-success:        #2E7D32;
-	--prts-glow:           rgba(184, 134, 11, 0.3);
+	--prts-text-tertiary: #999999;
+	--prts-accent: #B8860B;
+	--prts-accent-hover: #9A700A;
+	--prts-accent-dim: rgba(184, 134, 11, 0.12);
+	--prts-danger: #CC0000;
+	--prts-success: #2E7D32;
+	--prts-glow: rgba(184, 134, 11, 0.3);
 
 	/* Transparent layout system — light mode */
-	--prts-layout-border:    rgba(0, 0, 0, 0.18);
-	--prts-glass-bg:         rgba(255, 255, 255, 0.18);
-	--prts-glass-blur:       12px;
-	--prts-stripe-color-a:   rgba(0, 0, 0, 0.04);
-	--prts-stripe-color-b:   transparent;
+	--prts-layout-border: rgba(0, 0, 0, 0.18);
+	--prts-glass-bg: rgba(255, 255, 255, 0.18);
+	--prts-glass-blur: 12px;
+	--prts-stripe-color-a: rgba(0, 0, 0, 0.04);
+	--prts-stripe-color-b: transparent;
 
-	--ifm-color-primary:          #B8860B;
-	--ifm-color-primary-dark:     #A07809;
-	--ifm-color-primary-darker:   #8F6B08;
-	--ifm-color-primary-darkest:  #6D5206;
-	--ifm-color-primary-light:    #CA930D;
-	--ifm-color-primary-lighter:  #D9A00F;
+	--ifm-color-primary: #B8860B;
+	--ifm-color-primary-dark: #A07809;
+	--ifm-color-primary-darker: #8F6B08;
+	--ifm-color-primary-darkest: #6D5206;
+	--ifm-color-primary-light: #CA930D;
+	--ifm-color-primary-lighter: #D9A00F;
 	--ifm-color-primary-lightest: #E8AD11;
 }
 
@@ -238,13 +238,11 @@ a:hover {
    ──────────────────────────────────────────────────────────── */
 .menu {
 	background-color: transparent;
-	background-image: repeating-linear-gradient(
-		-45deg,
-		var(--prts-stripe-color-a),
-		var(--prts-stripe-color-a) var(--prts-stripe-size),
-		var(--prts-stripe-color-b) var(--prts-stripe-size),
-		var(--prts-stripe-color-b) calc(var(--prts-stripe-size) * 2)
-	);
+	background-image: repeating-linear-gradient(-45deg,
+			var(--prts-stripe-color-a),
+			var(--prts-stripe-color-a) var(--prts-stripe-size),
+			var(--prts-stripe-color-b) var(--prts-stripe-size),
+			var(--prts-stripe-color-b) calc(var(--prts-stripe-size) * 2));
 	border-right: none;
 }
 
@@ -369,6 +367,28 @@ table tr:nth-child(even) {
 .md-table ul {
 	margin: 0;
 	padding-left: 1.4rem;
+}
+
+@media screen and (max-width: 576px) {
+
+	/* コンテンツ幅を保持して横スクロールを発生させる（overflowはInfima側で設定済み） */
+	table {
+		width: max-content;
+		min-width: 100%;
+		max-width: 160vw;
+	}
+
+	table th {
+		font-size: 0.72rem;
+		padding: 0.4rem 0.5rem;
+	}
+
+	table td,
+	table th {
+		padding: 0.4rem 0.5rem;
+	}
+
+
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -529,26 +549,52 @@ blockquote p:last-child {
 
 /* Blinking cursor — decorative only (aria-hidden) */
 @keyframes blink {
-	0%, 100% { opacity: 1; }
-	50%       { opacity: 0; }
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
 }
 
 /* Reveal text — homepage title entrance */
 @keyframes revealText {
-	from { clip-path: inset(0 100% 0 0); }
-	to   { clip-path: inset(0 0% 0 0); }
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+
+	to {
+		clip-path: inset(0 0% 0 0);
+	}
 }
 
 /* Border draw — terminal frame entrance */
 @keyframes borderDraw {
-	from { border-color: transparent; opacity: 0; }
-	to   { border-color: var(--prts-border); opacity: 1; }
+	from {
+		border-color: transparent;
+		opacity: 0;
+	}
+
+	to {
+		border-color: var(--prts-border);
+		opacity: 1;
+	}
 }
 
 /* Fade in up — content entrance */
 @keyframes fadeInUp {
-	from { opacity: 0; transform: translateY(12px); }
-	to   { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .prts-reveal {
@@ -580,7 +626,8 @@ blockquote p:last-child {
 		left: var(--doc-sidebar-width);
 		width: var(--prts-layout-border-width);
 		background-color: var(--prts-layout-border);
-		z-index: 201; /* navbar (var(--ifm-z-index-fixed) = 200) の上に */
+		z-index: 201;
+		/* navbar (var(--ifm-z-index-fixed) = 200) の上に */
 		pointer-events: none;
 	}
 }
@@ -592,12 +639,15 @@ blockquote p:last-child {
 	.navbar::before {
 		background-color: rgba(13, 13, 13, 0.85);
 	}
+
 	.footer--dark {
 		background-color: rgba(13, 13, 13, 0.85);
 	}
+
 	[data-theme="light"] .navbar::before {
 		background-color: rgba(245, 245, 240, 0.85);
 	}
+
 	[data-theme="light"] .footer--dark {
 		background-color: rgba(245, 245, 240, 0.85);
 	}
@@ -607,6 +657,7 @@ blockquote p:last-child {
    Reduced motion — MANDATORY accessibility
    ──────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+
 	*,
 	*::before,
 	*::after {
