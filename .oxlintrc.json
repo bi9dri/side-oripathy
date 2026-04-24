@@ -25,9 +25,6 @@
       "exemptDestructuredRootsFromChecks": false,
       "tagNamePreference": {}
     },
-    "vitest": {
-      "typecheck": false
-    }
   },
   "env": {
     "builtin": true

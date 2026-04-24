@@ -15,6 +15,17 @@ bun run --bun typecheck  # tsc --noEmit
 bun run --bun ncu        # dependency updates
 ```
 
+## Testing
+
+Unit tests live alongside lib modules in `src/lib/*.test.ts`. Run via:
+
+```bash
+bun run test/logic/unit  # unit tests with coverage
+bun run test/logic       # all logic tests (currently delegates to unit)
+```
+
+Coverage scope: `src/lib/**` only (pages/components/theme are excluded).
+
 ## Layout
 
 - `docs/` — rule docs (sidebar auto-generated via `sidebars.ts`)
