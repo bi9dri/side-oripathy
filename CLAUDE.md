@@ -1,33 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Docusaurus site for "Side Oripathy", an Arknights × Emoklore TRPG add-on ruleset (Japanese).
 
-## プロジェクト概要
+## Commands
 
-アークナイツ×エモクロアTRPG「サイド・オリパシー」の追加ルールを公開するDocusaurusベースのドキュメントサイト。日本語のTRPGルールブックとキャラクターシートコンバーターを提供している。
-
-## 開発コマンド
+Package manager: bun (v1.3.8).
 
 ```bash
-# パッケージマネージャー: bun (v1.3.8)
-bun install          # 依存関係のインストール
-bun run start        # 開発サーバー起動
-bun run build        # プロダクションビルド（buildディレクトリに出力）
-bun run serve        # ビルド済みサイトのプレビュー
-
-# 品質チェック（oxlint/oxfmtはbunランタイムで実行）
-bun run --bun lint      # oxlintによるリント
-bun run --bun format    # oxfmtによるフォーマット
-bun run --bun typecheck # 型チェック
-bun run --bun ncu       # 依存パッケージのアップデートチェック
+bun run start        # dev server
+bun run build        # production build
+bun run --bun lint       # oxlint
+bun run --bun format     # oxfmt
+bun run --bun typecheck  # tsc --noEmit
+bun run --bun ncu        # dependency updates
 ```
 
-## アーキテクチャ
+## Layout
 
-- **docs/**: Markdownによるルールドキュメント（サイドバーは`sidebars.ts`で自動生成）
-- **src/pages/converter.tsx**: CCFOLIAおよびチャットパレット形式のキャラクターシートを「サイド・オリパシー」用に変換するコンバーター
-- **src/components/**: ドキュメント内で使用するMDXコンポーネント（`Expression`、`Memo`）
+- `docs/` — rule docs (sidebar auto-generated via `sidebars.ts`)
+- `src/pages/converter.tsx` — character sheet converter (CCFOLIA / chat palette)
+- `src/components/` — MDX components (`Expression`, `Memo`)
 
-## デプロイ
-
-mainブランチへのプッシュでGitHub Pagesに自動デプロイされる。
+Pushing to `main` auto-deploys to GitHub Pages.
