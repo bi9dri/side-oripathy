@@ -75,10 +75,6 @@ const config: Config = {
 		},
 		navbar: {
 			title: "アークナイツ×エモクロアTRPG サイド・オリパシー",
-			logo: {
-				alt: "サイド・オリパシー",
-				src: "img/icon.webp",
-			},
 			items: [
 				{
 					type: "docSidebar",
