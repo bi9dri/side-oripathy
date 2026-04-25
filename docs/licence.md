@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # ライセンス等
 
-『アークナイツ×エモクロアTRPG サイド・オリパシー』は、ダイスタス・チームが提供する「エモクロアTRPG」および、株式会社Yostarが提供する「アークナイツ」の二次創作作品です。利用に関しては[ダイスタス・コモンズ](https://emoklore.dicetous.com/guideline)に準拠します。
+『アークナイツ×エモクロアTRPG サイド・オリパシー』は、ダイスタス・チームが提供する「エモクロアTRPG」および、株式会社Yostarが提供する「アークナイツ」の二次創作作品です。利用に関しては[ダイスタス・コモンズ](https://emoklore.dicetous.com/guideline/)に準拠します。
 
 ![ダイスタス・コモンズ](/img/dicetous_commons.png)
 
