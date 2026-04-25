@@ -68,6 +68,48 @@ describe("convertCommands — normal", () => {
 		const output = convertCommands("1DM<=3 〈∞共鳴〉\n2DM<=5 〈観察〉", "normal");
 		expect(output.split("\n").filter((l) => l.includes("∞共鳴")).length).toBe(0);
 	});
+
+	test("＊格闘 treated as 運動系", () => {
+		expect(convertCommands("3DM<=7 〈＊格闘〉", "normal")).toContain(
+			"3DM<=(7-({侵食段階}*4/5R)) 〈＊格闘〉",
+		);
+	});
+
+	test("＊投擲 treated as 運動系", () => {
+		expect(convertCommands("3DM<=7 〈＊投擲〉", "normal")).toContain(
+			"3DM<=(7-({侵食段階}*4/5R)) 〈＊投擲〉",
+		);
+	});
+
+	test("ストレングス treated as 運動系", () => {
+		expect(convertCommands("3DM<=7 〈ストレングス〉", "normal")).toContain(
+			"3DM<=(7-({侵食段階}*4/5R)) 〈ストレングス〉",
+		);
+	});
+
+	test("アクロバット treated as 運動系", () => {
+		expect(convertCommands("3DM<=7 〈アクロバット〉", "normal")).toContain(
+			"3DM<=(7-({侵食段階}*4/5R)) 〈アクロバット〉",
+		);
+	});
+
+	test("ダイブ treated as 運動系", () => {
+		expect(convertCommands("3DM<=7 〈ダイブ〉", "normal")).toContain(
+			"3DM<=(7-({侵食段階}*4/5R)) 〈ダイブ〉",
+		);
+	});
+
+	test("★奥義xxx (startsWith ★奥義) treated as 運動系", () => {
+		expect(convertCommands("3DM<=7 〈★奥義・断空〉", "normal")).toContain(
+			"3DM<=(7-({侵食段階}*4/5R)) 〈★奥義・断空〉",
+		);
+	});
+
+	test("★射撃xxx (startsWith ★射撃) treated as 運動系", () => {
+		expect(convertCommands("3DM<=7 〈★射撃・狙撃〉", "normal")).toContain(
+			"3DM<=(7-({侵食段階}*4/5R)) 〈★射撃・狙撃〉",
+		);
+	});
 });
 
 describe("convertCommands — sarkaz-mercenary", () => {
@@ -79,6 +121,12 @@ describe("convertCommands — sarkaz-mercenary", () => {
 	test("アーツ falls through to default and gets bonus formula", () => {
 		const output = convertCommands("4DM<=9 〈アーツ操作〉", "sarkaz-mercenary");
 		expect(output).toContain("4DM<=(9+(({侵食段階}-1)*2/3C)) 〈アーツ操作〉");
+	});
+
+	test("other skill gets generic erosion-stage penalty for sarkaz-mercenary", () => {
+		expect(convertCommands("2DM<=6 〈観察〉", "sarkaz-mercenary")).toContain(
+			"2DM<=(6-(({侵食段階}-1)*2/3R)) 〈観察〉",
+		);
 	});
 });
 
@@ -102,6 +150,12 @@ describe("convertCommands — seaborn-abyssal", () => {
 		const lines = convertCommands("2DM<=5 〈観察〉", "seaborn-abyssal").split("\n");
 		expect(lines[0]).toContain("〈源石侵食判定〉");
 		expect(lines[1]).toContain("〈∞共鳴〉 完全一致");
+	});
+
+	test("★射撃xxx gets +1 die for seaborn-abyssal", () => {
+		expect(convertCommands("4DM<=8 〈★射撃・狙撃〉", "seaborn-abyssal")).toContain(
+			"(4+1)DM<=8 〈★射撃・狙撃〉",
+		);
 	});
 });
 
@@ -149,6 +203,12 @@ describe("convertCcfolia — normal", () => {
 		const result = JSON.parse(convertCcfolia(JSON.stringify(BASE_CCFOLIA), "normal"));
 		expect(result.kind).toBe("character");
 	});
+
+	test("commands are converted with normal formula", () => {
+		const result = JSON.parse(convertCcfolia(JSON.stringify(BASE_CCFOLIA), "normal"));
+		expect(result.data.commands).toContain("〈源石侵食判定〉");
+		expect(result.data.commands).toContain("3DM<=(7-({侵食段階}*4/5R)) 〈＊運動〉");
+	});
 });
 
 describe("convertCcfolia — sarkaz-mercenary", () => {
@@ -164,6 +224,12 @@ describe("convertCcfolia — sarkaz-mercenary", () => {
 		const stage = result.data.status.find((s: { label: string }) => s.label === "侵食段階");
 		expect(erosion?.value).toBe("21");
 		expect(stage?.value).toBe("2");
+	});
+
+	test("commands: 運動系 is flat, other gets penalty", () => {
+		const result = JSON.parse(convertCcfolia(JSON.stringify(BASE_CCFOLIA), "sarkaz-mercenary"));
+		expect(result.data.commands).toContain("3DM<=7 〈＊運動〉");
+		expect(result.data.commands).toContain("2DM<=(5-(({侵食段階}-1)*2/3R)) 〈観察〉");
 	});
 });
 
@@ -187,6 +253,14 @@ describe("convertCcfolia — seaborn-abyssal", () => {
 		const result = JSON.parse(convertCcfolia(JSON.stringify(input), "seaborn-abyssal"));
 		const kyoumei = result.data.status.find((s: { label: string }) => s.label === "共鳴");
 		expect(kyoumei?.value).toBe("5");
+	});
+
+	test("keeps 共鳴 value unchanged when source === 3 (exact boundary)", () => {
+		const input = structuredClone(BASE_CCFOLIA);
+		input.data.status[0] = { label: "共鳴", value: "3", max: "9" };
+		const result = JSON.parse(convertCcfolia(JSON.stringify(input), "seaborn-abyssal"));
+		const kyoumei = result.data.status.find((s: { label: string }) => s.label === "共鳴");
+		expect(kyoumei?.value).toBe("3");
 	});
 
 	test("commands include ∞共鳴 line", () => {

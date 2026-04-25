@@ -1,4 +1,4 @@
-export type TextType = "ccfolia" | "commandPalette" | "unknown";
+export type TextType = "ccfolia" | "commandPalette";
 export type ConvertType = "normal" | "sarkaz-mercenary" | "seaborn-abyssal";
 
 export const judgeCcfoliaOrPalette = (text: string): TextType => {
@@ -31,10 +31,6 @@ export const convertCommands = (text: string, convertType: ConvertType): string 
 
 	const commands = [];
 	for (const cmd of commandsMap) {
-		if (cmd.skill === "∞共鳴") {
-			continue;
-		}
-
 		/* 運動系技能 */
 		if (
 			["＊運動", "スピード", "ストレングス", "アクロバット", "ダイブ", "＊格闘", "＊投擲"].includes(

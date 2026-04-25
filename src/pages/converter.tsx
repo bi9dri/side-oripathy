@@ -31,8 +31,6 @@ export default function Converter(): ReactNode {
 			case "commandPalette":
 				setOutputText(convertCommands(inputText, convertType));
 				break;
-			default:
-				setOutputText("不明な形式です");
 		}
 	};
 

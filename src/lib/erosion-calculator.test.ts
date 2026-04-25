@@ -114,6 +114,14 @@ describe("singleDieDist", () => {
 		const sum = dist.reduce((a, b) => a + b, 0);
 		expect(sum).toBeCloseTo(1, 3);
 	});
+
+	test("p_sr > 0 branch: dist sum ≈ 1 and dist[0] = 0 (danger=7, tolerance=5)", () => {
+		const dist = singleDieDist(7, 5);
+		const sum = dist.reduce((a, b) => a + b, 0);
+		expect(sum).toBeCloseTo(1, 3);
+		expect(dist[0]).toBeCloseTo(0, 10);
+		expect(dist[1]).toBeCloseTo(4 / 7, 5);
+	});
 });
 
 describe("calcDistribution", () => {
@@ -152,5 +160,9 @@ describe("calcDistribution", () => {
 		let manual = 0;
 		for (let i = 0; i < dist.length; i++) manual += i * dist[i];
 		expect(expectedValue).toBeCloseTo(manual, 8);
+	});
+
+	test("expectedValue is 0 when danger=0 (no successes possible)", () => {
+		expect(calcDistribution(0, 8, 0).expectedValue).toBe(0);
 	});
 });
