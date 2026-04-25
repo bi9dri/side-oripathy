@@ -58,10 +58,25 @@ describe("convertCommands — normal", () => {
 		expect(lines[0]).toContain("〈源石侵食判定〉");
 	});
 
-	test("lines not matching regex are ignored", () => {
+	test("lines not matching regex are preserved in output", () => {
 		const output = convertCommands("not a valid command\n3DM<=5 〈観察〉", "normal");
-		expect(output).not.toContain("not a valid command");
+		expect(output).toContain("not a valid command");
 		expect(output).toContain("〈観察〉");
+	});
+
+	test("separator lines (======) are preserved in order", () => {
+		const input = "3DM<=7 〈＊運動〉\n======\n2DM<=5 〈観察〉";
+		const lines = convertCommands(input, "normal").split("\n");
+		expect(lines[0]).toContain("〈源石侵食判定〉");
+		expect(lines[1]).toContain("〈＊運動〉");
+		expect(lines[2]).toBe("======");
+		expect(lines[3]).toContain("〈観察〉");
+	});
+
+	test("empty lines are preserved in order", () => {
+		const input = "3DM<=7 〈＊運動〉\n\n2DM<=5 〈観察〉";
+		const lines = convertCommands(input, "normal").split("\n");
+		expect(lines[2]).toBe("");
 	});
 
 	test("∞共鳴 lines in input are stripped before processing", () => {
