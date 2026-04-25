@@ -1,9 +1,11 @@
 include_verbatim = true
 
-# Skip internal Docusaurus routes (verified by onBrokenLinks: "throw" at build time)
+# Resolve root-relative links (/docs/..., /converter, /img/...) against the deployed site.
+# Internal link integrity is also verified by onBrokenLinks: "throw" at build time.
+base_url = "https://side-oripathy.bidri.dev"
+
 # Skip anchor-only and mailto links
 exclude = [
-  "^/",
   "^#",
   "^mailto:",
   "https://www\\.youtube\\.com"
