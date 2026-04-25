@@ -19,6 +19,9 @@
     "test/content/prose": "textlint docs/",
     "test/content/links": "lychee --config .lychee.toml docs/",
     "test/content": "bun run test/content/prose",
+    "test/visual/e2e": "playwright test",
+    "test/visual/perf": "lhci autorun",
+    "test/visual": "bun run build && bun run test/visual/e2e && bun run test/visual/perf",
     "test": "bun run test/logic && bun run test/content"
   },
   "dependencies": {
@@ -33,9 +36,13 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@argos-ci/playwright": "^6.6.2",
+    "@axe-core/playwright": "^4.11.2",
     "@docusaurus/module-type-aliases": "3.9.2",
     "@docusaurus/tsconfig": "3.9.2",
     "@docusaurus/types": "3.9.2",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.59.1",
     "@types/bun": "1.3.9",
     "oxfmt": "0.27.0",
     "oxlint": "1.42.0",

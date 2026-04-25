@@ -1,9 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import {
-	convertCcfolia,
-	convertCommands,
-	judgeCcfoliaOrPalette,
-} from "./converter";
+import { convertCcfolia, convertCommands, judgeCcfoliaOrPalette } from "./converter";
 
 describe("judgeCcfoliaOrPalette", () => {
 	test('returns "ccfolia" when JSON has kind === "character"', () => {

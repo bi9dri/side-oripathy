@@ -42,6 +42,20 @@ bun run test/content         # prose only (links excluded — network, slow)
 
 `test/content/links` makes real HTTP requests; run manually when adding or changing external URLs.
 
+### Visual Quality Gates
+
+```bash
+bun run test/visual/e2e      # Playwright: VRT (Argos) + a11y (axe) over a built site
+bun run test/visual/perf     # Lighthouse CI: perf / a11y / best-practices / seo budgets
+bun run test/visual          # build + e2e + perf (full visual gate)
+```
+
+VRT runs across 4 variants per page (PC/mobile × light/dark) using `@argos-ci/playwright`. Without `ARGOS_TOKEN` the screenshots are generated locally under `screenshots/` (gitignored) but no upload/comparison is performed — useful for verifying that rendering itself does not break. With a token, screenshots get uploaded to Argos for visual diffing. The a11y gate runs on PC variants only (WCAG 2.1 AA). Lighthouse CI runs against the prebuilt static `build/` directory.
+
+Run prerequisites: `bunx playwright install chromium` once per machine.
+
+`test/visual` is excluded from the main `test` script — it is heavier and requires a build step. Run it manually before merging UI / dependency / CSS changes.
+
 Note: `bun run test` dispatches to the `test` script in package.json (logic + content prose). `bun test` invokes bun's native test runner directly.
 
 ## Layout

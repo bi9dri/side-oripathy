@@ -19,7 +19,9 @@ const convertLine = (line: string, convertType: ConvertType): string => {
 
 	/* 運動系技能 */
 	if (
-		["＊運動", "スピード", "ストレングス", "アクロバット", "ダイブ", "＊格闘", "＊投擲"].includes(skill) ||
+		["＊運動", "スピード", "ストレングス", "アクロバット", "ダイブ", "＊格闘", "＊投擲"].includes(
+			skill,
+		) ||
 		skill.startsWith("武術") ||
 		skill.startsWith("★奥義") ||
 		skill.startsWith("★射撃")
