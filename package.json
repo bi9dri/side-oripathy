@@ -13,7 +13,9 @@
     "lint": "oxlint",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
-    "ncu": "ncu --cooldown 7"
+    "ncu": "ncu --cooldown 7",
+    "test/logic/unit": "bun test --coverage src/lib/",
+    "test/logic": "bun run test/logic/unit"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
