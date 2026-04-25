@@ -7,6 +7,10 @@
           {
             "type": "command",
             "command": "INPUT=$(cat); COMMAND=$(echo \"$INPUT\" | jq -r '.tool_input.command'); if echo \"$COMMAND\" | grep -q 'git commit'; then cd \"$CLAUDE_PROJECT_DIR\" && bunx --bun format && bunx --bun lint && bunx --bun typecheck; fi"
+          },
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); COMMAND=$(echo \"$INPUT\" | jq -r '.tool_input.command'); if echo \"$COMMAND\" | grep -q 'git commit'; then STAGED=$(cd \"$CLAUDE_PROJECT_DIR\" && git diff --cached --name-only); if ! echo \"$STAGED\" | grep -q 'docs/licence.md'; then echo 'CHANGELOG REMINDER: docs/licence.md の更新履歴に今回の変更を追記しましたか？ 必要であれば追記してからコミットしてください。'; fi; fi"
           }
         ]
       }
