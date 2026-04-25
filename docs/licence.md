@@ -28,7 +28,6 @@ sidebar_position: 2
 
 * アイコン画像の追加
 * 一部文章の表現の修正
-* Visual Quality Gates (Playwright + Argos CI + axe + Lighthouse CI) を導入
 
 #### 2026/4/11
 
