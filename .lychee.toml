@@ -1,0 +1,15 @@
+include_verbatim = true
+
+# Skip internal Docusaurus routes (verified by onBrokenLinks: "throw" at build time)
+# Skip anchor-only and mailto links
+exclude = [
+  "^/",
+  "^#",
+  "^mailto:",
+  "https://www\\.youtube\\.com"
+]
+
+# Accept 429 (rate-limited = link is live)
+accept = [200, 204, 206, 301, 302, 429]
+
+timeout = 20

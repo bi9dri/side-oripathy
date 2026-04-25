@@ -1,0 +1,29 @@
+{
+  "plugins": {
+    "mdx": {
+      "extensions": [".md", ".mdx"]
+    }
+  },
+  "rules": {
+    "preset-ja-technical-writing": {
+      "sentence-length": { "max": 150 },
+      "max-comma": false,
+      "no-mix-dearu-desumasu": false,
+      "no-exclamation-question-mark": false,
+      "ja-no-weak-phrase": false,
+      "arabic-kanji-numbers": false,
+      "no-hankaku-kana": true,
+      "no-doubled-joshi": { "min_interval": 1, "strict": false, "allow": ["も", "や", "か"] },
+      "no-dropping-the-ra": true,
+      "no-doubled-conjunctive-particle-ga": true,
+      "no-double-negative-ja": true,
+      "no-nfd": true,
+      "ja-no-successive-word": true
+    },
+    "no-mix-dearu-desumasu": {
+      "preferInList": "ですます",
+      "strict": false,
+      "noMixWithin": true
+    }
+  }
+}
