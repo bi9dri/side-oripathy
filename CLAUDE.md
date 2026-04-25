@@ -51,3 +51,7 @@ Note: `bun run test` dispatches to the `test` script in package.json (logic + co
 - `src/components/` — MDX components (`Expression`, `Memo`)
 
 Pushing to `main` auto-deploys to GitHub Pages.
+
+## Changelog Rule
+
+`docs/licence.md` の末尾には更新履歴がある。プロジェクトに変更を加えてコミットする前に、その変更を更新履歴に追記すべきか確認すること。
