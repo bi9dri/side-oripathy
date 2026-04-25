@@ -30,6 +30,25 @@ const config: Config = {
 		locales: ["ja"],
 	},
 
+	headTags: [
+		{
+			tagName: "link",
+			attributes: { rel: "apple-touch-icon", sizes: "180x180", href: "/img/apple-touch-icon.png" },
+		},
+		{
+			tagName: "link",
+			attributes: { rel: "icon", type: "image/png", sizes: "32x32", href: "/img/favicon-32x32.png" },
+		},
+		{
+			tagName: "link",
+			attributes: { rel: "icon", type: "image/png", sizes: "16x16", href: "/img/favicon-16x16.png" },
+		},
+		{
+			tagName: "link",
+			attributes: { rel: "manifest", href: "/img/site.webmanifest" },
+		},
+	],
+
 	presets: [
 		[
 			"classic",
@@ -49,17 +68,13 @@ const config: Config = {
 	],
 
 	themeConfig: {
-		image: "img/docusaurus-social-card.jpg",
+		image: "img/icon.webp",
 		colorMode: {
 			defaultMode: "dark",
 			respectPrefersColorScheme: true,
 		},
 		navbar: {
 			title: "アークナイツ×エモクロアTRPG サイド・オリパシー",
-			// logo: {
-			//   alt: 'My Site Logo',
-			//   src: 'img/logo.svg',
-			// },
 			items: [
 				{
 					type: "docSidebar",
