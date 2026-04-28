@@ -50,7 +50,7 @@ bun run test/visual/perf     # Lighthouse CI: perf / a11y / best-practices / seo
 bun run test/visual          # build + e2e + perf (full visual gate)
 ```
 
-VRT runs across 4 variants per page (PC/mobile × light/dark) using `@argos-ci/playwright`. Without `ARGOS_TOKEN` the screenshots are generated locally under `screenshots/` (gitignored) but no upload/comparison is performed — useful for verifying that rendering itself does not break. With a token, screenshots get uploaded to Argos for visual diffing. In CI, `ARGOS_TOKEN` is required and the spec fails fast when absent. The a11y gate runs on PC variants only and checks WCAG 2.0 + 2.1 levels A & AA via axe-core. Lighthouse CI runs against the prebuilt static `build/` directory.
+VRT runs across 4 variants per page (PC/mobile × light/dark) using `@argos-ci/playwright`. Without `ARGOS_TOKEN` the screenshots are generated locally under `screenshots/` (gitignored) but no upload/comparison is performed — useful for verifying that rendering itself does not break. With a token, screenshots get uploaded to Argos for visual diffing. In CI, `ARGOS_TOKEN` is required and the spec fails fast when absent. The a11y gate runs the full WCAG 2.0 + 2.1 levels A & AA ruleset on PC variants via axe-core, and the mobile-specific `target-size` rule (WCAG 2.5.8) on mobile variants. Lighthouse CI runs against the prebuilt static `build/` directory.
 
 Run prerequisites: `bunx playwright install --with-deps chromium` once per machine. On Linux CI containers without root, run `bunx playwright install chromium` and install system libraries (`libnss3`, `libgbm1`, etc.) separately.
 
