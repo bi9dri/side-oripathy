@@ -1,5 +1,19 @@
 {
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true
+  },
   "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); FILE=$(echo \"$INPUT\" | jq -r '.tool_input.file_path // .tool_input.path // \"\"'); if echo \"$FILE\" | grep -q '/docs/'; then cd \"$CLAUDE_PROJECT_DIR\" && bunx textlint \"$FILE\" 2>&1 | head -20; fi"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",
