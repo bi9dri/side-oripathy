@@ -7,6 +7,7 @@ module.exports = {
 			url: [
 				"http://localhost/index.html",
 				"http://localhost/converter/index.html",
+				"http://localhost/erosion-calculator/index.html",
 				"http://localhost/docs/erosion_check/index.html",
 			],
 			numberOfRuns: 3,
@@ -16,9 +17,12 @@ module.exports = {
 			},
 		},
 		assert: {
-			// Phase 3 導入時点のローカル実測値に基づくベースライン。
+			// TEMPORARY (Phase 3): ローカル実測値に基づく暫定ベースライン。
+			// 本 PR の趣旨はテスト基盤導入であり、閾値の妥当性検証は scope 外。
 			// 性能はページ毎に特性差が大きいため URL 別に閾値を設定する。
-			// /docs/erosion_check は MDX コンポーネント / コードブロック / admonition が多く 0.63〜0.67 で推移。
+			// /docs/erosion_check は MDX コンポーネント / コードブロック / admonition が多く 0.6 程度で推移。
+			// TODO(phase4+): observed-floor をベースラインにする現方式は退行検知能力が低いため、
+			// `current - delta` 方式 or 個別 audit (FCP/LCP/TBT/CLS) の数値 assertion へ移行する。
 			assertMatrix: [
 				{
 					matchingUrlPattern: ".*",

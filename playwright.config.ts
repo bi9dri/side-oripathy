@@ -4,11 +4,14 @@ export default defineConfig({
 	testDir: "./tests/visual",
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
-	retries: process.env.CI ? 2 : 0,
+	// VRT / a11y で retry を許すと flaky なレンダリング race が緑化されるため 0 固定。
+	// 不安定が顕在化したら原因 (font / animation / network idle) を直接修正する方針。
+	retries: 0,
 	reporter: "list",
 	use: {
 		baseURL: "http://localhost:3000",
-		trace: "on-first-retry",
+		trace: "retain-on-failure",
+		screenshot: "only-on-failure",
 	},
 	projects: [
 		{
@@ -29,7 +32,9 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: "bun run serve -- --no-open",
+		// `bun run serve -- --no-open` だと bun の引数転送が脆く、また `docusaurus serve`
+		// は `--no-open` を未指定だとローカルでブラウザを自動起動する。bunx 直呼びで明示する。
+		command: "bunx docusaurus serve --no-open --port 3000",
 		url: "http://localhost:3000",
 		reuseExistingServer: !process.env.CI,
 		timeout: 120_000,
