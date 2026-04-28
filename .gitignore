@@ -8,6 +8,12 @@
 .docusaurus
 .cache-loader
 
+# Visual Quality Gates artifacts
+/screenshots
+/test-results
+/playwright-report
+/.lighthouseci
+
 # Misc
 .DS_Store
 .env.local

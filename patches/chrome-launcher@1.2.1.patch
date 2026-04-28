@@ -1,0 +1,19 @@
+diff --git a/dist/utils.js b/dist/utils.js
+index 038d0dc0e6672e617527449aade88c8ecb7d6037..36c0de4c57e097a91e346c82bede6f01b2192be9 100644
+--- a/dist/utils.js
++++ b/dist/utils.js
+@@ -52,7 +52,13 @@ export class ChromeNotInstalledError extends LauncherError {
+     }
+ }
+ export function getPlatform() {
+-    return isWsl ? 'wsl' : process.platform;
++    // PATCH: WSL 検出時の win32 fall-through ロジックは PATH に
++    // `/mnt/c/Users/<user>/AppData/...` を要求するが、Windows 連携を
++    // 持たない pure WSL 環境では undefined が混入し、cwd に
++    // `\\wsl.localhost\...\undefined:\...\lighthouse.NNNN` という不正な
++    // ディレクトリ名でゴミが生成される。WSL でも Linux flow
++    // (`mktemp -d -t lighthouse.XXXXXXX`) で動作するため is-wsl を bypass。
++    return process.platform;
+ }
+ export function makeTmpDir() {
+     switch (getPlatform()) {
