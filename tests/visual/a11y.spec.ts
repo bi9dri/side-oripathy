@@ -1,12 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const pages = [
-	{ name: "top", path: "/" },
-	{ name: "converter", path: "/converter" },
-	{ name: "erosion_calculator", path: "/erosion-calculator" },
-	{ name: "erosion_check", path: "/docs/erosion_check" },
-] as const;
+import { pages } from "./_pages";
 
 // Phase 3 導入時点で既知の違反。スタイリング修正は Phase 4+ の follow-up で別 PR 対応予定。
 // - color-contrast: converter のボタン / erosion_check の admonition / code 等
@@ -16,10 +11,11 @@ const baselineDisabledRules = ["color-contrast", "link-in-text-block"];
 
 for (const target of pages) {
 	test(`a11y: ${target.name}`, async ({ page }, testInfo) => {
-		test.skip(testInfo.project.name.includes("mobile"), "a11y は PC variants のみ実行");
+		test.skip(testInfo.project.metadata?.variant === "mobile", "a11y は PC variants のみ実行");
 		const response = await page.goto(target.path);
 		expect(response?.ok(), `${target.path} returned non-2xx`).toBe(true);
 		await expect(page.locator("body")).toBeVisible();
+		await page.waitForLoadState("networkidle");
 		const results = await new AxeBuilder({ page })
 			.withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
 			.disableRules(baselineDisabledRules)

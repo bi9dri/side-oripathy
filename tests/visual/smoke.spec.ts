@@ -1,12 +1,7 @@
 import { argosScreenshot } from "@argos-ci/playwright";
 import { expect, test } from "@playwright/test";
 
-const pages = [
-	{ name: "top", path: "/" },
-	{ name: "converter", path: "/converter" },
-	{ name: "erosion_calculator", path: "/erosion-calculator" },
-	{ name: "erosion_check", path: "/docs/erosion_check" },
-] as const;
+import { pages } from "./_pages";
 
 test.beforeAll(() => {
 	if (!process.env.ARGOS_TOKEN) {
@@ -24,6 +19,7 @@ for (const target of pages) {
 		const response = await page.goto(target.path);
 		expect(response?.ok(), `${target.path} returned non-2xx`).toBe(true);
 		await expect(page.locator("body")).toBeVisible();
+		await page.waitForLoadState("networkidle");
 		await page.evaluate(async () => {
 			await document.fonts.ready;
 		});

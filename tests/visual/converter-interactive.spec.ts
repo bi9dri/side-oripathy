@@ -15,6 +15,7 @@ test.describe("converter interactive (filled state)", () => {
 		const response = await page.goto("/converter");
 		expect(response?.ok(), "/converter returned non-2xx").toBe(true);
 		await expect(page.locator("body")).toBeVisible();
+		await page.waitForLoadState("networkidle");
 
 		await page.locator("#input").fill(samplePalette);
 		await page.getByRole("button", { name: "コンバート" }).click();
@@ -29,10 +30,11 @@ test.describe("converter interactive (filled state)", () => {
 	});
 
 	test("a11y: converter_filled", async ({ page }, testInfo) => {
-		test.skip(testInfo.project.name.includes("mobile"), "a11y は PC variants のみ実行");
+		test.skip(testInfo.project.metadata?.variant === "mobile", "a11y は PC variants のみ実行");
 
 		const response = await page.goto("/converter");
 		expect(response?.ok(), "/converter returned non-2xx").toBe(true);
+		await page.waitForLoadState("networkidle");
 		await page.locator("#input").fill(samplePalette);
 		await page.getByRole("button", { name: "コンバート" }).click();
 		await expect(page.locator("#output")).not.toHaveValue("");

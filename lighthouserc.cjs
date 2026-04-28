@@ -39,7 +39,7 @@ module.exports = {
 					},
 				},
 				{
-					matchingUrlPattern: "^(?!.*\\/docs\\/).+",
+					matchingUrlPattern: "^(?!.*/docs/).+",
 					assertions: {
 						"categories:performance": ["error", { minScore: 0.7 }],
 					},
