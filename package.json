@@ -63,5 +63,8 @@
       "last 3 firefox version",
       "last 5 safari version"
     ]
+  },
+  "patchedDependencies": {
+    "chrome-launcher@1.2.1": "patches/chrome-launcher@1.2.1.patch"
   }
 }
