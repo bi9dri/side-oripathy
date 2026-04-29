@@ -57,6 +57,45 @@ const config: Config = {
 			tagName: "link",
 			attributes: { rel: "manifest", href: "/img/site.webmanifest" },
 		},
+		// Self-hosted fonts (SIL OFL 1.1). Stylesheet sits in static/ so the
+		// absolute /fonts/... URLs are served as-is and match the preloads
+		// below (webpack-bundled CSS would content-hash the URLs).
+		{
+			tagName: "link",
+			attributes: { rel: "stylesheet", href: "/fonts/fonts.css" },
+		},
+		// Preload the most LCP-critical font subsets (basic kana for body/headings,
+		// latin for navbar). Other subsets load lazily via unicode-range.
+		{
+			tagName: "link",
+			attributes: {
+				rel: "preload",
+				as: "font",
+				type: "font/woff2",
+				crossorigin: "anonymous",
+				href: "/fonts/noto-sans-jp/400--F62fjtqLzI2JPCgQBnw7HFow2oe2EcP5pp0erwTqsSWs9Jezazjcb4.119.woff2",
+			},
+		},
+		{
+			tagName: "link",
+			attributes: {
+				rel: "preload",
+				as: "font",
+				type: "font/woff2",
+				crossorigin: "anonymous",
+				href: "/fonts/noto-sans-jp/700--F62fjtqLzI2JPCgQBnw7HFow2oe2EcP5pp0erwTqsSWs9Jezazjcb4.119.woff2",
+			},
+		},
+		{
+			tagName: "link",
+			attributes: {
+				rel: "preload",
+				as: "font",
+				type: "font/woff2",
+				crossorigin: "anonymous",
+				href: "/fonts/jetbrains-mono/400-tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwg.woff2",
+			},
+		},
 	],
 
 	presets: [

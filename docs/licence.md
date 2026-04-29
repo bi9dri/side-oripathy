@@ -22,6 +22,13 @@ sidebar_position: 2
 
 作者：びどり https://bidri.dev
 
+## フォント
+
+本サイトでは以下のフォントをセルフホスト形式で利用しています。いずれも[SIL Open Font License 1.1](https://openfontlicense.org/)で配布されています。
+
+* [JetBrains Mono](https://www.jetbrains.com/lp/mono/) — Copyright 2020 The JetBrains Mono Project Authors（[ライセンス全文](/fonts/jetbrains-mono/OFL.txt)）
+* [Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP) — Copyright The Noto Project Authors（[ライセンス全文](/fonts/noto-sans-jp/OFL.txt)）
+
 ## 更新履歴
 
 #### 2026/4/25

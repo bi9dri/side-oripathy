@@ -4,7 +4,10 @@
    MCP: Cyberpunk UI + Dark Data Terminal + HUD/Sci-Fi FUI
    ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap");
+/* Self-hosted JetBrains Mono / Noto Sans JP @font-face declarations
+   live in static/fonts/fonts.css and are loaded via <link rel="stylesheet">
+   in docusaurus.config.ts (kept outside the webpack bundle so absolute
+   /fonts/... URLs are preserved and match the preload hints). */
 
 /* ────────────────────────────────────────────────────────────
    Design Tokens
