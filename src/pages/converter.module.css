@@ -35,7 +35,7 @@
 }
 
 .label {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
@@ -48,7 +48,7 @@
 	background-color: var(--prts-bg-surface);
 	border: 1px solid var(--prts-border);
 	color: var(--prts-text-primary);
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.85rem;
 	padding: var(--prts-space-md);
 	resize: vertical;
@@ -71,7 +71,7 @@
 	background-color: var(--prts-bg-surface);
 	border: 1px solid var(--prts-border);
 	color: var(--prts-text-primary);
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.85rem;
 	padding: var(--prts-space-sm) var(--prts-space-md);
 	appearance: none;
@@ -89,7 +89,7 @@
 .convertButton,
 .copyButton {
 	width: 100%;
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	font-size: 0.9rem;

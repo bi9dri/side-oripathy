@@ -45,7 +45,7 @@
 }
 
 .label {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
@@ -57,7 +57,7 @@
 	background-color: var(--prts-bg-surface);
 	border: 1px solid var(--prts-border);
 	color: var(--prts-text-primary);
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.85rem;
 	padding: var(--prts-space-sm) var(--prts-space-md);
 	border-radius: 0;
@@ -79,7 +79,7 @@
 .hint {
 	font-size: 0.7rem;
 	color: var(--prts-text-tertiary);
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	line-height: 1.4;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .commandLabel {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
@@ -106,7 +106,7 @@
 }
 
 .command {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 1rem;
 	color: var(--prts-accent);
 	background: none;
@@ -116,7 +116,7 @@
 }
 
 .commandMeta {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.8rem;
 	color: var(--prts-text-tertiary);
 }
@@ -130,7 +130,7 @@
 }
 
 .subheading {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.9rem;
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
@@ -139,7 +139,7 @@
 }
 
 .expectedValue {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.85rem;
 	color: var(--prts-text-secondary);
 	margin-bottom: var(--prts-space-sm);
@@ -164,7 +164,7 @@
 }
 
 .table th {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 0.06em;
@@ -189,7 +189,7 @@
 }
 
 .tdCount {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.9rem;
 	padding: var(--prts-space-xs) var(--prts-space-md);
 	color: var(--prts-text-primary);
@@ -198,7 +198,7 @@
 }
 
 .tdProb {
-	font-family: "JetBrains Mono", monospace;
+	font-family: var(--ifm-heading-font-family);
 	font-size: 0.9rem;
 	padding: var(--prts-space-xs) var(--prts-space-md);
 	color: var(--prts-accent);
