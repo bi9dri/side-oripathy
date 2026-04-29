@@ -17,12 +17,11 @@ module.exports = {
 			},
 		},
 		assert: {
-			// TEMPORARY (Phase 3): ローカル実測値に基づく暫定ベースライン。
-			// 本 PR の趣旨はテスト基盤導入であり、閾値の妥当性検証は scope 外。
-			// 性能はページ毎に特性差が大きいため URL 別に閾値を設定する。
-			// /docs/erosion_check は MDX コンポーネント / コードブロック / admonition が多く 0.6 程度で推移。
-			// TODO(phase4+): observed-floor をベースラインにする現方式は退行検知能力が低いため、
-			// `current - delta` 方式 or 個別 audit (FCP/LCP/TBT/CLS) の数値 assertion へ移行する。
+			// 閾値は lhci collect 実測値 (3 run median) の URL グループ別最悪値から算出:
+			// FCP / LCP / TBT: median_ms * 1.2 の天井値を 50 ms 単位で切り上げ (ms)。
+			// CLS: median + 0.05、下限 0.1 (unitless)。
+			// /docs/ は MDX・コードブロック密度が高く非 docs より遅い傾向がある。
+			// Web Vitals "Good" 境界への引き締めは別 issue で追跡する。
 			assertMatrix: [
 				{
 					matchingUrlPattern: ".*",
@@ -33,20 +32,25 @@ module.exports = {
 						// ランタイム console.error 検出。
 						"errors-in-console": ["error", {}],
 						// 全アセット合計バイト数の budget。Phase 3 導入時の暫定上限値 (5MB)。
-						// Phase 4+ で実測 median を元に調整予定。
 						"total-byte-weight": ["error", { maxNumericValue: 5_000_000 }],
 					},
 				},
 				{
 					matchingUrlPattern: "/docs/",
 					assertions: {
-						"categories:performance": ["error", { minScore: 0.6 }],
+						"first-contentful-paint": ["error", { maxNumericValue: 2050 }],
+						"largest-contentful-paint": ["error", { maxNumericValue: 3050 }],
+						"total-blocking-time": ["error", { maxNumericValue: 350 }],
+						"cumulative-layout-shift": ["error", { maxNumericValue: 0.16 }],
 					},
 				},
 				{
 					matchingUrlPattern: "^(?!.*/docs/).+",
 					assertions: {
-						"categories:performance": ["error", { minScore: 0.7 }],
+						"first-contentful-paint": ["error", { maxNumericValue: 2050 }],
+						"largest-contentful-paint": ["error", { maxNumericValue: 3100 }],
+						"total-blocking-time": ["error", { maxNumericValue: 350 }],
+						"cumulative-layout-shift": ["error", { maxNumericValue: 0.1 }],
 					},
 				},
 			],
