@@ -71,3 +71,4 @@ Pushing to `main` auto-deploys to GitHub Pages.
 ## Changelog Rule
 
 `docs/licence.md` の末尾には更新履歴がある。プロジェクトに変更を加えてコミットする前に、その変更を更新履歴に追記すべきか確認すること。
+ドキュメントの内容・表現やツールページの変更についてのみ記載して、非機能的変更については記載しない。
