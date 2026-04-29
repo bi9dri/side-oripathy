@@ -31,10 +31,7 @@ module.exports = {
 						"categories:best-practices": ["error", { minScore: 0.9 }],
 						"categories:seo": ["error", { minScore: 0.9 }],
 						// ランタイム console.error 検出。
-						// Phase 3 導入時点で /docs/erosion_check に既存の runtime console error
-						// (MDX 由来と推測) が存在するため、握りつぶしとして warn に留める。
-						// TODO(phase4): 原因を特定し修正したうえで "error" へ昇格する。
-						"errors-in-console": ["warn", {}],
+						"errors-in-console": ["error", {}],
 						// 全アセット合計バイト数の budget。Phase 3 導入時の暫定上限値 (5MB)。
 						// Phase 4+ で実測 median を元に調整予定。
 						"total-byte-weight": ["error", { maxNumericValue: 5_000_000 }],
