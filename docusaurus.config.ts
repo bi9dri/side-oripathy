@@ -64,8 +64,9 @@ const config: Config = {
 			tagName: "link",
 			attributes: { rel: "stylesheet", href: "/fonts/fonts.css" },
 		},
-		// Preload the most LCP-critical font subsets (basic kana for body/headings,
-		// latin for navbar). Other subsets load lazily via unicode-range.
+		// Preload the most LCP-critical font subsets (Noto Sans JP hiragana + katakana
+		// for body text, JetBrains Mono latin for navbar/headings). Other subsets load
+		// lazily via unicode-range.
 		{
 			tagName: "link",
 			attributes: {

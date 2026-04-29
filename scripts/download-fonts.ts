@@ -37,7 +37,6 @@ const familySlug = (family: string) =>
 function parseFontFaces(css: string): FontFace[] {
 	const faces: FontFace[] = [];
 	const blockRe = /@font-face\s*\{([^}]+)\}/g;
-	let counter = 0;
 	for (const match of css.matchAll(blockRe)) {
 		const body = match[1];
 		const family = body.match(/font-family:\s*['"]([^'"]+)['"]/)?.[1];
@@ -46,9 +45,8 @@ function parseFontFaces(css: string): FontFace[] {
 		const unicodeRange = body.match(/unicode-range:\s*([^;]+)/)?.[1]?.trim() ?? "";
 		if (!family || !weight || !srcUrl) continue;
 		const slug = familySlug(family);
-		// The Google CDN file basenames are stable hashes per (family, weight, subset).
-		// Keep them as-is for traceability and idempotent re-downloads.
-		const baseName = srcUrl.split("/").pop() ?? `font-${counter++}.woff2`;
+		// Google CDN basenames are stable hashes per (family, weight, subset) — keep for traceability and deterministic re-runs.
+		const baseName = srcUrl.split("/").pop() ?? "font.woff2";
 		faces.push({
 			family,
 			weight,
@@ -62,7 +60,7 @@ function parseFontFaces(css: string): FontFace[] {
 
 async function downloadOne(url: string, dest: string) {
 	const res = await fetch(url, { headers: { "User-Agent": UA } });
-	if (!res.ok) throw new Error(`fetch ${url}: ${res.status}`);
+	if (!res.ok) throw new Error(`fetch ${url} → ${dest}: HTTP ${res.status} ${res.statusText}`);
 	const buf = new Uint8Array(await res.arrayBuffer());
 	await mkdir(dirname(dest), { recursive: true });
 	await writeFile(dest, buf);
@@ -101,6 +99,11 @@ async function main() {
 
 	const faces = parseFontFaces(css);
 	console.log(`Parsed ${faces.length} @font-face blocks`);
+	if (faces.length === 0) {
+		throw new Error(
+			`parseFontFaces returned 0 faces — Google Fonts CSS format may have changed.\nFetched from: ${GOOGLE_FONTS_URL}`,
+		);
+	}
 
 	let done = 0;
 	const concurrency = 8;
@@ -116,10 +119,14 @@ async function main() {
 			}
 		}),
 	);
-	console.log(`Downloaded ${done} files`);
+	console.log(`Downloaded ${faces.length} files`);
 
 	await writeFile(FONTS_CSS_OUT, emitCss(faces));
 	console.log("Wrote", FONTS_CSS_OUT);
 }
 
-await main();
+main().catch((err) => {
+	console.error("download-fonts failed:", err instanceof Error ? err.message : err);
+	console.error("Partial downloads may remain in static/fonts/ — inspect and clean if needed.");
+	process.exit(1);
+});
