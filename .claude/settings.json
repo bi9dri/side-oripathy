@@ -14,10 +14,11 @@
   "hooks": {
     "SessionStart": [
       {
+        "matcher": "startup|resume",
         "hooks": [
           {
             "type": "command",
-            "command": "direnv export bash > \"$CLAUDE_ENV_FILE\""
+            "command": "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then bash \"$CLAUDE_PROJECT_DIR/.claude/scripts/setup-ccweb.sh\"; else direnv export bash > \"$CLAUDE_ENV_FILE\"; fi"
           }
         ]
       }

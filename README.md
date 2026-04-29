@@ -91,6 +91,33 @@ bun run --bun ncu
 - **Linter/Formatter**: oxlint (with type-check) / oxfmt
 - **デプロイ**: GitHub Pages
 
+### Claude Code on the Web
+
+[claude.ai/code](https://claude.ai/code) でリモート開発する場合のクラウド環境設定例:
+
+**Network access**: Custom
+
+許可ドメイン:
+```text
+*.jetify.com
+*.jetpack.io
++ default list
+```
+
+**Environment variables**:
+```env
+GITHUB_TOKEN=<パブリックリポジトリ読み取り専用PAT>
+NIX_CONFIG='access-token = github.com=$GITHUB_TOKEN'
+```
+
+**Setup script**:
+```bash
+#!/bin/bash
+curl -fsSLvv https://get.jetify.com/devbox | FORCE=1 bash
+```
+
+セッション開始時に `.claude/scripts/setup-ccweb.sh` が自動で devbox / direnv を初期化します。
+
 ### コントリビューション
 
 プルリクエストを歓迎します。大きな変更を行う場合は、まずissueを作成して変更内容について議論してください。
