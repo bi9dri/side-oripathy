@@ -1,10 +1,20 @@
 {
   // This file is not used in compilation. It is here just for a nice editor experience.
-  "extends": "@docusaurus/tsconfig",
+  // Note: we inline @docusaurus/tsconfig settings instead of extending it to avoid
+  // the deprecated `baseUrl` option that @docusaurus/tsconfig sets (deprecated in TS 6.0).
   "compilerOptions": {
-    // @docusaurus/tsconfig sets baseUrl which is deprecated in TS 6.0.
-    // Remove once upstream (@docusaurus/tsconfig) migrates away from baseUrl.
-    "ignoreDeprecations": "6.0",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "noEmit": true,
+    "paths": {
+      "@site/*": ["./*"]
+    },
+    "skipLibCheck": true,
     // Explicit bun-types needed for bun:test module resolution in TS 6.0.
     "types": ["bun-types"]
   },
