@@ -28,6 +28,11 @@ use `jq` to parse JSON outputs and `grep` to filter for relevant information.
 
 This repository is a Docusaurus static site, and every push to `main` is automatically deployed to GitHub Pages. Therefore **any change that breaks `bun run build` results in a production outage**. Never skip the build step in the validation phase.
 
+## Constraints
+
+- When updating bun itself, keep the `bun@x.y.z` versions in `devbox.json` and `package.json` in sync. Both files pin bun and must reference the same version.
+- Do not use `overrides` as a general tool. Direct dependency updates are the default resolution path. `overrides` (and equivalent mechanisms) are permitted only when **both** conditions hold: (1) the issue cannot be resolved by updating the direct dependency, and (2) a critical vulnerability has been reported against the transitive dependency.
+
 ## Step 1: Deep Inspection & Security
 
 1. Sync the environment with `bun install --frozen-lockfile`
