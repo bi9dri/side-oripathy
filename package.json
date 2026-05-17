@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@argos-ci/playwright": "6.6.2",
-    "@axe-core/playwright": "4.11.2",
+    "@axe-core/playwright": "4.11.3",
     "@docusaurus/module-type-aliases": "3.9.2",
     "@docusaurus/tsconfig": "3.9.2",
     "@docusaurus/types": "3.9.2",
