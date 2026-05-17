@@ -28,10 +28,26 @@ use `jq` to parse JSON outputs and `grep` to filter for relevant information.
 
 This repository is a Docusaurus static site, and every push to `main` is automatically deployed to GitHub Pages. Therefore **any change that breaks `bun run build` results in a production outage**. Never skip the build step in the validation phase.
 
-## Constraints
+## Special cases
 
-- When updating bun itself, keep the `bun@x.y.z` versions in `devbox.json` and `package.json` in sync. Both files pin bun and must reference the same version.
-- Do not use `overrides` as a general tool. Direct dependency updates are the default resolution path. `overrides` (and equivalent mechanisms) are permitted only when **both** conditions hold: (1) the issue cannot be resolved by updating the direct dependency, and (2) a critical vulnerability has been reported against the transitive dependency.
+### bun
+
+When updating Bun, update all of the following to the same version in a single commit:
+
+- `devbox.json` — `packages[].bun@X.Y.Z`
+- `package.json` — `packageManager: "bun@X.Y.Z"`
+- `package.json` — `devDependencies["@types/bun"]: "X.Y.Z"`
+
+The `bun-version` input of `oven-sh/setup-bun` does **not** need to be set: the action auto-detects the version from `package.json`'s `packageManager` field when `bun-version` is omitted. Do not add `bun-version` to workflows.
+
+### `overrides`
+
+Do not use `overrides` (`resolutions` in Yarn) as a default remediation strategy. Resolve issues by updating the direct dependency whenever possible. Use `overrides` only when **both** of the following apply:
+
+1. The issue cannot be resolved by updating a direct dependency (e.g., the upstream maintainer has not released a fix yet).
+2. A critical (severe) vulnerability has been reported against the transitive dependency.
+
+When `overrides` is used as an exception, document the rationale (linked advisory, why a direct update is not viable, and removal conditions) in the PR description.
 
 ## Step 1: Deep Inspection & Security
 
