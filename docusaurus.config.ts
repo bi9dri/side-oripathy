@@ -31,6 +31,30 @@ const config: Config = {
 	},
 
 	headTags: [
+		// Noto Sans JP (Google Fonts) — 日本語フォントを CDN の動的サブセットで配信する。
+		// preconnect でハンドシェイクを前倒しし、media=print → onload で all に切替えることで
+		// render-blocking を避けつつ webfont を適用する (display=swap で fallback を即時描画)。
+		{
+			tagName: "link",
+			attributes: { rel: "preconnect", href: "https://fonts.googleapis.com" },
+		},
+		{
+			tagName: "link",
+			attributes: {
+				rel: "preconnect",
+				href: "https://fonts.gstatic.com",
+				crossorigin: "anonymous",
+			},
+		},
+		{
+			tagName: "link",
+			attributes: {
+				rel: "stylesheet",
+				href: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap",
+				media: "print",
+				onload: "this.media='all'",
+			},
+		},
 		{
 			tagName: "link",
 			attributes: { rel: "apple-touch-icon", sizes: "180x180", href: "/img/apple-touch-icon.png" },

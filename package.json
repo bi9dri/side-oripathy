@@ -36,6 +36,7 @@
     "react-dom": "19.2.5"
   },
   "devDependencies": {
+    "@argos-ci/cli": "5.0.4",
     "@argos-ci/playwright": "6.6.2",
     "@axe-core/playwright": "4.11.2",
     "@docusaurus/module-type-aliases": "3.9.2",
