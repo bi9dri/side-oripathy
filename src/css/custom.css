@@ -4,12 +4,6 @@
    MCP: Cyberpunk UI + Dark Data Terminal + HUD/Sci-Fi FUI
    ============================================================ */
 
-/* Self-hosted Japanese webfont — CI ランナー等に日本語システムフォントが
-   無い環境でも一貫したレンダリングにするため Noto Sans JP を同梱する。
-   unicode-range 分割の woff2 なので使用グリフのサブセットのみ download される。 */
-@import "@fontsource/noto-sans-jp/400.css";
-@import "@fontsource/noto-sans-jp/700.css";
-
 /* ────────────────────────────────────────────────────────────
    Design Tokens
    ──────────────────────────────────────────────────────────── */
