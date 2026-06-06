@@ -4,6 +4,11 @@
    MCP: Cyberpunk UI + Dark Data Terminal + HUD/Sci-Fi FUI
    ============================================================ */
 
+/* Self-hosted Japanese webfont — CI ランナー等に日本語システムフォントが
+   無い環境でも一貫したレンダリングにするため Noto Sans JP を同梱する。
+   unicode-range 分割の woff2 なので使用グリフのサブセットのみ download される。 */
+@import "@fontsource/noto-sans-jp/400.css";
+@import "@fontsource/noto-sans-jp/700.css";
 
 /* ────────────────────────────────────────────────────────────
    Design Tokens
@@ -53,9 +58,11 @@
 	--ifm-color-emphasis-900: var(--prts-text-primary);
 
 	/* Typography */
-	--ifm-font-family-base: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
-	--ifm-heading-font-family: ui-monospace, "SFMono-Regular", "SF Mono", "Cascadia Code", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, Monaco, monospace;
-	--ifm-font-family-monospace: ui-monospace, "SFMono-Regular", "SF Mono", "Cascadia Code", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, Monaco, monospace;
+	--ifm-font-family-base: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
+	/* 見出し / コードは等幅 (terminal 意匠) を維持しつつ、等幅フォントに無い
+	   日本語グリフは末尾の "Noto Sans JP" にフォールバックさせる (CI の豆腐回避)。 */
+	--ifm-heading-font-family: ui-monospace, "SFMono-Regular", "SF Mono", "Cascadia Code", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, Monaco, monospace, "Noto Sans JP";
+	--ifm-font-family-monospace: ui-monospace, "SFMono-Regular", "SF Mono", "Cascadia Code", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, Monaco, monospace, "Noto Sans JP";
 	--ifm-font-size-base: 100%;
 	--ifm-line-height-base: 1.8;
 	--ifm-heading-line-height: 1.4;
