@@ -1,4 +1,17 @@
-const { chromium } = require("@playwright/test");
+// lhci は Playwright の chromium に依存させず、CI ランナー同梱 / 開発環境の
+// system Chrome を chrome-launcher 経由で自動検出する (perf ジョブは chromium install 不要)。
+// 優先順位: CHROME_PATH 明示指定 > ローカルに既存の Playwright chromium (DX 維持の任意利用)
+//          > 未指定 (chrome-launcher の自動検出に委ねる / CI runner の Google Chrome 等)。
+function resolveChromePath() {
+	if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+	try {
+		const path = require("@playwright/test").chromium.executablePath();
+		if (path && require("node:fs").existsSync(path)) return path;
+	} catch {
+		// @playwright/test 未導入 / browser 未 install — 自動検出に委ねる。
+	}
+	return undefined;
+}
 
 module.exports = {
 	ci: {
@@ -11,7 +24,8 @@ module.exports = {
 				"http://localhost/docs/erosion_check/index.html",
 			],
 			numberOfRuns: 3,
-			chromePath: chromium.executablePath(),
+			// undefined のとき chrome-launcher が system Chrome を自動検出する。
+			...(resolveChromePath() ? { chromePath: resolveChromePath() } : {}),
 			settings: {
 				chromeFlags: "--no-sandbox --disable-dev-shm-usage",
 			},

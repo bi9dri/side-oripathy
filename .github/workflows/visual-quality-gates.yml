@@ -15,8 +15,9 @@ permissions:
   contents: read
 
 jobs:
-  visual:
-    name: VRT (Argos) + a11y + Lighthouse
+  # VRT (Argos) + a11y。Playwright がブラウザを起動するため Chromium を install する。
+  e2e:
+    name: VRT (Argos) + a11y
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -28,7 +29,6 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # lhci は chromium.executablePath() を参照するため VRT と共通で Chromium を入れる。
       - name: Install Playwright Chromium
         run: bunx playwright install --with-deps chromium
 
@@ -49,7 +49,20 @@ jobs:
         env:
           ARGOS_TOKEN: ${{ secrets.ARGOS_TOKEN }}
 
-      # perf budget (lhci) は e2e の成否に依らず実行してフルシグナルを得る。
+  # Lighthouse perf budget。e2e と独立に並列実行する。
+  # lhci は runner 同梱の system Chrome を使うため Chromium install は不要。
+  perf:
+    name: Lighthouse CI (perf budgets)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: oven-sh/setup-bun@ecf28ddc73e819eb6fa29df6b34ef8921c743461 # v2.1.3
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build website
+        run: bun run build
+
       - name: Run Lighthouse CI (perf budgets)
-        if: ${{ !cancelled() }}
         run: bun run test/visual/perf
