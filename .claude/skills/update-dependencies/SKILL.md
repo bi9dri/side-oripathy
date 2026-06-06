@@ -38,6 +38,11 @@ When updating Bun, update all of the following to the same version in a single c
 - `package.json` — `packageManager: "bun@X.Y.Z"`
 - `package.json` — `devDependencies["@types/bun"]: "X.Y.Z"`
 
+**Version alignment with nixhub (required):** `devbox.json` resolves Bun from nixhub, whose available versions lag behind npm. `@types/bun` and `packageManager` come from npm and may offer a newer version than nixhub has. Because all three references must share one version, the target is the **highest version available in both npm and nixhub** — not simply the latest npm/`ncu` version.
+
+1. Before deciding the target version, run `devbox search bun` and confirm the candidate version is listed. If it is missing, step down to the highest version present in both nixhub and npm (verify npm with `bun info bun@X.Y.Z version` / `bun info @types/bun@X.Y.Z version`).
+2. After editing `devbox.json`, run `devbox install` to regenerate `devbox.lock` and confirm the version actually resolves from nixhub. Commit the updated `devbox.lock` together with the other changes.
+
 The `bun-version` input of `oven-sh/setup-bun` does **not** need to be set: the action auto-detects the version from `package.json`'s `packageManager` field when `bun-version` is omitted. Do not add `bun-version` to workflows.
 
 ### `overrides`
