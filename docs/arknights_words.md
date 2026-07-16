@@ -8,16 +8,9 @@ sidebar_position: 4
 
 また、多くの種族・陣営が登場します。この追加ルール内ですべては網羅できませんが、興味があれば公式の世界観の説明動画などを見てみるのもオススメです。
 
-<details>
-<summary>公式の動画</summary>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yP91VOoBoJU?si=hzGVriK5hIDGef3A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dTt6sU00jxI?si=kjqTEluGwzHk2HdO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Dw339JSTVxU?si=O7zi_z4_DFq46o4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IV2zU4aDJww?si=I33F3F8_q28M-QyJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/G7IwNO9Lce8?si=epH1VNFueCN-ZVxl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-</details>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yP91VOoBoJU?si=KSwh3PLvmo45MC0q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<br />
+<a href="https://www.youtube.com/watch?v=HdrfvsrB600&list=PLDoWdHK3cSuA&index=1" target="_blank">YouTube プレイリスト</a>
 
 ## テラ Terra
 
