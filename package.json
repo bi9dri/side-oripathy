@@ -32,8 +32,8 @@
     "clsx": "2.1.1",
     "npm-check-updates": "22.2.9",
     "prism-react-renderer": "2.4.1",
-    "react": "19.2.5",
-    "react-dom": "19.2.5"
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
     "@argos-ci/cli": "5.0.4",
