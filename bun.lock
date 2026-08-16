@@ -17,7 +17,7 @@
       },
       "devDependencies": {
         "@argos-ci/cli": "6.6.1",
-        "@argos-ci/playwright": "7.4.2",
+        "@argos-ci/playwright": "7.4.3",
         "@axe-core/playwright": "4.12.1",
         "@docusaurus/module-type-aliases": "3.10.2",
         "@docusaurus/tsconfig": "3.10.2",
@@ -90,7 +90,7 @@
 
     "@argos-ci/core": ["@argos-ci/core@6.7.2", "", { "dependencies": { "@argos-ci/api-client": "0.28.0", "@argos-ci/util": "4.1.0", "convict": "^6.2.5", "debug": "^4.4.3", "fast-glob": "^3.3.3", "mime-types": "^3.0.2", "p-retry": "^8.0.0", "sharp": "^0.35.3", "tmp": "^0.2.7" } }, "sha512-/hKfytEru+xebSt4OctjuIHwOPWFwchsDGR/Odcaszbf6sUcxMzu3IrSj/PDC0FD/hYiUCDTPDsYPfxf564sMg=="],
 
-    "@argos-ci/playwright": ["@argos-ci/playwright@7.4.2", "", { "dependencies": { "@argos-ci/browser": "6.4.5", "@argos-ci/core": "6.7.2", "@argos-ci/util": "4.1.0", "chalk": "^6.0.0", "debug": "^4.4.3" } }, "sha512-Xg+1kF19Mk5dxzDxjmgAXpp8AN709kI/6Kame7owqaRlCa4tmPH3DFHJliiP8ZjffnxvU19yAu2rR9XKPc0spg=="],
+    "@argos-ci/playwright": ["@argos-ci/playwright@7.4.3", "", { "dependencies": { "@argos-ci/browser": "6.4.5", "@argos-ci/core": "6.7.2", "@argos-ci/util": "4.1.0", "chalk": "^6.0.0", "debug": "^4.4.3" } }, "sha512-qD0ixfr2BmUT4iRT0j55OZ4T1gTgI6YE3BTC2sJwakMYtaQFuAwyIge87HoVHaK4hCF1u+JyqkDqe+3cg8xUmA=="],
 
     "@argos-ci/util": ["@argos-ci/util@4.1.0", "", {}, "sha512-vLCtjTl94IcEjSUaQJSfENjud8fZNsjYS4WugNvGKX0VUZhR+RYRTAyVALWz3n82Kylil0amGnXa7VoG0IJpgA=="],
 
