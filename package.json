@@ -14,6 +14,7 @@
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
     "ncu": "ncu --cooldown 7",
+    "check:bun-version": "bash scripts/check-bun-version.sh",
     "test/logic/unit": "bun test --coverage src/lib/",
     "test/logic": "bun run test/logic/unit",
     "test/content/prose": "textlint docs/",
@@ -36,8 +37,8 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@argos-ci/cli": "6.8.0",
-    "@argos-ci/playwright": "7.4.5",
+    "@argos-ci/cli": "6.9.0",
+    "@argos-ci/playwright": "7.4.6",
     "@axe-core/playwright": "4.13.0",
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
