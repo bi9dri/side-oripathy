@@ -53,51 +53,51 @@
       "last_modified": "2026-04-10T03:55:24Z",
       "resolved": "github:NixOS/nixpkgs/9d29d5f667d7467f98efc31881e824fa586c927e?lastModified=1775793324"
     },
-    "lychee@0.23.0": {
-      "last_modified": "2026-03-21T07:29:51Z",
-      "resolved": "github:NixOS/nixpkgs/09061f748ee21f68a089cd5d91ec1859cd93d0be#lychee",
+    "lychee@0.24.2": {
+      "last_modified": "2026-08-12T11:28:58Z",
+      "resolved": "github:NixOS/nixpkgs/044bfe75bfe4c7bbe043dc17b5e42ea823b84a09#lychee",
       "source": "devbox-search",
-      "version": "0.23.0",
+      "version": "0.24.2",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/j4qpj2d57cyazy7k38hnzk2qcj0pj74y-lychee-0.23.0",
+              "path": "/nix/store/cap4l3wrcgx38hxr9j3kxafl5ip0yh63-lychee-0.24.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/j4qpj2d57cyazy7k38hnzk2qcj0pj74y-lychee-0.23.0"
+          "store_path": "/nix/store/cap4l3wrcgx38hxr9j3kxafl5ip0yh63-lychee-0.24.2"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/dzrnhlii4fla1n6mfrgivqn1kq0ncac9-lychee-0.23.0",
+              "path": "/nix/store/k0kc1n2jhnavf8507k0zx167imk1anmv-lychee-0.24.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/dzrnhlii4fla1n6mfrgivqn1kq0ncac9-lychee-0.23.0"
+          "store_path": "/nix/store/k0kc1n2jhnavf8507k0zx167imk1anmv-lychee-0.24.2"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/zfi91kmml78pgc0n3p2vdmkhxs2v961a-lychee-0.23.0",
+              "path": "/nix/store/wrkqg7j3wqg6hfrmx7cyvaiirwfxla5y-lychee-0.24.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/zfi91kmml78pgc0n3p2vdmkhxs2v961a-lychee-0.23.0"
+          "store_path": "/nix/store/wrkqg7j3wqg6hfrmx7cyvaiirwfxla5y-lychee-0.24.2"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/z1wcgbxn83liaq4hk1snzngf5mhgxlvk-lychee-0.23.0",
+              "path": "/nix/store/yqhy56a20magjp6k7i8ay33mgkj1x5da-lychee-0.24.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/z1wcgbxn83liaq4hk1snzngf5mhgxlvk-lychee-0.23.0"
+          "store_path": "/nix/store/yqhy56a20magjp6k7i8ay33mgkj1x5da-lychee-0.24.2"
         }
       }
     }
