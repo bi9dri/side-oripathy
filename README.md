@@ -59,9 +59,6 @@ bun run serve
 bun run --bun lint       # Lintチェック
 bun run --bun format     # フォーマット
 bun run --bun typecheck  # 型チェック
-
-# 依存パッケージのアップデート確認
-bun run --bun ncu
 ```
 
 ### プロジェクト構成
