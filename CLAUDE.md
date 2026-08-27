@@ -12,7 +12,6 @@ bun run build        # production build
 bun run --bun lint       # oxlint
 bun run --bun format     # oxfmt
 bun run --bun typecheck  # tsc --noEmit
-bun run --bun ncu        # dependency updates
 ```
 
 ## Testing
@@ -59,6 +58,19 @@ Run prerequisites: `bunx playwright install --with-deps chromium` once per machi
 `test/visual` is excluded from the main `test` script — it is heavier and requires a build step. Run it manually before merging UI / dependency / CSS changes.
 
 Note: `bun run test` dispatches to the `test` script in package.json (logic + content prose). `bun test` invokes bun's native test runner directly.
+
+## Dependency Management
+
+- **Fixed versions only** — no `^` / `~`. Supply chain protection.
+- **Use versions >=7 days old**, except for security updates.
+- **GitHub Actions**: pin external actions to full commit SHA (never tags/branches).
+- **Renovate (GitHub App, `.github/renovate.json5`) proposes every update** and enforces the three rules above. Don't bump versions by hand — review its PRs instead.
+  - Bun bumps arrive as one PR covering `devbox.json` / `packageManager` / `@types/bun` (`scripts/check-bun-version.sh` guards the three).
+  - Renovate can't regenerate `devbox.lock`: run `devbox install` on the branch before merging a devbox update.
+  - Rendering regressions are caught by Visual Quality Gates, which runs on every PR — check it on Docusaurus / React / CSS bumps, since pushes to `main` deploy straight to production.
+  - If CI fails on a Renovate PR, fix it on that branch (replace deprecated APIs, adapt to the new API) rather than closing the PR.
+- **Don't reach for `overrides`.** Fix it by updating the direct dependency. Use `overrides` only when a critical vulnerability is reported against a transitive dependency AND no direct update resolves it — document the advisory, why a direct update isn't viable, and the removal condition in the PR.
+- Vulnerabilities are scanned by OSV-Scanner (`.github/workflows/osv-scanner.yml`): on every PR and daily at 07:00 JST.
 
 ## Layout
 
