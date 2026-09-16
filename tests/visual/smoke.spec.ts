@@ -1,6 +1,7 @@
 import { argosScreenshot } from "@argos-ci/playwright";
 import { expect, test } from "@playwright/test";
 
+import { argosCSS } from "./_argos";
 import { pages } from "./_pages";
 
 test.beforeAll(() => {
@@ -23,6 +24,6 @@ for (const target of pages) {
 		await page.evaluate(async () => {
 			await document.fonts.ready;
 		});
-		await argosScreenshot(page, target.name);
+		await argosScreenshot(page, target.name, { argosCSS });
 	});
 }

@@ -4,6 +4,7 @@
   "ignorePatterns": [
     "**/*.css",
     "**/*.json",
+    "**/*.json5",
     "**/*.webmanifest",
     "**/*.md",
     "**/*.yml"
