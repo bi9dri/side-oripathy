@@ -17,22 +17,22 @@ export default defineConfig({
 		{
 			name: "chromium-pc-light",
 			use: { ...devices["Desktop Chrome"], colorScheme: "light" },
-			metadata: { variant: "pc" },
+			metadata: { variant: "pc", theme: "light" },
 		},
 		{
 			name: "chromium-pc-dark",
 			use: { ...devices["Desktop Chrome"], colorScheme: "dark" },
-			metadata: { variant: "pc" },
+			metadata: { variant: "pc", theme: "dark" },
 		},
 		{
 			name: "chromium-mobile-light",
 			use: { ...devices["Pixel 5"], colorScheme: "light" },
-			metadata: { variant: "mobile" },
+			metadata: { variant: "mobile", theme: "light" },
 		},
 		{
 			name: "chromium-mobile-dark",
 			use: { ...devices["Pixel 5"], colorScheme: "dark" },
-			metadata: { variant: "mobile" },
+			metadata: { variant: "mobile", theme: "dark" },
 		},
 	],
 	webServer: {
