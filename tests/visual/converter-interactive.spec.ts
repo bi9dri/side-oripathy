@@ -3,6 +3,7 @@ import { argosScreenshot } from "@argos-ci/playwright";
 import { expect, test } from "@playwright/test";
 
 import { argosCSS } from "./_argos";
+import { capturesTheme } from "./_pages";
 
 // chat palette サンプル: converter.test.ts のフィクスチャと同形式の最小構成。
 // 検証目的なのでエモクロアの実シート全体ではなく、変換が走る最低限の入力を用いる。
@@ -13,7 +14,11 @@ const samplePalette = `2DM<=6 〈観察〉
 const baselineDisabledRules = ["color-contrast", "link-in-text-block"];
 
 test.describe("converter interactive (filled state)", () => {
-	test("VRT: converter_filled", async ({ page }) => {
+	test("VRT: converter_filled", async ({ page }, testInfo) => {
+		test.skip(
+			!capturesTheme("converter", testInfo.project.metadata?.theme),
+			"light/dark 比較は erosion_check のみ",
+		);
 		const response = await page.goto("/converter");
 		expect(response?.ok(), "/converter returned non-2xx").toBe(true);
 		await expect(page.locator("body")).toBeVisible();

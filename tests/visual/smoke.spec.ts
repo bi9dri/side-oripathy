@@ -2,7 +2,7 @@ import { argosScreenshot } from "@argos-ci/playwright";
 import { expect, test } from "@playwright/test";
 
 import { argosCSS } from "./_argos";
-import { pages } from "./_pages";
+import { capturesTheme, pages } from "./_pages";
 
 test.beforeAll(() => {
 	if (!process.env.ARGOS_TOKEN) {
@@ -16,7 +16,11 @@ test.beforeAll(() => {
 });
 
 for (const target of pages) {
-	test(`VRT: ${target.name}`, async ({ page }) => {
+	test(`VRT: ${target.name}`, async ({ page }, testInfo) => {
+		test.skip(
+			!capturesTheme(target.name, testInfo.project.metadata?.theme),
+			"light/dark 比較は erosion_check のみ",
+		);
 		const response = await page.goto(target.path);
 		expect(response?.ok(), `${target.path} returned non-2xx`).toBe(true);
 		await expect(page.locator("body")).toBeVisible();
