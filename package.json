@@ -35,8 +35,8 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@argos-ci/cli": "6.9.4",
-    "@argos-ci/playwright": "7.6.0",
+    "@argos-ci/cli": "6.9.5",
+    "@argos-ci/playwright": "7.7.0",
     "@axe-core/playwright": "4.13.0",
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
@@ -70,6 +70,6 @@
   },
   "overrides": {
     "websocket-driver": "0.7.5",
-    "shell-quote": "1.11.0"
+    "shell-quote": "1.12.0"
   }
 }
