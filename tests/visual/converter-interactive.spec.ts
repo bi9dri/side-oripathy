@@ -1,8 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { argosScreenshot } from "@argos-ci/playwright";
 import { expect, test } from "@playwright/test";
-
-import { argosCSS } from "./_argos";
 
 // chat palette サンプル: converter.test.ts のフィクスチャと同形式の最小構成。
 // 検証目的なのでエモクロアの実シート全体ではなく、変換が走る最低限の入力を用いる。
@@ -28,7 +25,7 @@ test.describe("converter interactive (filled state)", () => {
 		await page.evaluate(async () => {
 			await document.fonts.ready;
 		});
-		await argosScreenshot(page, "converter_filled", { argosCSS });
+		await expect(page).toHaveScreenshot("converter-filled.png", { fullPage: true });
 	});
 
 	test("a11y: converter_filled", async ({ page }, testInfo) => {

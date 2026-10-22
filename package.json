@@ -20,6 +20,7 @@
     "test/content/links": "lychee --config .lychee.toml docs/",
     "test/content": "bun run test/content/prose",
     "test/visual/e2e": "playwright test",
+    "test/visual/e2e:update": "playwright test --update-snapshots",
     "test/visual/perf": "lhci autorun",
     "test/visual": "bun run build && bun run test/visual/e2e && bun run test/visual/perf",
     "test": "bun run test/logic && bun run test/content"
@@ -35,8 +36,6 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@argos-ci/cli": "6.9.4",
-    "@argos-ci/playwright": "7.6.0",
     "@axe-core/playwright": "4.13.0",
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
