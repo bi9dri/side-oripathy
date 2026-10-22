@@ -7,6 +7,13 @@ export default defineConfig({
 	// VRT / a11y で retry を許すと flaky なレンダリング race が緑化されるため 0 固定。
 	// 不安定が顕在化したら原因 (font / animation / network idle) を直接修正する方針。
 	retries: 0,
+	// ubuntu-latest は 4 vCPU。Playwright の既定 (コア数の半分) では 2 つしか使わないため、
+	// VRT 20 枚 + a11y の実行を 4 worker に広げる。context ごとに viewport / theme は
+	// 隔離され、webServer は読み取り専用で共有できる。
+	workers: process.env.CI ? 4 : undefined,
+	// baseline 総入れ替え (Chromium 更新など) や dev server 不調のとき、全テストを
+	// 最後まで走らせずに打ち切る。4 worker が並行して失敗し得るので余裕を持たせる。
+	maxFailures: process.env.CI ? 10 : undefined,
 	// baseline はリポジトリにコミットし、Playwright が自前で比較する。
 	// 生成・更新の責任は CI (Linux) が持つ。
 	reporter: [
