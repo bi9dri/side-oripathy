@@ -9,10 +9,13 @@
 .cache-loader
 
 # Visual Quality Gates artifacts
-/screenshots
 /test-results
 /playwright-report
 /.lighthouseci
+
+# CI (Linux) が管理する VRT baseline 以外はコミットしない
+/tests/visual/**/*-win32.png
+/tests/visual/**/*-darwin.png
 
 # Misc
 .DS_Store

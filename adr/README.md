@@ -18,3 +18,4 @@
 ## 索引
 
 - [0001 - テスト戦略](./0001-test-strategy.md) — テストピラミッドの方針、テストランナー選定、モック方針、カバレッジ目標、Phase 分割 (Proposed)
+- [0002 - VRT baseline をリポジトリで管理する](./0002-vrt-baselines-in-repo.md) — Argos を廃止し Playwright 標準の比較に戻す決定、baseline の更新フロー (Proposed)
