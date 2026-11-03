@@ -64,7 +64,7 @@ Note: `bun run test` dispatches to the `test` script in package.json (logic + co
 
 - **Fixed versions only** — no `^` / `~`. Supply chain protection.
 - **Use versions >=7 days old**, except for security updates.
-- **GitHub Actions**: pin external actions to full commit SHA (never tags/branches).
+- **GitHub Actions**: reference actions by tag and let `.github/workflows/actions.lock` pin every direct and transitive dependency to a commit SHA. After changing any `uses:`, run `gh actions-lock` (install with `gh extension install github/gh-actions-lock`) and commit the updated lockfile. Never edit `actions.lock` by hand. `Verify workflow lockfile` fails CI when the lockfile is out of sync.
 - **Renovate (GitHub App, `.github/renovate.json5`) proposes every update** and enforces the three rules above. Don't bump versions by hand — review its PRs instead.
   - Bun bumps arrive as one PR covering `devbox.json` / `packageManager` / `@types/bun` (`scripts/check-bun-version.sh` guards the three).
   - Renovate can't regenerate `devbox.lock`: run `devbox install` on the branch before merging a devbox update.
