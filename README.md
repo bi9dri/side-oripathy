@@ -113,7 +113,7 @@ NIX_CONFIG='access-token = github.com=$GITHUB_TOKEN'
 curl -fsSLvv https://get.jetify.com/devbox | FORCE=1 bash
 ```
 
-セッション開始時に `.claude/scripts/setup-ccweb.sh` が自動で devbox / direnv を初期化します。
+セッション開始時に `.agents/scripts/setup-ccweb.sh` が自動で devbox / direnv を初期化します。
 
 ### コントリビューション
 
