@@ -2,9 +2,16 @@
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
     "config:recommended",
-    // 外部 action を SHA + バージョンコメントに固定する（pinact 相当）
-    "helpers:pinGitHubActionDigests",
+    // GitHub Actions の実効コミットは .github/workflows/actions.lock が固定する
+    // （gh actions-lock）。workflow 側はタグ参照のままにするため、
+    // helpers:pinGitHubActionDigests は使わない。
   ],
+
+  // CI（verify-lockfile.yml）と同じ gh-actions-lock のバージョンで lockfile を
+  // 再生成させ、手元・CI・Renovate で差分がぶれないようにする。
+  constraints: {
+    ghActionsLock: "v0.4.1",
+  },
 
   // 固定バージョンのみ（^ / ~ を使わない）
   rangeStrategy: "pin",
