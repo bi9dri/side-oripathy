@@ -7,6 +7,9 @@
     // helpers:pinGitHubActionDigests は使わない。
   ],
 
+  automerge: true,
+  automergeType: "pr",
+
   // CI（verify-lockfile.yml）と同じ gh-actions-lock のバージョンで lockfile を
   // 再生成させ、手元・CI・Renovate で差分がぶれないようにする。
   constraints: {
