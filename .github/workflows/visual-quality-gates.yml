@@ -68,7 +68,7 @@ jobs:
 
           # 描画に影響し得ないパス。ここに無いものは視覚への影響ありとみなす。
           relevant=$(printf '%s\n' "$files" | grep -vE \
-            '^(adr/.*|scripts/.*|devbox\.(json|lock)|CLAUDE\.md|README\.md|\.gitignore|\.lychee\.toml|lighthouserc\.cjs)$' || true)
+            '^(adr/.*|scripts/.*|\.agents/.*|devbox\.(json|lock)|AGENTS\.md|README\.md|\.gitignore|\.lychee\.toml|lighthouserc\.cjs)$' || true)
 
           if [ -z "$relevant" ]; then
             # ドキュメント以外の非機能変更のみ。install / build を走らせず数秒で成功させる。
