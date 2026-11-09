@@ -19,6 +19,19 @@ permissions:
   contents: read
 
 jobs:
+  # ロジック単体テスト・散文(textlint)・型チェック・Lint・フォーマットの検証
+  check:
+    name: Check (lint + typecheck + test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: oven-sh/setup-bun@v2.2.0
+      - run: bun install --frozen-lockfile
+      - run: bun run --bun lint
+      - run: bun run --bun format --check
+      - run: bun run --bun typecheck
+      - run: bun run test
+
   # VRT (baseline 比較) + a11y。Playwright がブラウザを起動するため Chromium を install する。
   e2e:
     name: VRT + a11y
