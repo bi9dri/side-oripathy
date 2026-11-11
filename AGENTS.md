@@ -79,7 +79,9 @@ Note: `bun run test` dispatches to the `test` script in package.json (logic + co
 - `src/pages/converter.tsx` — character sheet converter (CCFOLIA / chat palette)
 - `src/components/` — MDX components (`Expression`, `Memo`)
 
-Pushing to `main` auto-deploys to GitHub Pages.
+## Skills (`.agents/skills/`)
+
+- **modern-web-guidance** — Web標準のUI・CSS・アクセシビリティ・パフォーマンスベストプラクティスを適用する
 
 ## Changelog Rule
 
