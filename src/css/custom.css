@@ -522,21 +522,28 @@ blockquote p:last-child {
 	color: var(--prts-text-primary);
 }
 
-::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
+html {
+	scrollbar-width: thin;
+	scrollbar-color: var(--prts-border) var(--prts-bg-surface);
 }
 
-::-webkit-scrollbar-track {
-	background: var(--prts-bg-surface);
-}
+@supports not (scrollbar-color: auto) {
+	::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
 
-::-webkit-scrollbar-thumb {
-	background: var(--prts-border);
-}
+	::-webkit-scrollbar-track {
+		background: var(--prts-bg-surface);
+	}
 
-::-webkit-scrollbar-thumb:hover {
-	background: var(--prts-accent);
+	::-webkit-scrollbar-thumb {
+		background: var(--prts-border);
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: var(--prts-accent);
+	}
 }
 
 /* ────────────────────────────────────────────────────────────
