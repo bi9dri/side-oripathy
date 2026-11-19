@@ -1,7 +1,3 @@
-/* ============================================================
-   Converter Page — PRTS Terminal Form
-   ============================================================ */
-
 .converter {
 	display: flex;
 	flex-direction: column;
@@ -133,9 +129,6 @@
 	box-shadow: 0 0 0 2px var(--prts-accent);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Responsive
-   ──────────────────────────────────────────────────────────── */
 @media screen and (max-width: 576px) {
 	.converter {
 		padding: var(--prts-space-xl) var(--prts-space-md);

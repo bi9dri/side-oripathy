@@ -1,15 +1,9 @@
-// lhci は Playwright の chromium に依存させず、CI ランナー同梱 / 開発環境の
-// system Chrome を chrome-launcher 経由で自動検出する (perf ジョブは chromium install 不要)。
-// 優先順位: CHROME_PATH 明示指定 > ローカルに既存の Playwright chromium (DX 維持の任意利用)
-//          > 未指定 (chrome-launcher の自動検出に委ねる / CI runner の Google Chrome 等)。
 function resolveChromePath() {
 	if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
 	try {
 		const path = require("@playwright/test").chromium.executablePath();
 		if (path && require("node:fs").existsSync(path)) return path;
-	} catch {
-		// @playwright/test 未導入 / browser 未 install — 自動検出に委ねる。
-	}
+	} catch {}
 	return undefined;
 }
 
@@ -24,18 +18,12 @@ module.exports = {
 				"http://localhost/docs/erosion_check/index.html",
 			],
 			numberOfRuns: 3,
-			// undefined のとき chrome-launcher が system Chrome を自動検出する。
 			...(resolveChromePath() ? { chromePath: resolveChromePath() } : {}),
 			settings: {
 				chromeFlags: "--no-sandbox --disable-dev-shm-usage",
 			},
 		},
 		assert: {
-			// 閾値は lhci collect 実測値 (3 run median) の URL グループ別最悪値から算出:
-			// FCP / LCP / TBT: median_ms * 1.2 の天井値を 50 ms 単位で切り上げ (ms)。
-			// CLS: median + 0.05、下限 0.1 (unitless)。
-			// /docs/ は MDX・コードブロック密度が高く非 docs より遅い傾向がある。
-			// Web Vitals "Good" 境界への引き締めは別 issue で追跡する。
 			assertMatrix: [
 				{
 					matchingUrlPattern: ".*",
@@ -43,11 +31,7 @@ module.exports = {
 						"categories:accessibility": ["error", { minScore: 0.9 }],
 						"categories:best-practices": ["error", { minScore: 0.9 }],
 						"categories:seo": ["error", { minScore: 0.9 }],
-						// ランタイム console.error 検出。
-						// TODO(#117): /docs/erosion_check の React hydration mismatch (#418) で発火するため
-						// 暫定 warn。本修正後に ["error", {}] へ戻す。
 						"errors-in-console": ["warn", {}],
-						// 全アセット合計バイト数の budget。Phase 3 導入時の暫定上限値 (5MB)。
 						"total-byte-weight": ["error", { maxNumericValue: 5_000_000 }],
 					},
 				},
@@ -55,17 +39,8 @@ module.exports = {
 					matchingUrlPattern: "/docs/",
 					assertions: {
 						"first-contentful-paint": ["error", { maxNumericValue: 2050 }],
-						// TODO(#117): hydration mismatch (#418) の再描画で LCP 要素が hydration 完了
-						// (~TTI) まで遅延し、run ごとに ~2s↔~7.6s で振れる。暫定 warn。修正後に
-						// ["error", { maxNumericValue: 3050 }] へ戻す。
 						"largest-contentful-paint": ["warn", { maxNumericValue: 3050 }],
-						// TODO(#117): hydration mismatch (#418) のツリー再生成が main-thread を
-						// ブロックし TBT が嵩む (document 帰属の long task ~500ms)。暫定 warn。
-						// 修正後に ["error", { maxNumericValue: 350 }] へ戻す。
 						"total-blocking-time": ["warn", { maxNumericValue: 350 }],
-						// TODO(#117): hydration mismatch (#418) によるツリー再生成で CLS が嵩む
-						// (layout-shift-elements 非帰属の構造的シフト)。暫定 warn。修正後に
-						// ["error", { maxNumericValue: 0.16 }] へ戻す。
 						"cumulative-layout-shift": ["warn", { maxNumericValue: 0.16 }],
 					},
 				},
@@ -74,12 +49,6 @@ module.exports = {
 					assertions: {
 						"first-contentful-paint": ["error", { maxNumericValue: 2050 }],
 						"largest-contentful-paint": ["error", { maxNumericValue: 3100 }],
-						// TBT の内訳は Docusaurus の hydration 固定費 (React + router + theme の
-						// 評価、DOM は 127 要素しかないのに long task 197ms) と gtag.js (blocking
-						// 202ms) で、どちらもこのリポジトリの変更では削れない。実測 median は
-						// 297ms (09-09) → 355ms (09-16) と漸増し 350 を越えたが、その間バンドルの
-						// content hash は不変で、増分は gtag.js 側の肥大化だった。閾値を下げる形の
-						// 対策 (gtag の計測除外 / Docusaurus の固定費削減) は別途 #117 系で扱う。
 						"total-blocking-time": ["error", { maxNumericValue: 450 }],
 						"cumulative-layout-shift": ["error", { maxNumericValue: 0.1 }],
 					},
