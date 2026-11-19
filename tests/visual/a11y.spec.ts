@@ -3,10 +3,6 @@ import { expect, test } from "@playwright/test";
 
 import { openPage, pages } from "./_pages";
 
-// Phase 3 導入時点で既知の違反。スタイリング修正は Phase 4+ の follow-up で別 PR 対応予定。
-// - color-contrast: converter のボタン / erosion_check の admonition / code 等
-// - link-in-text-block: 本文中リンクが下線なし且つ周囲テキストとのコントラスト不足
-// TODO(phase4): 個別 selector 修正後に baselineDisabledRules を空配列に戻し、最終的に削除する。
 const baselineDisabledRules = ["color-contrast", "link-in-text-block"];
 
 for (const target of pages) {

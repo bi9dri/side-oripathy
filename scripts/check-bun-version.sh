@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# Ensures bun's version stays identical across devbox.json (source of truth,
-# since devbox/nixhub lags npm) and every package.json's packageManager /
-# devDependencies["@types/bun"].
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

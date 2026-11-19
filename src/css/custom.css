@@ -1,14 +1,4 @@
-/* ============================================================
-   SIDE:ORIPATHY — PRTS Terminal Design System
-   Arknights × Emocloa TRPG rulebook, dark-only theme
-   MCP: Cyberpunk UI + Dark Data Terminal + HUD/Sci-Fi FUI
-   ============================================================ */
-
-/* ────────────────────────────────────────────────────────────
-   Design Tokens
-   ──────────────────────────────────────────────────────────── */
 :root {
-	/* PRTS color tokens */
 	--prts-bg-base: #0D0D0D;
 	--prts-bg-surface: #141414;
 	--prts-bg-elevated: #1A1A1A;
@@ -24,7 +14,6 @@
 	--prts-success: #5CAA5C;
 	--prts-glow: rgba(212, 168, 67, 0.4);
 
-	/* Infima primary overrides → amber */
 	--ifm-color-primary: #D4A843;
 	--ifm-color-primary-dark: #C99B35;
 	--ifm-color-primary-darker: #B8892E;
@@ -33,17 +22,14 @@
 	--ifm-color-primary-lighter: #E8CB7A;
 	--ifm-color-primary-lightest: #F0DA96;
 
-	/* Background overrides */
 	--ifm-background-color: var(--prts-bg-base);
 	--ifm-background-surface-color: var(--prts-bg-surface);
 	--ifm-hover-overlay: rgba(212, 168, 67, 0.08);
 
-	/* Text overrides */
 	--ifm-font-color-base: var(--prts-text-primary);
 	--ifm-color-content: var(--prts-text-primary);
 	--ifm-color-content-secondary: var(--prts-text-secondary);
 
-	/* Emphasis scale */
 	--ifm-color-emphasis-100: var(--prts-bg-surface);
 	--ifm-color-emphasis-200: var(--prts-bg-elevated);
 	--ifm-color-emphasis-300: var(--prts-border);
@@ -51,10 +37,8 @@
 	--ifm-color-emphasis-700: var(--prts-text-secondary);
 	--ifm-color-emphasis-900: var(--prts-text-primary);
 
-	/* Typography */
 	--ifm-font-family-base: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
-	/* 見出し / コードは等幅 (terminal 意匠) を維持しつつ、等幅フォントに無い
-	   日本語グリフは末尾の "Noto Sans JP" にフォールバックさせる (CI の豆腐回避)。 */
+
 	--ifm-heading-font-family: ui-monospace, "SFMono-Regular", "SF Mono", "Cascadia Code", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, Monaco, monospace, "Noto Sans JP";
 	--ifm-font-family-monospace: ui-monospace, "SFMono-Regular", "SF Mono", "Cascadia Code", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, Monaco, monospace, "Noto Sans JP";
 	--ifm-font-size-base: 100%;
@@ -63,7 +47,6 @@
 	--ifm-heading-font-weight: 700;
 	--ifm-code-font-size: 95%;
 
-	/* Shape — sharp corners, no shadow */
 	--ifm-global-radius: 0;
 	--ifm-card-border-radius: 0;
 	--ifm-button-border-radius: 0;
@@ -76,11 +59,9 @@
 	--ifm-navbar-shadow: none;
 	--ifm-alert-shadow: none;
 
-	/* Transitions */
 	--ifm-transition-fast: 150ms;
 	--ifm-transition-slow: 300ms;
 
-	/* Spacing tokens */
 	--prts-space-xs: 0.25rem;
 	--prts-space-sm: 0.5rem;
 	--prts-space-md: 1rem;
@@ -89,10 +70,8 @@
 	--prts-space-2xl: 3rem;
 	--prts-space-3xl: 4rem;
 
-	/* Code highlight */
 	--docusaurus-highlighted-code-line-bg: rgba(212, 168, 67, 0.1);
 
-	/* Transparent layout system */
 	--prts-layout-border: rgba(255, 255, 255, 0.08);
 	--prts-layout-border-width: 1px;
 	--prts-glass-bg: rgba(255, 255, 255, 0.02);
@@ -102,9 +81,6 @@
 	--prts-stripe-size: 1.5px;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Light mode overrides
-   ──────────────────────────────────────────────────────────── */
 [data-theme="light"] {
 	--prts-bg-base: #F5F5F0;
 	--prts-bg-surface: #FFFFFF;
@@ -120,7 +96,6 @@
 	--prts-success: #2E7D32;
 	--prts-glow: rgba(184, 134, 11, 0.3);
 
-	/* Transparent layout system — light mode */
 	--prts-layout-border: rgba(0, 0, 0, 0.18);
 	--prts-glass-bg: rgba(255, 255, 255, 0.18);
 	--prts-glass-blur: 12px;
@@ -136,9 +111,6 @@
 	--ifm-color-primary-lightest: #E8AD11;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Base
-   ──────────────────────────────────────────────────────────── */
 html {
 	background-color: var(--prts-bg-base);
 	color-scheme: dark light;
@@ -154,9 +126,6 @@ body {
 	background-color: transparent;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Typography — Headings use system monospace
-   ──────────────────────────────────────────────────────────── */
 h1,
 h2,
 h3,
@@ -175,9 +144,6 @@ h2 {
 	margin-top: var(--prts-space-2xl);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Links
-   ──────────────────────────────────────────────────────────── */
 a {
 	color: var(--prts-accent);
 	text-decoration: none;
@@ -189,17 +155,12 @@ a:hover {
 	text-decoration: none;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Navbar
-   ──────────────────────────────────────────────────────────── */
 .navbar {
 	background-color: transparent;
 	border-bottom: var(--prts-layout-border-width) solid var(--prts-layout-border);
 	position: relative;
 }
 
-/* backdrop-filter を疑似要素に隔離して containing block 生成を回避
-   （navbar 内部の .navbar-sidebar が position:fixed を使うため） */
 .navbar::before {
 	content: "";
 	position: absolute;
@@ -233,9 +194,6 @@ a:hover {
 	border-bottom: 2px solid var(--prts-accent);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Sidebar / Menu
-   ──────────────────────────────────────────────────────────── */
 .menu {
 	background-color: transparent;
 	background-image: repeating-linear-gradient(-45deg,
@@ -250,7 +208,6 @@ a:hover {
 	border-right: none !important;
 }
 
-/* モバイルのスライドアウトメニュー — 半透明ガラス背景にストライプを重ねる */
 .navbar-sidebar {
 	background-color: rgba(13, 13, 13, 0.75);
 	backdrop-filter: blur(var(--prts-glass-blur));
@@ -261,7 +218,6 @@ a:hover {
 	background-color: rgba(245, 245, 240, 0.75);
 }
 
-/* バックドロップを少し薄くして圧迫感を軽減 */
 .navbar-sidebar__backdrop {
 	background-color: rgba(0, 0, 0, 0.35);
 }
@@ -282,9 +238,6 @@ a:hover {
 	border-left: 2px solid var(--prts-accent);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Footer
-   ──────────────────────────────────────────────────────────── */
 .footer--dark {
 	background-color: var(--prts-glass-bg);
 	backdrop-filter: blur(var(--prts-glass-blur));
@@ -300,9 +253,6 @@ a:hover {
 	color: var(--prts-text-secondary);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Buttons
-   ──────────────────────────────────────────────────────────── */
 .button {
 	border-radius: 0;
 	font-family: var(--ifm-heading-font-family);
@@ -337,9 +287,6 @@ a:hover {
 	color: var(--prts-accent-hover);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Tables (critical for TRPG rulebook)
-   ──────────────────────────────────────────────────────────── */
 table {
 	border-collapse: collapse;
 	border: none;
@@ -371,7 +318,6 @@ table tr:nth-child(even) {
 
 @media screen and (max-width: 576px) {
 
-	/* コンテンツ幅を保持して横スクロールを発生させる（overflowはInfima側で設定済み） */
 	table {
 		width: max-content;
 		min-width: 100%;
@@ -388,12 +334,8 @@ table tr:nth-child(even) {
 		padding: 0.4rem 0.5rem;
 	}
 
-
 }
 
-/* ────────────────────────────────────────────────────────────
-   Code blocks
-   ──────────────────────────────────────────────────────────── */
 .prism-code {
 	border-radius: 0 !important;
 	border: 1px solid var(--prts-border);
@@ -407,16 +349,12 @@ code {
 	color: var(--prts-accent);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Admonitions / Alerts
-   ──────────────────────────────────────────────────────────── */
 .alert {
 	border-radius: 0;
 	border-left-width: 3px;
 	background-color: var(--prts-bg-elevated);
 }
 
-/* Admonition heading — (0,2,0) beats CSS module (0,1,0) */
 .theme-admonition [class*="admonitionHeading"] {
 	font-size: var(--ifm-h3-font-size);
 	color: var(--prts-accent);
@@ -427,9 +365,6 @@ code {
 	display: none;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Blockquote — visually distinct from body text
-   ──────────────────────────────────────────────────────────── */
 blockquote {
 	border-left: 3px solid var(--prts-accent);
 	background-color: var(--prts-bg-elevated);
@@ -447,9 +382,6 @@ blockquote p:last-child {
 	margin-bottom: 0;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Table of Contents
-   ──────────────────────────────────────────────────────────── */
 .table-of-contents__link {
 	font-size: 0.85rem;
 	color: var(--prts-text-secondary);
@@ -465,16 +397,10 @@ blockquote p:last-child {
 	font-weight: 700;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Doc content breadcrumb
-   ──────────────────────────────────────────────────────────── */
 .breadcrumbs__item--active .breadcrumbs__link {
 	color: var(--prts-accent);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Pagination
-   ──────────────────────────────────────────────────────────── */
 .pagination-nav__link {
 	border: 1px solid var(--prts-border);
 	border-radius: 0;
@@ -485,9 +411,6 @@ blockquote p:last-child {
 	border-color: var(--prts-accent);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Custom Game Components
-   ──────────────────────────────────────────────────────────── */
 .c-expression {
 	padding: 0.75rem 1.25rem;
 	background-color: var(--prts-bg-elevated);
@@ -514,9 +437,6 @@ blockquote p:last-child {
 	margin-bottom: 0;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Selection & Scrollbar
-   ──────────────────────────────────────────────────────────── */
 ::selection {
 	background-color: var(--prts-accent-dim);
 	color: var(--prts-text-primary);
@@ -546,19 +466,11 @@ html {
 	}
 }
 
-/* ────────────────────────────────────────────────────────────
-   Focus styles — accessibility (visible focus ring)
-   ──────────────────────────────────────────────────────────── */
 :focus-visible {
 	outline: none;
 	box-shadow: 0 0 0 2px var(--prts-accent);
 }
 
-/* ────────────────────────────────────────────────────────────
-   Animations — Cyberpunk UI / Dark Data Terminal (controlled)
-   ──────────────────────────────────────────────────────────── */
-
-/* Blinking cursor — decorative only (aria-hidden) */
 @keyframes blink {
 
 	0%,
@@ -571,7 +483,6 @@ html {
 	}
 }
 
-/* Reveal text — homepage title entrance */
 @keyframes revealText {
 	from {
 		clip-path: inset(0 100% 0 0);
@@ -582,7 +493,6 @@ html {
 	}
 }
 
-/* Border draw — terminal frame entrance */
 @keyframes borderDraw {
 	from {
 		border-color: transparent;
@@ -595,7 +505,6 @@ html {
 	}
 }
 
-/* Fade in up — content entrance */
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
@@ -624,10 +533,6 @@ html {
 	margin-left: 0.25em;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Cross-border vertical line — doc pages only
-   sidebar縦線をnavbar/footer領域も貫通して描画
-   ──────────────────────────────────────────────────────────── */
 @media (min-width: 997px) {
 	html.docs-doc-page #__docusaurus::after {
 		content: "";
@@ -638,14 +543,11 @@ html {
 		width: var(--prts-layout-border-width);
 		background-color: var(--prts-layout-border);
 		z-index: 201;
-		/* navbar (var(--ifm-z-index-fixed) = 200) の上に */
+
 		pointer-events: none;
 	}
 }
 
-/* ────────────────────────────────────────────────────────────
-   backdrop-filter 非対応ブラウザのフォールバック
-   ──────────────────────────────────────────────────────────── */
 @supports not (backdrop-filter: blur(1px)) {
 	.navbar::before {
 		background-color: rgba(13, 13, 13, 0.85);
@@ -664,9 +566,6 @@ html {
 	}
 }
 
-/* ────────────────────────────────────────────────────────────
-   Reduced motion — MANDATORY accessibility
-   ──────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
 
 	*,

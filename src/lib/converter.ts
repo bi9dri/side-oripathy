@@ -17,7 +17,6 @@ const convertLine = (line: string, convertType: ConvertType): string => {
 
 	const [, level, judge, skill] = m;
 
-	/* 運動系技能 */
 	if (
 		["＊運動", "スピード", "ストレングス", "アクロバット", "ダイブ", "＊格闘", "＊投擲"].includes(
 			skill,
@@ -36,7 +35,6 @@ const convertLine = (line: string, convertType: ConvertType): string => {
 		}
 	}
 
-	/* アーツ */
 	if (skill.startsWith("アーツ")) {
 		switch (convertType) {
 			case "seaborn-abyssal":
@@ -46,7 +44,6 @@ const convertLine = (line: string, convertType: ConvertType): string => {
 		}
 	}
 
-	/* その他の技能 */
 	switch (convertType) {
 		case "seaborn-abyssal":
 			return `${level}DM<=${judge} 〈${skill}〉`;

@@ -1,7 +1,3 @@
-/* ============================================================
-   Homepage — PRTS Terminal Interface
-   ============================================================ */
-
 .terminal {
 	display: flex;
 	justify-content: center;
@@ -12,7 +8,6 @@
 	position: relative;
 }
 
-/* Scanline overlay — decorative, MCP Cyberpunk UI style */
 .terminal::before {
 	content: "";
 	position: absolute;
@@ -65,7 +60,6 @@
 	text-transform: uppercase;
 }
 
-/* Blinking cursor dot — MCP Dark Data Terminal style */
 .statusDot {
 	display: inline-block;
 	width: 6px;
@@ -118,9 +112,6 @@
 	text-align: center;
 }
 
-/* ────────────────────────────────────────────────────────────
-   Responsive
-   ──────────────────────────────────────────────────────────── */
 @media screen and (max-width: 576px) {
 	.terminal {
 		padding: var(--prts-space-md);
@@ -129,7 +120,6 @@
 		padding-bottom: var(--prts-space-2xl);
 	}
 
-	/* Remove scanlines on mobile for performance */
 	.terminal::before {
 		display: none;
 	}

@@ -2,8 +2,6 @@ import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
 	title: "アークナイツ×エモクロアTRPG サイド・オリパシー",
 	tagline: "エモクロアTRPG追加ルール",
@@ -22,18 +20,12 @@ const config: Config = {
 		},
 	},
 
-	// Even if you don't use internationalization, you can use this field to set
-	// useful metadata like html lang. For example, if your site is Chinese, you
-	// may want to replace "en" with "zh-Hans".
 	i18n: {
 		defaultLocale: "ja",
 		locales: ["ja"],
 	},
 
 	headTags: [
-		// Noto Sans JP (Google Fonts) — 日本語フォントを CDN の動的サブセットで配信する。
-		// preconnect でハンドシェイクを前倒しし、media=print → onload で all に切替えることで
-		// render-blocking を避けつつ webfont を適用する (display=swap で fallback を即時描画)。
 		{
 			tagName: "link",
 			attributes: { rel: "preconnect", href: "https://fonts.googleapis.com" },
