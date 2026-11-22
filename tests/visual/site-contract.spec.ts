@@ -50,6 +50,7 @@ test.describe("site contract", () => {
 			await expect(
 				page.locator('script[src*="googletagmanager.com/gtag/js?id=G-YT5ST8BYXJ"]'),
 			).toBeAttached();
+			await expect(page.locator("body")).not.toContainText("@site/src/components/");
 		}
 	});
 

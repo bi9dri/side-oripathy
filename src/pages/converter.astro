@@ -1,0 +1,235 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const siteTitle = "アークナイツ×エモクロアTRPG サイド・オリパシー";
+---
+
+<BaseLayout
+	title={`コンバーター | ${siteTitle}`}
+	description="アークナイツ×エモクロアTRPG サイド・オリパシー コンバーター"
+	currentPath="/converter"
+>
+	<main>
+		<section class="converter" aria-labelledby="converter-heading">
+			<h1 id="converter-heading" class="heading">コンバーター</h1>
+			<p class="instruction">
+				エモクロアTRPGのキャラクターシートから、チャットパレットまたはCCFOLIA形式でコピーしたものを貼り付けて「コンバート」を押してください。
+			</p>
+
+			<div class="field-group">
+				<label for="input" class="label">入力</label>
+				<textarea
+					id="input"
+					class="textarea"
+					placeholder="CCFOLIAデータまたはチャットパレットを貼り付け"
+				></textarea>
+			</div>
+
+			<div class="field-group">
+				<label for="convertType" class="label">変換タイプ</label>
+				<select id="convertType" class="select">
+					<option value="normal">通常</option>
+					<option value="sarkaz-mercenary">サルカズ傭兵</option>
+					<option value="seaborn-abyssal">アビサル</option>
+				</select>
+			</div>
+
+			<button type="button" id="convert-button" class="convert-button">コンバート</button>
+
+			<div class="field-group">
+				<label for="output" class="label">出力</label>
+				<textarea
+					id="output"
+					class="textarea"
+					readonly
+					aria-live="polite"
+					aria-label="変換結果"
+				></textarea>
+			</div>
+
+			<button type="button" id="copy-button" class="copy-button" aria-live="polite">
+				コピー
+			</button>
+		</section>
+	</main>
+</BaseLayout>
+
+<script>
+	import {
+		type ConvertType,
+		convertCcfolia,
+		convertCommands,
+		judgeCcfoliaOrPalette,
+	} from "../lib/converter";
+
+	const inputEl = document.getElementById("input") as HTMLTextAreaElement | null;
+	const outputEl = document.getElementById("output") as HTMLTextAreaElement | null;
+	const convertTypeEl = document.getElementById("convertType") as HTMLSelectElement | null;
+	const convertButton = document.getElementById("convert-button") as HTMLButtonElement | null;
+	const copyButton = document.getElementById("copy-button") as HTMLButtonElement | null;
+
+	let copyResetTimer: number | undefined;
+
+	convertButton?.addEventListener("click", () => {
+		if (!inputEl || !outputEl || !convertTypeEl) return;
+		const inputText = inputEl.value;
+		const convertType = convertTypeEl.value as ConvertType;
+		const textType = judgeCcfoliaOrPalette(inputText);
+		if (textType === "ccfolia") {
+			outputEl.value = convertCcfolia(inputText, convertType);
+		} else {
+			outputEl.value = convertCommands(inputText, convertType);
+		}
+	});
+
+	copyButton?.addEventListener("click", () => {
+		if (!outputEl || !copyButton) return;
+		navigator.clipboard
+			.writeText(outputEl.value)
+			.then(() => {
+				copyButton.textContent = "クリップボードにコピーしました";
+				if (copyResetTimer !== undefined) {
+					window.clearTimeout(copyResetTimer);
+				}
+				copyResetTimer = window.setTimeout(() => {
+					copyButton.textContent = "コピー";
+				}, 5000);
+			})
+			.catch((err) => {
+				console.error("クリップボードへのコピーに失敗しました:", err);
+			});
+	});
+</script>
+
+<style>
+	.converter {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--prts-space-lg);
+		padding: var(--prts-space-2xl) var(--prts-space-xl);
+		max-width: 640px;
+		margin: 0 auto;
+	}
+
+	.heading {
+		font-size: 1.25rem;
+		text-align: center;
+		color: var(--prts-accent);
+		margin: 0;
+	}
+
+	.instruction {
+		font-size: 0.9rem;
+		color: var(--prts-text-secondary);
+		text-align: center;
+		line-height: 1.8;
+		margin: 0;
+	}
+
+	.field-group {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: var(--prts-space-xs);
+	}
+
+	.label {
+		font-family: var(--prts-font-heading);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--prts-text-secondary);
+	}
+
+	.textarea {
+		width: 100%;
+		min-height: 120px;
+		background-color: var(--prts-bg-surface);
+		border: 1px solid var(--prts-border);
+		color: var(--prts-text-primary);
+		font-family: var(--prts-font-heading);
+		font-size: 0.85rem;
+		padding: var(--prts-space-md);
+		resize: vertical;
+		transition: border-color var(--prts-transition-fast);
+		border-radius: 0;
+	}
+
+	.textarea:focus {
+		outline: none;
+		border-color: var(--prts-accent);
+		box-shadow: 0 0 0 1px var(--prts-accent);
+	}
+
+	.textarea::placeholder {
+		color: var(--prts-text-tertiary);
+	}
+
+	.select {
+		width: 100%;
+		min-height: 44px;
+		background-color: var(--prts-bg-surface);
+		border: 1px solid var(--prts-border);
+		color: var(--prts-text-primary);
+		font-family: var(--prts-font-heading);
+		font-size: 0.85rem;
+		padding: var(--prts-space-sm) var(--prts-space-md);
+		cursor: pointer;
+		border-radius: 0;
+		transition: border-color var(--prts-transition-fast);
+	}
+
+	.select:focus {
+		outline: none;
+		border-color: var(--prts-accent);
+		box-shadow: 0 0 0 1px var(--prts-accent);
+	}
+
+	.convert-button,
+	.copy-button {
+		width: 100%;
+		min-height: 44px;
+		font-family: var(--prts-font-heading);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 0.9rem;
+		padding: var(--prts-space-sm) var(--prts-space-lg);
+		cursor: pointer;
+		transition:
+			background-color var(--prts-transition-fast),
+			border-color var(--prts-transition-fast),
+			color var(--prts-transition-fast);
+		border-radius: 0;
+	}
+
+	.convert-button {
+		background-color: var(--prts-accent);
+		color: var(--prts-bg-base);
+		border: 1px solid var(--prts-accent);
+		font-weight: 700;
+	}
+
+	.convert-button:hover {
+		background-color: var(--prts-accent-hover);
+		border-color: var(--prts-accent-hover);
+	}
+
+	.copy-button {
+		background-color: transparent;
+		color: var(--prts-accent);
+		border: 1px solid var(--prts-accent);
+	}
+
+	.copy-button:hover {
+		background-color: var(--prts-accent-dim);
+		color: var(--prts-accent-hover);
+		border-color: var(--prts-accent-hover);
+	}
+
+	@media screen and (max-width: 576px) {
+		.converter {
+			padding: var(--prts-space-xl) var(--prts-space-md);
+		}
+	}
+</style>

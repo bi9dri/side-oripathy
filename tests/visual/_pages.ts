@@ -10,7 +10,6 @@ export const pages = [
 export async function openPage(page: Page, path: string) {
 	const response = await page.goto(path);
 	expect(response?.ok(), `${path} returned non-2xx`).toBe(true);
-	await expect(page.locator("html[data-has-hydrated='true']")).toBeAttached();
 	await page.evaluate(async () => {
 		await document.fonts.ready;
 	});

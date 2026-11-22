@@ -29,11 +29,11 @@
 
 ## 開発者向け情報
 
-このプロジェクトは[Docusaurus](https://docusaurus.io/)を使った静的サイトジェネレーターです。
+このプロジェクトは[Astro](https://astro.build/)を使った静的サイトジェネレーターです。
 
 ### 必要な環境
 
-- [Bun](https://bun.sh/) 1.3.8以上（パッケージマネージャー）
+- [Bun](https://bun.sh/) 1.3.13以上（パッケージマネージャー）
 - Node.js互換ランタイム
 
 ### セットアップ
@@ -46,7 +46,7 @@ bun install
 ### 開発コマンド
 
 ```bash
-# 開発サーバーの起動（http://localhost:3000）
+# 開発サーバーの起動（http://localhost:4321）
 bun run start
 
 # プロダクションビルド
@@ -66,13 +66,14 @@ bun run --bun typecheck  # 型チェック
 ```
 .
 ├── docs/              # Markdownによるルールドキュメント
+├── public/            # 静的アセット（画像など）
 ├── src/
-│   ├── pages/         # Reactページコンポーネント
-│   │   └── converter.tsx  # キャラクターシートコンバーター
-│   └── components/    # 再利用可能なMDXコンポーネント
-├── static/            # 静的アセット（画像など）
-├── docusaurus.config.ts  # Docusaurus設定ファイル
-└── sidebars.ts        # サイドバー自動生成設定
+│   ├── content.config.ts  # Content Collections定義
+│   ├── layouts/       # 共通レイアウト（BaseLayout / DocsLayout）
+│   ├── lib/           # コンバーター・計算機・ナビ等のピュアTSロジック
+│   ├── pages/         # Astroページ（トップ・docs・コンバーター・計算機）
+│   └── styles/        # グローバルCSS（PRTSデザイントークン）
+└── astro.config.mjs   # Astro設定ファイル
 ```
 
 ### デプロイ
@@ -81,11 +82,10 @@ bun run --bun typecheck  # 型チェック
 
 ### 技術スタック
 
-- **フレームワーク**: Docusaurus
-- **UI**: React
+- **フレームワーク**: Astro
 - **言語**: TypeScript
 - **ランタイム**: Bun
-- **Linter/Formatter**: oxlint (with type-check) / oxfmt
+- **Linter/Formatter**: oxlint / oxfmt
 - **デプロイ**: GitHub Pages
 
 ### Claude Code on the Web
@@ -133,4 +133,4 @@ curl -fsSLvv https://get.jetify.com/devbox | FORCE=1 bash
 
 - **アークナイツ**: © Hypergryph / Studio Montagne / Yostar
 - **エモクロアTRPG**: [emoklore.com](https://emoklore.com/)
-- Built with [Docusaurus](https://docusaurus.io/)
+- Built with [Astro](https://astro.build/)

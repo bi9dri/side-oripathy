@@ -49,7 +49,7 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: "bunx docusaurus serve --no-open --port 3000",
+		command: "bun run serve -- --port 3000",
 		url: "http://localhost:3000",
 		reuseExistingServer: !process.env.CI,
 		timeout: 120_000,

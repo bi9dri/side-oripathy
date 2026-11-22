@@ -3,9 +3,6 @@ sidebar_position: 6
 toc_max_heading_level: 2
 ---
 
-import Expression from '@site/src/components/expression';
-import Memo from '@site/src/components/memo';
-
 # 【源石侵食判定】
 
 **源石侵食判定**は、キャラクターの鉱石病が進行するか（感染するか）という判定です。
@@ -15,7 +12,7 @@ BCDiceの[個数振り足しダイス](https://docs.bcdice.org/command/reroll_di
 
 判定は以下のように定義されます。
 
-<Expression e="源石侵食判定（危険度3）" />
+::expression[源石侵食判定（危険度3）]
 
 ### 危険度
 
@@ -86,9 +83,9 @@ BCDiceの[個数振り足しダイス](https://docs.bcdice.org/command/reroll_di
 2. 振るダイスの数は `⌊40 ÷ 5⌋ + 1 = 9`
 3. BCDiceコマンド: `9R10[>=5]<=4`（10面ダイスを9個振り、5以上を振り足し、4以下を成功として数える）
 
-<Memo>
+:::memo
 源石侵食判定で振るダイスの最大数は理論上無限！　たくさんダイスが触れるかも！？
-</Memo>
+:::
 
 :::note[描写と処理の例]
 
@@ -150,6 +147,6 @@ BCDiceコマンドは `3R10[>=7]<=2` になる。プレイヤーが振った出�
     </tbody>
 </table>
 
-<Memo>
+:::memo
 大丈夫ですよ。感染者に触れただけで鉱石病になるようなことは稀です。
-</Memo>
+:::

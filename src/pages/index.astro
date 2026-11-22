@@ -1,0 +1,179 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const siteTitle = "アークナイツ×エモクロアTRPG サイド・オリパシー";
+const tagline = "エモクロアTRPG追加ルール";
+---
+
+<BaseLayout
+	title={siteTitle}
+	description="アークナイツ×エモクロアTRPG サイド・オリパシー"
+	currentPath="/"
+>
+	<main class="terminal">
+		<div class="terminal-frame">
+			<header class="terminal-header">
+				<span class="system-label" aria-hidden="true">RHODES ISLAND // TERMINAL ACCESS</span>
+				<span class="status-indicator" aria-hidden="true">
+					<span class="status-dot"></span>
+					SYSTEM ONLINE
+				</span>
+			</header>
+			<div class="terminal-body">
+				<h1 class="title prts-reveal">{siteTitle}</h1>
+				<p class="subtitle prts-fade-in">{tagline}</p>
+				<p class="description prts-fade-in">
+					エモクロアTRPGでアークナイツの世界を冒険するための追加ルール
+				</p>
+				<nav class="buttons prts-fade-in" aria-label="メインナビゲーション">
+					<a class="button button--primary cta-button" href="/docs/intro">ルールを読む</a>
+					<a class="button button--secondary cta-button" href="/converter">
+						キャラクターをコンバートする
+					</a>
+				</nav>
+			</div>
+		</div>
+	</main>
+</BaseLayout>
+
+<style>
+	.terminal {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: calc(100dvh - var(--prts-navbar-height) - 5rem);
+		padding: var(--prts-space-xl);
+		position: relative;
+	}
+
+	.terminal::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 2px,
+			rgba(0, 0, 0, 0.08) 2px,
+			rgba(0, 0, 0, 0.08) 4px
+		);
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.terminal-frame {
+		border: 1px solid var(--prts-border);
+		max-width: 720px;
+		width: 100%;
+		position: relative;
+		z-index: 1;
+		animation: borderDraw 0.8s ease both;
+	}
+
+	.terminal-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: var(--prts-space-sm) var(--prts-space-md);
+		background-color: var(--prts-bg-elevated);
+		border-bottom: 1px solid var(--prts-border);
+	}
+
+	.system-label {
+		font-family: var(--prts-font-heading);
+		font-size: 0.65rem;
+		letter-spacing: 0.15em;
+		color: var(--prts-text-tertiary);
+		text-transform: uppercase;
+	}
+
+	.status-indicator {
+		display: flex;
+		align-items: center;
+		gap: var(--prts-space-xs);
+		font-family: var(--prts-font-heading);
+		font-size: 0.65rem;
+		letter-spacing: 0.1em;
+		color: var(--prts-success);
+		text-transform: uppercase;
+	}
+
+	.status-dot {
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		background-color: var(--prts-success);
+		animation: blink 1.5s step-end infinite;
+	}
+
+	.terminal-body {
+		padding: var(--prts-space-2xl) var(--prts-space-xl);
+		text-align: center;
+	}
+
+	.title {
+		font-size: 1.4rem;
+		color: var(--prts-accent);
+		margin-top: 0;
+		margin-bottom: var(--prts-space-sm);
+		animation-delay: 0.1s;
+	}
+
+	.subtitle {
+		font-family: var(--prts-font-heading);
+		font-size: 0.85rem;
+		color: var(--prts-text-secondary);
+		letter-spacing: 0.05em;
+		margin-top: 0;
+		margin-bottom: var(--prts-space-lg);
+		animation-delay: 0.3s;
+	}
+
+	.description {
+		font-size: 1rem;
+		color: var(--prts-text-primary);
+		margin-top: 0;
+		margin-bottom: var(--prts-space-xl);
+		line-height: 1.8;
+		animation-delay: 0.5s;
+	}
+
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		gap: var(--prts-space-md);
+		align-items: center;
+		animation-delay: 0.7s;
+	}
+
+	.cta-button {
+		width: 100%;
+		max-width: 360px;
+		text-align: center;
+	}
+
+	@media screen and (max-width: 996px) {
+		.terminal-body {
+			padding: var(--prts-space-xl) var(--prts-space-lg);
+		}
+	}
+
+	@media screen and (max-width: 576px) {
+		.terminal {
+			padding: var(--prts-space-2xl) var(--prts-space-md);
+			min-height: auto;
+		}
+
+		.terminal::before {
+			display: none;
+		}
+
+		.terminal-body {
+			padding: var(--prts-space-xl) var(--prts-space-md);
+		}
+
+		.title {
+			font-size: 1.1rem;
+		}
+	}
+</style>
