@@ -58,12 +58,8 @@
     },
     {
       // バージョンが揃っていないと壊れるパッケージ群は major でも 1 PR にまとめる。
-      groupName: "docusaurus",
-      matchPackageNames: ["@docusaurus/**", "@mdx-js/**"],
-    },
-    {
-      groupName: "react",
-      matchPackageNames: ["react", "react-dom"],
+      groupName: "astro",
+      matchPackageNames: ["astro", "@astrojs/**"],
     },
     {
       groupName: "playwright",

@@ -1,0 +1,263 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import type { DocNavItem, TocHeading } from "../lib/docs-nav";
+
+interface Props {
+	title: string;
+	description: string;
+	currentSlug: string;
+	sidebarDocs: readonly DocNavItem[];
+	tocHeadings: readonly TocHeading[];
+	prev: DocNavItem | null;
+	next: DocNavItem | null;
+}
+
+const { title, description, currentSlug, sidebarDocs, tocHeadings, prev, next } = Astro.props;
+const siteTitle = "アークナイツ×エモクロアTRPG サイド・オリパシー";
+---
+
+<BaseLayout
+	title={`${title} | ${siteTitle}`}
+	description={description}
+	currentPath={`/docs/${currentSlug}`}
+	sidebarDocs={sidebarDocs}
+	currentDocSlug={currentSlug}
+>
+	<div class="docs-shell">
+		<aside class="docs-sidebar">
+			<nav aria-label="ドキュメントのサイドバー" class="sidebar-nav">
+				<ul class="sidebar-list">
+					{
+						sidebarDocs.map((doc) => (
+							<li>
+								<a
+									href={`/docs/${doc.slug}`}
+									class="sidebar-link"
+									aria-current={doc.slug === currentSlug ? "page" : undefined}
+								>
+									{doc.title}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</aside>
+
+		<main class="docs-main">
+			<article class="doc-prose">
+				<slot />
+			</article>
+
+			<nav class="docs-pagination" aria-label="ドキュメントページ">
+				{
+					prev && (
+						<a class="pagination-link pagination-link--prev" href={`/docs/${prev.slug}`}>
+							<span class="pagination-label">前へ</span>
+							<span class="pagination-title">« {prev.title}</span>
+						</a>
+					)
+				}
+				{
+					next && (
+						<a class="pagination-link pagination-link--next" href={`/docs/${next.slug}`}>
+							<span class="pagination-label">次へ</span>
+							<span class="pagination-title">{next.title} »</span>
+						</a>
+					)
+				}
+			</nav>
+		</main>
+
+		{
+			tocHeadings.length > 0 && (
+				<aside class="docs-toc">
+					<nav aria-label="目次" class="toc-nav">
+						<ul class="toc-list">
+							{tocHeadings.map((heading) => (
+								<li class={`toc-item toc-depth-${heading.depth}`}>
+									<a href={`#${heading.slug}`} class="toc-link">
+										{heading.text}
+									</a>
+								</li>
+							))}
+						</ul>
+					</nav>
+				</aside>
+			)
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	.docs-shell {
+		display: grid;
+		grid-template-columns: var(--prts-sidebar-width) minmax(0, 1fr) 15rem;
+		min-height: calc(100dvh - var(--prts-navbar-height) - 4.5rem);
+	}
+
+	.docs-sidebar {
+		border-right: var(--prts-layout-border-width) solid var(--prts-layout-border);
+		background-image: repeating-linear-gradient(
+			-45deg,
+			var(--prts-stripe-color-a),
+			var(--prts-stripe-color-a) var(--prts-stripe-size),
+			var(--prts-stripe-color-b) var(--prts-stripe-size),
+			var(--prts-stripe-color-b) calc(var(--prts-stripe-size) * 2)
+		);
+	}
+
+	.sidebar-nav {
+		position: sticky;
+		top: var(--prts-navbar-height);
+		max-height: calc(100dvh - var(--prts-navbar-height));
+		overflow-y: auto;
+		padding: var(--prts-space-md) var(--prts-space-sm);
+	}
+
+	.sidebar-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.sidebar-link {
+		display: block;
+		padding: 0.5rem 0.75rem;
+		font-size: 0.9rem;
+		color: var(--prts-text-primary);
+		border-left: 2px solid transparent;
+	}
+
+	.sidebar-link:hover,
+	.sidebar-link[aria-current="page"] {
+		background-color: var(--prts-accent-dim);
+		color: var(--prts-accent);
+	}
+
+	.sidebar-link[aria-current="page"] {
+		border-left-color: var(--prts-accent);
+		font-weight: 700;
+	}
+
+	.docs-main {
+		min-width: 0;
+		max-width: 54rem;
+		width: 100%;
+		margin: 0 auto;
+		padding: var(--prts-space-xl) var(--prts-space-2xl) var(--prts-space-3xl);
+	}
+
+	.docs-pagination {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--prts-space-md);
+		margin-top: var(--prts-space-3xl);
+		padding-top: var(--prts-space-lg);
+		border-top: 1px solid var(--prts-border);
+	}
+
+	.pagination-link {
+		display: flex;
+		flex-direction: column;
+		gap: var(--prts-space-xs);
+		padding: var(--prts-space-md);
+		border: 1px solid var(--prts-border);
+		color: var(--prts-text-primary);
+		transition: border-color var(--prts-transition-fast);
+	}
+
+	.pagination-link:hover {
+		border-color: var(--prts-accent);
+		color: var(--prts-accent);
+	}
+
+	.pagination-link--next {
+		grid-column: 2;
+		text-align: right;
+	}
+
+	.pagination-label {
+		font-size: 0.75rem;
+		color: var(--prts-text-secondary);
+	}
+
+	.pagination-title {
+		font-family: var(--prts-font-heading);
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: var(--prts-accent);
+	}
+
+	.docs-toc {
+		padding: var(--prts-space-xl) var(--prts-space-md) var(--prts-space-xl) 0;
+	}
+
+	.toc-nav {
+		position: sticky;
+		top: calc(var(--prts-navbar-height) + var(--prts-space-md));
+		max-height: calc(100dvh - var(--prts-navbar-height) - var(--prts-space-xl));
+		overflow-y: auto;
+		border-left: 1px solid var(--prts-border);
+		padding-left: var(--prts-space-md);
+	}
+
+	.toc-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--prts-space-sm);
+	}
+
+	.toc-depth-3 {
+		padding-left: var(--prts-space-md);
+	}
+
+	.toc-link {
+		display: block;
+		font-size: 0.85rem;
+		line-height: 1.4;
+		color: var(--prts-text-secondary);
+	}
+
+	.toc-link:hover {
+		color: var(--prts-accent);
+	}
+
+	@media (max-width: 1199px) {
+		.docs-shell {
+			grid-template-columns: var(--prts-sidebar-width) minmax(0, 1fr);
+		}
+
+		.docs-toc {
+			display: none;
+		}
+	}
+
+	@media (max-width: 996px) {
+		.docs-shell {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.docs-sidebar {
+			display: none;
+		}
+
+		.docs-main {
+			padding: var(--prts-space-lg) var(--prts-space-md) var(--prts-space-2xl);
+		}
+
+		.docs-pagination {
+			grid-template-columns: 1fr;
+		}
+
+		.pagination-link--next {
+			grid-column: 1;
+		}
+	}
+</style>

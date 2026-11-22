@@ -6,8 +6,6 @@ import { openPage } from "./_pages";
 const samplePalette = `2DM<=6 〈観察〉
 3DM<=7 〈＊運動〉`;
 
-const baselineDisabledRules = ["color-contrast", "link-in-text-block"];
-
 test.describe("converter interactive (filled state)", () => {
 	test("VRT: converter_filled", async ({ page }) => {
 		await openPage(page, "/converter");
@@ -30,7 +28,6 @@ test.describe("converter interactive (filled state)", () => {
 
 		const results = await new AxeBuilder({ page })
 			.withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
-			.disableRules(baselineDisabledRules)
 			.analyze();
 		expect(results.violations).toEqual([]);
 	});

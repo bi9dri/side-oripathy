@@ -1,17 +1,17 @@
 # AGENTS.md
 
-Docusaurus site for "Side Oripathy", an Arknights × Emoklore TRPG add-on ruleset (Japanese).
+Astro site for "Side Oripathy", an Arknights × Emoklore TRPG add-on ruleset (Japanese).
 
 ## Commands
 
 Package manager: bun
 
 ```bash
-bun run start        # dev server
-bun run build        # production build
+bun run start        # dev server (astro dev)
+bun run build        # production build (outputs dist/)
 bun run --bun lint       # oxlint
 bun run --bun format     # oxfmt
-bun run --bun typecheck  # tsc --noEmit
+bun run typecheck        # astro sync && tsc --noEmit
 ```
 
 ## Testing
@@ -29,7 +29,7 @@ bun run test/logic/unit  # unit tests with coverage
 bun run test/logic       # all logic tests (currently delegates to unit)
 ```
 
-Coverage scope: `src/lib/**` only (pages/components/theme are excluded).
+Coverage scope: `src/lib/**` only (pages/layouts are excluded).
 
 ### Content Quality Gates
 
@@ -44,17 +44,17 @@ bun run test/content         # prose only (links excluded — network, slow)
 ### Visual Quality Gates
 
 ```bash
-bun run test/visual/e2e          # Playwright: VRT + a11y (axe) over a built site
+bun run test/visual/e2e          # Playwright: VRT + a11y (axe) + site contract over a built site
 bun run test/visual/e2e:update   # VRT baseline を現在の描画で再生成する
 bun run test/visual/perf         # Lighthouse CI: perf / a11y / best-practices / seo budgets
 bun run test/visual              # build + e2e + perf (full visual gate)
 ```
 
-VRT runs across 4 variants per page (PC/mobile × light/dark) using Playwright's built-in `expect(page).toHaveScreenshot()`. Baselines are committed under `tests/visual/**/*-snapshots/`; the authoritative ones are the Linux baselines CI generates (`-win32` / `-darwin` are local-only and gitignored). PRs compare only, and an intentional diff is accepted with the `vrt:accepted` label — the label is consumed on detection, and `main` regenerates and auto-commits the baselines after merge. `VRT + a11y` is a required check, so the job always starts and picks its scope from the PR's changed files: non-visual changes (scripts / devbox / this doc) skip install and build, and `docs/`-only changes run just the `/docs` page. The first non-Linux run fails every screenshot with "A snapshot doesn't exist" because that platform has no baselines yet; run it once more and the comparison passes. The a11y gate runs the full WCAG 2.0 + 2.1 levels A & AA ruleset on PC variants via axe-core, and the mobile-specific `target-size` rule (WCAG 2.5.8) on mobile variants. Lighthouse CI runs against the prebuilt static `build/` directory.
+VRT runs across 4 variants per page (PC/mobile × light/dark) using Playwright's built-in `expect(page).toHaveScreenshot()`. Baselines are committed under `tests/visual/**/*-snapshots/`; the authoritative ones are the Linux baselines CI generates (`-win32` / `-darwin` are local-only and gitignored). PRs compare only, and an intentional diff is accepted with the `vrt:accepted` label — the label is consumed on detection, and `main` regenerates and auto-commits the baselines after merge. `VRT + a11y` is a required check, so the job always starts and picks its scope from the PR's changed files: non-visual changes (scripts / devbox / this doc) skip install and build, and `docs/`-only changes run just the `/docs` page. The first non-Linux run fails every screenshot with "A snapshot doesn't exist" because that platform has no baselines yet; run it once more and the comparison passes. The a11y gate runs the full WCAG 2.0 + 2.1 levels A & AA ruleset on PC variants via axe-core, and the mobile-specific `target-size` rule (WCAG 2.5.8) on mobile variants. Lighthouse CI runs against the prebuilt static `dist/` directory.
 
 Run prerequisites: `bunx playwright install --with-deps chromium` once per machine. On Linux CI containers without root, run `bunx playwright install chromium` and install system libraries (`libnss3`, `libgbm1`, etc.) separately.
 
-`test/visual/e2e` requires an existing `build/` directory (the Playwright `webServer` runs `docusaurus serve`, which serves a prebuilt site and does not build on its own). Run `bun run build` first, or use `bun run test/visual` which chains build → e2e → perf.
+`test/visual/e2e` requires an existing `dist/` directory (the Playwright `webServer` runs `astro preview`, which serves a prebuilt site and does not build on its own). Run `bun run build` first, or use `bun run test/visual` which chains build → e2e → perf.
 
 `test/visual` is excluded from the main `test` script — it is heavier and requires a build step. Run it manually before merging UI / dependency / CSS changes.
 
@@ -68,16 +68,20 @@ Note: `bun run test` dispatches to the `test` script in package.json (logic + co
 - **Renovate (GitHub App, `.github/renovate.json5`) proposes every update** and enforces the three rules above. Don't bump versions by hand — PRs are automatically merged once CI passes.
   - Bun bumps arrive as one PR covering `devbox.json` / `packageManager` / `@types/bun` (`scripts/check-bun-version.sh` guards the three).
   - Renovate can't regenerate `devbox.lock`: run `devbox install` on the branch before merging a devbox update.
-  - Rendering regressions are caught by Visual Quality Gates, which runs on every PR — check it on Docusaurus / React / CSS bumps, since pushes to `main` deploy straight to production.
+  - Rendering regressions are caught by Visual Quality Gates, which runs on every PR — check it on Astro / CSS bumps, since pushes to `main` deploy straight to production.
   - If CI fails on a Renovate PR, fix it on that branch (replace deprecated APIs, adapt to the new API) rather than closing the PR.
 - **Don't reach for `overrides`.** Fix it by updating the direct dependency. Use `overrides` only when a critical vulnerability is reported against a transitive dependency AND no direct update resolves it — document the advisory, why a direct update isn't viable, and the removal condition in the PR.
 - Vulnerabilities are scanned by OSV-Scanner (`.github/workflows/osv-scanner.yml`): on every PR and daily at 07:00 JST.
 
 ## Layout
 
-- `docs/` — rule docs (sidebar auto-generated via `sidebars.ts`)
-- `src/pages/converter.tsx` — character sheet converter (CCFOLIA / chat palette)
-- `src/components/` — MDX components (`Expression`, `Memo`)
+- `docs/` — rule docs in pure Markdown + `remark-directive` (`:::note`, `:::tip`, `:::memo`, `::expression`), loaded via Astro Content Collections (`src/content.config.ts`)
+- `src/pages/docs/[slug].astro` — static doc pages
+- `src/pages/converter.astro` — character sheet converter (CCFOLIA / chat palette)
+- `src/pages/erosion-calculator.astro` — erosion check probability calculator
+- `src/layouts/` — shared Astro layouts (`BaseLayout.astro`, `DocsLayout.astro`)
+- `src/lib/` — pure TypeScript domain logic (`converter.ts`, `erosion-calculator.ts`, `docs-nav.ts`, `remark-directives.ts`)
+- `public/` — static assets served at `/`
 
 ## Skills (`.agents/skills/`)
 

@@ -1,12 +1,11 @@
-﻿# Dependencies
+# Dependencies
 /node_modules
 
 # Production
-/build
+/dist
 
 # Generated files
-.docusaurus
-.cache-loader
+.astro
 
 # Visual Quality Gates artifacts
 /test-results
