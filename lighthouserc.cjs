@@ -10,7 +10,7 @@ function resolveChromePath() {
 module.exports = {
 	ci: {
 		collect: {
-			staticDistDir: "./build",
+			staticDistDir: "./dist",
 			url: [
 				"http://localhost/index.html",
 				"http://localhost/converter/index.html",

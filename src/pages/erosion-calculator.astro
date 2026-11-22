@@ -1,0 +1,410 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { calcDistribution } from "../lib/erosion-calculator";
+
+const siteTitle = "アークナイツ×エモクロアTRPG サイド・オリパシー";
+const initialErosionLevel = 0;
+const initialTolerance = 6;
+const initialDanger = 3;
+const { dist, numDice, expectedValue } = calcDistribution(
+	initialErosionLevel,
+	initialTolerance,
+	initialDanger,
+);
+const maxProb = Math.max(...dist);
+const initialRows = dist
+	.map((prob, count) => ({ count, prob }))
+	.filter(({ prob }) => prob >= 0.001);
+const initialCommand = `${numDice}R10[>=${initialTolerance}]<=${initialDanger}`;
+---
+
+<BaseLayout
+	title={`源石侵食判定計算機 | ${siteTitle}`}
+	description="侵食度・生理的耐性・危険度を入力して、源石侵食判定の成功数ごとの確率を計算します。"
+	currentPath="/erosion-calculator"
+>
+	<main>
+		<section class="calculator" aria-labelledby="calculator-heading">
+			<h1 id="calculator-heading" class="heading">源石侵食判定計算機</h1>
+			<p class="instruction">
+				侵食度・生理的耐性・危険度を入力すると、源石侵食判定の成功数（侵食度の上昇値）になる確率を一覧表示します。
+			</p>
+
+			<div class="input-grid">
+				<div class="field-group">
+					<label class="label" for="erosionLevel">侵食度</label>
+					<input
+						id="erosionLevel"
+						class="input"
+						type="number"
+						min={0}
+						max={100}
+						value={initialErosionLevel}
+					/>
+					<span class="hint">0〜100</span>
+				</div>
+
+				<div class="field-group">
+					<label class="label" for="tolerance">生理的耐性</label>
+					<input
+						id="tolerance"
+						class="input"
+						type="number"
+						min={2}
+						max={12}
+						value={initialTolerance}
+					/>
+					<span class="hint">2〜12（【身体】+【運勢】）</span>
+				</div>
+
+				<div class="field-group">
+					<label class="label" for="danger">危険度</label>
+					<input
+						id="danger"
+						class="input"
+						type="number"
+						min={1}
+						max={10}
+						value={initialDanger}
+					/>
+					<span class="hint">1〜10（ディーラーが指定）</span>
+				</div>
+			</div>
+
+			<div class="command-block">
+				<span class="command-label">BCDiceコマンド</span>
+				<code id="bcdice-command" class="command">{initialCommand}</code>
+				<span id="command-meta" class="command-meta">
+					ダイス数: {numDice}個（侵食度{initialErosionLevel}÷5切り捨て+1）
+				</span>
+			</div>
+
+			<div class="result-section">
+				<h2 class="subheading">確率分布</h2>
+				<p class="expected-value">
+					期待値: <strong id="expected-value">{expectedValue.toFixed(2)}</strong>
+				</p>
+
+				<div class="table-wrapper" tabindex="0" role="region" aria-label="確率分布">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="td-count" scope="col">成功数（侵食度上昇量）</th>
+								<th class="td-prob" scope="col">確率</th>
+								<th class="td-bar" scope="col">分布グラフ</th>
+							</tr>
+						</thead>
+						<tbody id="distribution-body">
+							{
+								initialRows.map(({ count, prob }) => (
+									<tr>
+										<td class="td-count">{count}</td>
+										<td class="td-prob">{(prob * 100).toFixed(1)}%</td>
+										<td class="td-bar">
+											<div
+												class="bar"
+												style={`width: ${maxProb > 0 ? (prob / maxProb) * 100 : 0}%`}
+											/>
+										</td>
+									</tr>
+								))
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
+
+<script>
+	import { calcDistribution } from "../lib/erosion-calculator";
+
+	const erosionInput = document.getElementById("erosionLevel") as HTMLInputElement | null;
+	const toleranceInput = document.getElementById("tolerance") as HTMLInputElement | null;
+	const dangerInput = document.getElementById("danger") as HTMLInputElement | null;
+	const commandEl = document.getElementById("bcdice-command");
+	const metaEl = document.getElementById("command-meta");
+	const expectedEl = document.getElementById("expected-value");
+	const tbodyEl = document.getElementById("distribution-body");
+
+	function clamp(value: number, min: number, max: number): number {
+		const numeric = Number.isNaN(value) ? min : value;
+		return Math.max(min, Math.min(max, numeric));
+	}
+
+	function renderDistribution() {
+		if (!erosionInput || !toleranceInput || !dangerInput || !tbodyEl) return;
+
+		const erosionLevel = clamp(Number(erosionInput.value), 0, 100);
+		const tolerance = clamp(Number(toleranceInput.value), 2, 12);
+		const danger = clamp(Number(dangerInput.value), 1, 10);
+
+		erosionInput.value = String(erosionLevel);
+		toleranceInput.value = String(tolerance);
+		dangerInput.value = String(danger);
+
+		const { dist, numDice, expectedValue } = calcDistribution(erosionLevel, tolerance, danger);
+		const maxProb = Math.max(...dist);
+		const rows = dist
+			.map((prob, count) => ({ count, prob }))
+			.filter(({ prob }) => prob >= 0.001);
+
+		if (commandEl) {
+			commandEl.textContent = `${numDice}R10[>=${tolerance}]<=${danger}`;
+		}
+		if (metaEl) {
+			metaEl.textContent = `ダイス数: ${numDice}個（侵食度${erosionLevel}÷5切り捨て+1）`;
+		}
+		if (expectedEl) {
+			expectedEl.textContent = expectedValue.toFixed(2);
+		}
+
+		const fragment = document.createDocumentFragment();
+		for (const { count, prob } of rows) {
+			const tr = document.createElement("tr");
+
+			const tdCount = document.createElement("td");
+			tdCount.className = "td-count";
+			tdCount.textContent = String(count);
+
+			const tdProb = document.createElement("td");
+			tdProb.className = "td-prob";
+			tdProb.textContent = `${(prob * 100).toFixed(1)}%`;
+
+			const tdBar = document.createElement("td");
+			tdBar.className = "td-bar";
+			const bar = document.createElement("div");
+			bar.className = "bar";
+			bar.style.width = `${maxProb > 0 ? (prob / maxProb) * 100 : 0}%`;
+			tdBar.appendChild(bar);
+
+			tr.append(tdCount, tdProb, tdBar);
+			fragment.appendChild(tr);
+		}
+		tbodyEl.replaceChildren(fragment);
+	}
+
+	erosionInput?.addEventListener("input", renderDistribution);
+	toleranceInput?.addEventListener("input", renderDistribution);
+	dangerInput?.addEventListener("input", renderDistribution);
+</script>
+
+<style>
+	.calculator {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--prts-space-xl);
+		padding: var(--prts-space-2xl) var(--prts-space-xl);
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	.heading {
+		font-size: 1.25rem;
+		text-align: center;
+		color: var(--prts-accent);
+		margin: 0;
+	}
+
+	.instruction {
+		font-size: 0.9rem;
+		color: var(--prts-text-secondary);
+		text-align: center;
+		line-height: 1.8;
+		margin: 0;
+	}
+
+	.input-grid {
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--prts-space-md);
+	}
+
+	.field-group {
+		display: flex;
+		flex-direction: column;
+		gap: var(--prts-space-xs);
+	}
+
+	.label {
+		font-family: var(--prts-font-heading);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--prts-text-secondary);
+	}
+
+	.input {
+		width: 100%;
+		min-height: 44px;
+		background-color: var(--prts-bg-surface);
+		border: 1px solid var(--prts-border);
+		color: var(--prts-text-primary);
+		font-family: var(--prts-font-heading);
+		font-size: 0.85rem;
+		padding: var(--prts-space-sm) var(--prts-space-md);
+		border-radius: 0;
+		transition: border-color var(--prts-transition-fast);
+		-moz-appearance: textfield;
+	}
+
+	.input::-webkit-inner-spin-button,
+	.input::-webkit-outer-spin-button {
+		opacity: 1;
+	}
+
+	.input:focus {
+		outline: none;
+		border-color: var(--prts-accent);
+		box-shadow: 0 0 0 1px var(--prts-accent);
+	}
+
+	.hint {
+		font-size: 0.75rem;
+		color: var(--prts-text-tertiary);
+		font-family: var(--prts-font-heading);
+		line-height: 1.4;
+	}
+
+	.command-block {
+		width: 100%;
+		background-color: var(--prts-bg-surface);
+		border: 1px solid var(--prts-border);
+		padding: var(--prts-space-md);
+		display: flex;
+		flex-direction: column;
+		gap: var(--prts-space-xs);
+	}
+
+	.command-label {
+		font-family: var(--prts-font-heading);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--prts-text-secondary);
+	}
+
+	.command {
+		font-family: var(--prts-font-heading);
+		font-size: 1rem;
+		color: var(--prts-accent);
+		background: none;
+		border: none;
+		padding: 0;
+		word-break: break-all;
+	}
+
+	.command-meta {
+		font-family: var(--prts-font-heading);
+		font-size: 0.8rem;
+		color: var(--prts-text-tertiary);
+	}
+
+	.result-section {
+		width: 100%;
+	}
+
+	.subheading {
+		font-family: var(--prts-font-heading);
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--prts-accent);
+		margin: 0;
+	}
+
+	.expected-value {
+		font-family: var(--prts-font-heading);
+		font-size: 0.85rem;
+		color: var(--prts-text-secondary);
+		margin-top: var(--prts-space-xs);
+		margin-bottom: var(--prts-space-sm);
+	}
+
+	.expected-value strong {
+		color: var(--prts-text-primary);
+	}
+
+	.table-wrapper {
+		overflow-x: auto;
+	}
+
+	.table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.875rem;
+	}
+
+	.table thead tr {
+		border-bottom: 2px solid var(--prts-accent);
+	}
+
+	.table th {
+		font-family: var(--prts-font-heading);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--prts-text-secondary);
+		padding: var(--prts-space-sm) var(--prts-space-md);
+		text-align: left;
+		background-color: var(--prts-bg-surface);
+		white-space: nowrap;
+	}
+
+	.table :global(tbody tr) {
+		border-bottom: 1px solid var(--prts-border);
+		transition: background-color var(--prts-transition-fast);
+	}
+
+	.table :global(tbody tr:last-child) {
+		border-bottom: none;
+	}
+
+	.table :global(tbody tr:hover) {
+		background-color: var(--prts-bg-surface);
+	}
+
+	.table :global(.td-count) {
+		font-family: var(--prts-font-heading);
+		font-size: 0.9rem;
+		padding: var(--prts-space-xs) var(--prts-space-md);
+		color: var(--prts-text-primary);
+		width: 9rem;
+		text-align: center;
+	}
+
+	.table :global(.td-prob) {
+		font-family: var(--prts-font-heading);
+		font-size: 0.9rem;
+		padding: var(--prts-space-xs) var(--prts-space-md);
+		color: var(--prts-accent);
+		width: 6rem;
+		text-align: right;
+	}
+
+	.table :global(.td-bar) {
+		padding: var(--prts-space-xs) var(--prts-space-md) var(--prts-space-xs) 0;
+		min-width: 80px;
+	}
+
+	.table :global(.bar) {
+		height: 10px;
+		background-color: var(--prts-accent);
+		min-width: 2px;
+		opacity: 0.8;
+		transition: width 0.15s ease;
+	}
+
+	@media screen and (max-width: 576px) {
+		.calculator {
+			padding: var(--prts-space-xl) var(--prts-space-md);
+		}
+
+		.input-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

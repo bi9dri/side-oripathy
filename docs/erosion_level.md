@@ -3,19 +3,17 @@ sidebar_position: 5
 toc_max_heading_level: 2
 ---
 
-import Memo from '@site/src/components/memo';
-
 # 〈侵食度〉
 
 **侵食度**はキャラクターの鉱石病の進行度を表現した数値で、高くなると様々な行動に制約が発生します。侵食度はあくまでTRPGのシステムで鉱石病の深刻さを表現するための便宜上のもので、原作ゲームに登場する源石融合率とは異なるものです。
 
 侵食度は段階が分かれており、以下の表のとおりに区分されます。
 
-<table style={{textAlign: 'left'}}>
+<table style="text-align: left">
   <thead>
     <tr>
-      <th style={{minWidth: '6em'}}>侵食段階</th>
-      <th style={{minWidth: '5.5em'}}>侵食度</th>
+      <th style="min-width: 6em">侵食段階</th>
+      <th style="min-width: 5.5em">侵食度</th>
       <th>影響</th>
       <th>描写例</th>
     </tr>
@@ -31,12 +29,12 @@ import Memo from '@site/src/components/memo';
       <td>1<br /><b>軽度</b></td>
       <td>1～20</td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li>運動系技能の判定値-1</li>
         </ul>
       </td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li>感染部位の軽い痛み、違和感</li>
         </ul>
       </td>
@@ -45,14 +43,14 @@ import Memo from '@site/src/components/memo';
       <td>2<br /><b>中等度</b></td>
       <td>21～70</td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
             <li>運動系技能の判定値-1</li>
             <li>〈アーツ〉技能の判定値+1</li>
             <li>他のすべての技能の判定値-1</li>
         </ul>
       </td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li>感染部位の強い痛み、機能低下</li>
           <li>感染部位の体表に源石結晶が露出する</li>
           <li>一部部位の肥大化などの身体的変化</li>
@@ -64,13 +62,13 @@ import Memo from '@site/src/components/memo';
       <td>3<br /><b>重度</b></td>
       <td>71～90</td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li>〈アーツ〉技能の判定値+2</li>
           <li>他のすべての技能の判定値-2</li>
         </ul>
       </td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li>全身の激烈な痛み、機能低下</li>
           <li>一部部位が源石に変化し動かせなくなる</li>
           <li>幻覚などの精神的不調に陥る</li>
@@ -81,14 +79,14 @@ import Memo from '@site/src/components/memo';
       <td>4<br /><b>末期</b></td>
       <td>91～100</td>
       <td>
-        <ul style={{margin:0}}>
-          <li>能動的な行動ができなくなる<ul style={{margin:0}}><li>〈＊生存〉などは判定できる</li></ul></li>
+        <ul style="margin: 0">
+          <li>能動的な行動ができなくなる<ul style="margin: 0"><li>〈＊生存〉などは判定できる</li></ul></li>
           <li>時間経過で【源石侵食判定】が発生する</li>
           <li><u><b>セッション終了時、死亡扱いとする</b></u></li>
         </ul>
       </td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li>感覚喪失</li>
           <li>意識朦朧</li>
           <li>全身に源石結晶が露出する</li>
@@ -100,13 +98,13 @@ import Memo from '@site/src/components/memo';
       <td>5<br /><b>死亡</b></td>
       <td>101～</td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li><u><b>即座に死亡する</b></u></li>
           <li>周囲のすべてのキャラクターに【源石侵食判定】を発生させる</li>
         </ul>
       </td>
       <td>
-        <ul style={{margin:0}}>
+        <ul style="margin: 0">
           <li>全身が源石に変化し、粉塵を周囲に撒き散らす“爆発”を起こす</li>
         </ul>
       </td>
@@ -114,9 +112,9 @@ import Memo from '@site/src/components/memo';
   </tbody>
 </table>
 
-<Memo>
+:::memo
 鉱石病は感染者の身体を残酷に蝕みますが、それでもエーシェンツたちは精強な身体能力を持っています。
-</Memo>
+:::
 
 ----
 
@@ -159,6 +157,6 @@ import Memo from '@site/src/components/memo';
 
 ただし、侵食度が上昇してから目安1時間以内に<b>鉱石病抑制剤</b>を投与することで、 **1D5** （直前の上昇値を上限とする）だけ侵食度を下げることができます。**〈＊手当て〉や〈医術〉で侵食度を下げることはできません。**
 
-<Memo>
+:::memo
 ロドスの抑制剤の品質は他の追随を許しません。もし他の薬に頼るとしたら、同等の効果は期待できないでしょう。
-</Memo>
+:::

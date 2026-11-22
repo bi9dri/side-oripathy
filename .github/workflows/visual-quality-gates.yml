@@ -31,7 +31,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run --bun lint
       - run: bun run --bun format --check
-      - run: bun run --bun typecheck
+      - run: bun run typecheck
       - run: bun run test
 
   # VRT (baseline 比較) + a11y。Playwright がブラウザを起動するため Chromium を install する。

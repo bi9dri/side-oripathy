@@ -3,8 +3,6 @@ sidebar_position: 8
 toc_max_heading_level: 2
 ---
 
-import Memo from '@site/src/components/memo';
-
 # 【アーツ反動判定】
 
 <b>【アーツ反動判定】</b>は、アーツの行使によって行使者の鉱石病が進行するかという判定です。鉱石病が進行しているほど、強いアーツを行使するほど、より鉱石病が進行しやすくなります。
@@ -23,9 +21,9 @@ import Memo from '@site/src/components/memo';
 
 「アーツユニットによって反動の一部を受け止める」などの条件によって、ディーラーの裁量で危険度を下げることができます。
 
-<Memo>
+:::memo
 制御を超えたアーツ行使は致命的な結果をもたらします。
-</Memo>
+:::
 
 ## 例
 

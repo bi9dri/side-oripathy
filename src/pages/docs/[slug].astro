@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from "astro:content";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import {
+	type DocNavItem,
+	extractTitleFromMarkdown,
+	filterTocHeadings,
+	getPagination,
+	sortDocs,
+} from "../../lib/docs-nav";
+
+export async function getStaticPaths() {
+	const entries = await getCollection("docs");
+	const items = sortDocs(
+		entries.map((entry) => ({
+			slug: entry.id,
+			title: entry.data.title ?? extractTitleFromMarkdown(entry.body ?? "", entry.id),
+			sidebarPosition: entry.data.sidebar_position,
+			entry,
+		})),
+	);
+	const sidebarDocs: DocNavItem[] = items.map(({ slug, title, sidebarPosition }) => ({
+		slug,
+		title,
+		sidebarPosition,
+	}));
+
+	return items.map((item) => ({
+		params: { slug: item.slug },
+		props: {
+			entry: item.entry,
+			title: item.title,
+			sidebarDocs,
+		},
+	}));
+}
+
+const { entry, title, sidebarDocs } = Astro.props;
+const { Content, headings } = await render(entry);
+const tocHeadings = filterTocHeadings(headings, entry.data.toc_max_heading_level);
+const { prev, next } = getPagination(sidebarDocs, entry.id);
+const description =
+	entry.data.description ?? `${title} | アークナイツ×エモクロアTRPG サイド・オリパシー`;
+---
+
+<DocsLayout
+	title={title}
+	description={description}
+	currentSlug={entry.id}
+	sidebarDocs={sidebarDocs}
+	tocHeadings={tocHeadings}
+	prev={prev}
+	next={next}
+>
+	<Content />
+</DocsLayout>

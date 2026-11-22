@@ -1,9 +1,4 @@
 {
-  "plugins": {
-    "mdx": {
-      "extensions": [".md", ".mdx"]
-    }
-  },
   "rules": {
     "preset-ja-technical-writing": {
       "sentence-length": { "max": 150 },
