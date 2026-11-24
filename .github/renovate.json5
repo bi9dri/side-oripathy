@@ -1,81 +1,80 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "config:recommended",
-    // GitHub Actions の実効コミットは .github/workflows/actions.lock が固定する
-    // （gh actions-lock）。workflow 側はタグ参照のままにするため、
-    // helpers:pinGitHubActionDigests は使わない。
+    'config:recommended',
   ],
-
   automerge: true,
-  automergeType: "pr",
-
-  // CI（verify-lockfile.yml）と同じ gh-actions-lock のバージョンで lockfile を
-  // 再生成させ、手元・CI・Renovate で差分がぶれないようにする。
+  automergeType: 'pr',
   constraints: {
-    ghActionsLock: "v0.4.1",
+    ghActionsLock: 'v0.4.1',
   },
-
-  // 固定バージョンのみ（^ / ~ を使わない）
-  rangeStrategy: "pin",
-
-  // 公開から 7 日未満のリリースは PR にしない（ncu --cooldown 7 / pinact -m 7 相当）。
-  // internalChecksFilter: strict で「保留中の新バージョン」も無視する。
-  minimumReleaseAge: "7 days",
-  internalChecksFilter: "strict",
-
-  // 更新候補の一覧 Issue。ncu の結果を Issue にまとめる自前処理の置き換え。
-  dependencyDashboard: true,
-  dependencyDashboardOSVVulnerabilitySummary: "unresolved",
+  rangeStrategy: 'pin',
+  minimumReleaseAge: '7 days',
+  internalChecksFilter: 'strict',
+  dependencyDashboard: {
+    enabled: true,
+    osvVulnerabilitySummary: 'unresolved',
+  },
   osvVulnerabilityAlerts: true,
-
-  semanticCommits: "enabled",
-  commitMessageAction: "更新",
-  commitMessageExtra: "({{currentVersion}} → {{newVersion}})",
+  semanticCommits: 'enabled',
+  commitMessageAction: '更新',
+  commitMessageExtra: '({{currentVersion}} → {{newVersion}})',
   prConcurrentLimit: 5,
-
-  // セキュリティ更新は 7 日ルールを迂回する
   vulnerabilityAlerts: {
     minimumReleaseAge: null,
   },
-
   packageRules: [
     {
-      // bun のバージョンは devbox.json / packageManager / @types/bun の 3 箇所を
-      // 揃える必要がある（scripts/check-bun-version.sh）ため 1 PR にまとめる。
-      groupName: "bun",
-      matchPackageNames: ["bun", "@types/bun"],
+      groupName: 'bun',
+      matchPackageNames: [
+        'bun',
+        '@types/bun',
+      ],
       dependencyDashboardApproval: true,
     },
     {
-      // Renovate は devbox.json しか書き換えられず devbox.lock は再生成できない。
-      // ダッシュボードで承認 → ブランチ上で `devbox install` してから CI を通す。
-      matchManagers: ["devbox"],
+      matchManagers: [
+        'devbox',
+      ],
       dependencyDashboardApproval: true,
       prBodyNotes: [
-        "⚠️ `devbox.lock` は Renovate では更新されません。このブランチで `devbox install` を実行してコミットしてください。",
+        '⚠️ `devbox.lock` は Renovate では更新されません。このブランチで `devbox install` を実行してコミットしてください。',
       ],
     },
     {
-      // バージョンが揃っていないと壊れるパッケージ群は major でも 1 PR にまとめる。
-      groupName: "astro",
-      matchPackageNames: ["astro", "@astrojs/**"],
+      groupName: 'astro',
+      matchPackageNames: [
+        'astro',
+        '@astrojs/**',
+      ],
     },
     {
-      groupName: "playwright",
-      matchPackageNames: ["@playwright/test", "playwright-core"],
+      groupName: 'playwright',
+      matchPackageNames: [
+        '@playwright/test',
+        'playwright-core',
+      ],
     },
     {
-      // Batched 相当: 影響の小さい minor / patch は 1 PR に集約
-      groupName: "non-major dependencies",
-      matchManagers: ["bun", "npm"],
-      matchUpdateTypes: ["minor", "patch"],
-      matchPackageNames: ["!bun", "!@types/bun"],
+      groupName: 'non-major dependencies',
+      matchManagers: [
+        'bun',
+        'npm',
+      ],
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+      matchPackageNames: [
+        '!bun',
+        '!@types/bun',
+      ],
     },
     {
-      groupName: "github-actions",
-      matchManagers: ["github-actions"],
+      groupName: 'github-actions',
+      matchManagers: [
+        'github-actions',
+      ],
     },
-    // major は既定どおりパッケージごとの個別 PR（Individual 相当）
   ],
 }
