@@ -25,8 +25,8 @@
     "test": "bun run test/logic && bun run test/content"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "7.3.9",
-    "astro": "7.4.12",
+    "@astrojs/markdown-remark": "7.3.10",
+    "astro": "7.4.13",
     "remark-directive": "4.0.0"
   },
   "devDependencies": {
