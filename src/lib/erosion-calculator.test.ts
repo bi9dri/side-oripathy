@@ -84,6 +84,15 @@ describe("polyPow", () => {
 		}
 	});
 
+	test("p^3 matches exact odd-exponent binomial expansion", () => {
+		const result = polyPow([0.3, 0.7], 3);
+		expect(result.length).toBe(4);
+		expect(result[0]).toBeCloseTo(0.027, 8);
+		expect(result[1]).toBeCloseTo(0.189, 8);
+		expect(result[2]).toBeCloseTo(0.441, 8);
+		expect(result[3]).toBeCloseTo(0.343, 8);
+	});
+
 	test("sum of valid distribution raised to n is still ~1", () => {
 		const p = [0.3, 0.5, 0.2];
 		const result = polyPow(p, 3);
@@ -103,10 +112,11 @@ describe("singleDieDist", () => {
 		expect(sum).toBeCloseTo(1, 3);
 	});
 
-	test("P(0) is in [0, 1)", () => {
+	test("exact P(0), P(1), P(2) when no overlap between success and reroll (danger=5, tolerance=8)", () => {
 		const dist = singleDieDist(5, 8);
-		expect(dist[0]).toBeGreaterThanOrEqual(0);
-		expect(dist[0]).toBeLessThan(1);
+		expect(dist[0]).toBeCloseTo(2 / 7, 8);
+		expect(dist[1]).toBeCloseTo(5 / 7, 8);
+		expect(dist[2]).toBe(0);
 	});
 
 	test("sum stays ~1 when tolerance is out of range (no reroll possible)", () => {
@@ -121,6 +131,11 @@ describe("singleDieDist", () => {
 		expect(sum).toBeCloseTo(1, 3);
 		expect(dist[0]).toBeCloseTo(0, 10);
 		expect(dist[1]).toBeCloseTo(4 / 7, 5);
+	});
+
+	test("p_sr = 1 (infinite reroll): output stays bounded to MAX_TERMS", () => {
+		const dist = singleDieDist(10, 1);
+		expect(dist.length).toBe(MAX_TERMS);
 	});
 });
 
@@ -138,9 +153,12 @@ describe("calcDistribution", () => {
 		expect(sum).toBeCloseTo(1, 3);
 	});
 
-	test("expectedValue is positive when danger > 0", () => {
-		const { expectedValue } = calcDistribution(0, 6, 3);
-		expect(expectedValue).toBeGreaterThan(0);
+	test("expectedValue scales linearly with numDice (odd numDice = 3)", () => {
+		const single = calcDistribution(0, 8, 5);
+		const triple = calcDistribution(10, 8, 5);
+		expect(single.expectedValue).toBeCloseTo(5 / 7, 8);
+		expect(triple.numDice).toBe(3);
+		expect(triple.expectedValue).toBeCloseTo(3 * (5 / 7), 8);
 	});
 
 	test("expectedValue increases as danger increases", () => {

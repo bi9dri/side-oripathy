@@ -98,10 +98,43 @@ describe("remarkOripathyDirectives", () => {
 		runPlugin(tree);
 		const node = tree.children?.[0];
 		expect(node?.children?.length).toBe(2);
-		expect(node?.children?.[0]?.data?.hProperties).toEqual({
-			className: ["admonition-title"],
+		expect(node?.children?.[0]).toEqual({
+			type: "paragraph",
+			data: {
+				hName: "p",
+				hProperties: {
+					className: ["admonition-title"],
+				},
+			},
+			children: [{ type: "text", value: "NOTE" }],
 		});
-		expect(node?.children?.[0]?.children?.[0]?.value).toBe("NOTE");
+	});
+
+	test("inserts TIP fallback title even when tip admonition has no children", () => {
+		const tree: MarkdownNode = {
+			type: "root",
+			children: [
+				{
+					type: "containerDirective",
+					name: "tip",
+				},
+			],
+		};
+
+		runPlugin(tree);
+		const node = tree.children?.[0];
+		expect(node?.children).toEqual([
+			{
+				type: "paragraph",
+				data: {
+					hName: "p",
+					hProperties: {
+						className: ["admonition-title"],
+					},
+				},
+				children: [{ type: "text", value: "TIP" }],
+			},
+		]);
 	});
 
 	test("transforms :::memo container directive into div.c-memo", () => {
@@ -130,7 +163,7 @@ describe("remarkOripathyDirectives", () => {
 		expect(node?.children?.[0]?.children?.[0]?.value).toBe("制作者メモ");
 	});
 
-	test("transforms ::expression[...] leaf directive into p.c-expression", () => {
+	test("transforms ::expression[...] leaf and :::expression container directives into p.c-expression while ignoring textDirective", () => {
 		const tree: MarkdownNode = {
 			type: "root",
 			children: [
@@ -139,16 +172,35 @@ describe("remarkOripathyDirectives", () => {
 					name: "expression",
 					children: [{ type: "text", value: "源石侵食判定（危険度3）" }],
 				},
+				{
+					type: "containerDirective",
+					name: "expression",
+					children: [{ type: "paragraph", children: [{ type: "text", value: "ブロック式" }] }],
+				},
+				{
+					type: "textDirective",
+					name: "expression",
+					children: [{ type: "text", value: "インライン対象外" }],
+				},
 			],
 		};
 
 		runPlugin(tree);
-		const node = tree.children?.[0];
-		expect(node?.data?.hName).toBe("p");
-		expect(node?.data?.hProperties).toEqual({
+		const leaf = tree.children?.[0];
+		expect(leaf?.data?.hName).toBe("p");
+		expect(leaf?.data?.hProperties).toEqual({
 			className: ["c-expression"],
 		});
-		expect(node?.children?.[0]?.value).toBe("源石侵食判定（危険度3）");
+		expect(leaf?.children?.[0]?.value).toBe("源石侵食判定（危険度3）");
+
+		const container = tree.children?.[1];
+		expect(container?.data?.hName).toBe("p");
+		expect(container?.data?.hProperties).toEqual({
+			className: ["c-expression"],
+		});
+
+		const textDir = tree.children?.[2];
+		expect(textDir?.data).toBeUndefined();
 	});
 
 	test("leaves unknown directives untouched while still traversing nested children", () => {

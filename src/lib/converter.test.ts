@@ -204,10 +204,12 @@ describe("convertCcfolia — normal", () => {
 		expect(st).toMatchObject({ value: "0", max: "4" });
 	});
 
-	test("drops 共鳴 from status for normal type", () => {
+	test("drops 共鳴 from status for normal type while preserving other statuses", () => {
 		const result = JSON.parse(convertCcfolia(JSON.stringify(BASE_CCFOLIA), "normal"));
 		const kyoumei = result.data.status.find((s: { label: string }) => s.label === "共鳴");
+		const hp = result.data.status.find((s: { label: string }) => s.label === "HP");
 		expect(kyoumei).toBeUndefined();
+		expect(hp).toEqual({ label: "HP", value: "10", max: "10" });
 	});
 
 	test("output is valid JSON with kind === 'character'", () => {
@@ -229,12 +231,12 @@ describe("convertCcfolia — sarkaz-mercenary", () => {
 		expect(param?.value).toBe("2");
 	});
 
-	test("sets 侵食度 value to 21 and 侵食段階 value to 2", () => {
+	test("sets 侵食度 (21/100) and 侵食段階 (2/4) without duplicating entries", () => {
 		const result = JSON.parse(convertCcfolia(JSON.stringify(BASE_CCFOLIA), "sarkaz-mercenary"));
-		const erosion = result.data.status.find((s: { label: string }) => s.label === "侵食度");
-		const stage = result.data.status.find((s: { label: string }) => s.label === "侵食段階");
-		expect(erosion?.value).toBe("21");
-		expect(stage?.value).toBe("2");
+		const erosions = result.data.status.filter((s: { label: string }) => s.label === "侵食度");
+		const stages = result.data.status.filter((s: { label: string }) => s.label === "侵食段階");
+		expect(erosions).toEqual([{ label: "侵食度", value: "21", max: "100" }]);
+		expect(stages).toEqual([{ label: "侵食段階", value: "2", max: "4" }]);
 	});
 
 	test("commands: 運動系 is flat, other gets penalty", () => {

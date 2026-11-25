@@ -29,7 +29,9 @@ bun run test/logic/unit  # unit tests with coverage
 bun run test/logic       # all logic tests (currently delegates to unit)
 ```
 
-Coverage scope: `src/lib/**` only (pages/layouts are excluded).
+- **Coverage scope & guideline**: `src/lib/**` only (pages/layouts are excluded). Treat 80% coverage as a guideline — do **not** enforce a hard threshold (`bunfig.toml` `coverageThreshold`), and allow overall coverage to drop when deleting unused modules.
+- **Test quality**: Do not write tests for mocks alone, tests requiring excessive mocking, or tests written solely to satisfy coverage metrics. Verify behavior and domain invariants instead.
+- **Mutation testing**: Use mutation testing alongside coverage measurement to verify that tests meaningfully detect defects.
 
 ### Content Quality Gates
 
