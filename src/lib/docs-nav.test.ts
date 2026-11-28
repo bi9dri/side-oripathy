@@ -8,7 +8,8 @@ describe("extractTitleFromMarkdown", () => {
 	});
 
 	test("ignores hash lines inside fenced code blocks", () => {
-		const body = "```sh\n# not a heading\n```\n\n# 本物の見出し\n";
+		const body =
+			"```sh\n# not a heading\n```\n\n~~~md\n# also not a heading\n~~~\n\n# 本物の見出し\n";
 		expect(extractTitleFromMarkdown(body, "fallback")).toBe("本物の見出し");
 	});
 
@@ -19,15 +20,21 @@ describe("extractTitleFromMarkdown", () => {
 });
 
 describe("sortDocs", () => {
-	test("sorts docs ascending by sidebarPosition and falls back to slug", () => {
+	test("sorts docs ascending by sidebarPosition ahead of slug and falls back to slug", () => {
 		const sorted = sortDocs([
-			{ slug: "c", title: "C", sidebarPosition: 3 },
-			{ slug: "a", title: "A", sidebarPosition: 1 },
-			{ slug: "b", title: "B", sidebarPosition: 1 },
-			{ slug: "z", title: "Z" },
-			{ slug: "d", title: "D" },
+			{ slug: "a-late", title: "A", sidebarPosition: 3 },
+			{ slug: "z-first", title: "Z", sidebarPosition: 1 },
+			{ slug: "b-first", title: "B", sidebarPosition: 1 },
+			{ slug: "z-none", title: "Z2" },
+			{ slug: "d-none", title: "D" },
 		]);
-		expect(sorted.map((item) => item.slug)).toEqual(["a", "b", "c", "d", "z"]);
+		expect(sorted.map((item) => item.slug)).toEqual([
+			"b-first",
+			"z-first",
+			"a-late",
+			"d-none",
+			"z-none",
+		]);
 	});
 });
 
